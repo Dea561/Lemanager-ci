@@ -1312,6 +1312,697 @@
         }
     </style>
 
+  <section id="training-section" class="training-section">
+        <div class="section-header">
+            <span class="badge-top">Formations</span>
+            <h2>Programmes Certifiés <span class="text-orange">FDFP</span></h2>
+            <p class="section-subtitle">Présentiel à Abidjan & en ligne — Éligibles à la prise en charge FDFP.</p>
+        </div>
+
+        <div class="training-grid-all">
+
+            <div class="training-card-full" data-id="marketing">
+                <div class="card-top-row">
+                    <div class="card-icon-box"><img src="logo-marketing.png" alt="Icon Marketing"
+                            class="training-logo-img"></div>
+                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
+                </div>
+                <h3>Marketing stratégique & opérationnel</h3>
+                <p>Maîtrisez les leviers marketing pour développer vos ventes sur le marché ivoirien.</p>
+                <div class="card-footer-actions">
+                    <button class="btn-more" onclick="openMoreDetails('marketing')">En savoir plus</button>
+                    <button class="btn-enroll"
+                        onclick="redirectToWhatsApp('Marketing stratégique & opérationnel')">S'inscrire</button>
+                </div>
+            </div>
+
+            <div class="training-card-full" data-id="leadership">
+                <div class="card-top-row">
+                    <div class="card-icon-box"><img src="logo-leadership.png" alt="Icon Leadership"
+                            class="training-logo-img"></div>
+                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
+                </div>
+                <h3>Management, Leadership & Coaching</h3>
+                <p>Développez votre style de leadership et animez vos équipes avec efficacité.</p>
+                <div class="card-footer-actions">
+                    <button class="btn-more" onclick="openMoreDetails('leadership')">En savoir plus</button>
+                    <button class="btn-enroll"
+                        onclick="redirectToWhatsApp('Management, Leadership & Coaching')">S'inscrire</button>
+                </div>
+            </div>
+
+            <div class="training-card-full" data-id="si">
+                <div class="card-top-row">
+                    <div class="card-icon-box"><img src="logo-it.png" alt="Icon SI" class="training-logo-img"></div>
+                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
+                </div>
+                <h3>Management des systèmes d'information</h3>
+                <p>Gérez vos projets IT, sécurisez vos SI et maîtrisez les méthodes agiles.</p>
+                <div class="card-footer-actions">
+                    <button class="btn-more" onclick="openMoreDetails('si')">En savoir plus</button>
+                    <button class="btn-enroll"
+                        onclick="redirectToWhatsApp('Management des systèmes d\'information')">S'inscrire</button>
+                </div>
+            </div>
+
+            <div class="training-card-full" data-id="finance">
+                <div class="card-top-row">
+                    <div class="card-icon-box"><img src="logo-finance.png" alt="Icon Finance" class="training-logo-img">
+                    </div>
+                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
+                </div>
+                <h3>Gestion — Finance, Comptabilité, Audit</h3>
+                <p>Maîtrisez la comptabilité SYSCOHADA, l'audit interne et la fiscalité ivoirienne.</p>
+                <div class="card-footer-actions">
+                    <button class="btn-more" onclick="openMoreDetails('finance')">En savoir plus</button>
+                    <button class="btn-enroll"
+                        onclick="redirectToWhatsApp('Gestion — Finance, Comptabilité, Audit')">S'inscrire</button>
+                </div>
+            </div>
+
+            <div class="training-card-full" data-id="rh">
+                <div class="card-top-row">
+                    <div class="card-icon-box"><img src="logo-rh.png" alt="Icon RH" class="training-logo-img"></div>
+                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
+                </div>
+                <h3>Management des Ressources Humaines</h3>
+                <p>Code du travail CI, recrutement, paie et gestion des relations sociales.</p>
+                <div class="card-footer-actions">
+                    <button class="btn-more" onclick="openMoreDetails('rh')">En savoir plus</button>
+                    <button class="btn-enroll"
+                        onclick="redirectToWhatsApp('Management des Ressources Humaines')">S'inscrire</button>
+                </div>
+            </div>
+
+            <div class="training-card-full" data-id="surmesure">
+                <div class="card-top-row">
+                    <div class="card-icon-box"><img src="logo-surmesure.png" alt="Icon Sur Mesure"
+                            class="training-logo-img"></div>
+                </div>
+                <h3>Formation sur mesure</h3>
+                <p>Programme personnalisé pour votre équipe et votre secteur d'activité.</p>
+                <div class="card-footer-actions">
+                    <button class="btn-more" onclick="openMoreDetails('surmesure')">En savoir plus</button>
+                    <button class="btn-enroll bg-orange-btn" onclick="redirectToWhatsApp('Formation sur mesure')">Nous
+                        contacter →</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="detailsModal" class="details-modal-overlay">
+        <div class="details-modal-card">
+            <button class="modal-close-x" onclick="closeMoreDetails()">&times;</button>
+            <div class="modal-header-container">
+                <div id="modalIcon" class="modal-main-icon"></div>
+                <h4 id="modalTitle">Titre de la formation</h4>
+            </div>
+            <div id="modalDescription" class="modal-main-body">
+            </div>
+            <div class="modal-action-footer">
+                <a href="#" id="modalWhatsAppBtn" target="_blank" class="btn-enroll">💬 S'inscrire via WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="testimonials-section-wrapper">
+        <div class="testimonials-orange-box">
+            <span class="badge-top white-badge">Témoignages</span>
+            <h3 class="testimonials-title">Ils nous font confiance</h3>
+
+            <div class="testimonials-slider" id="whatsapp-testimonials">
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">“</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "L'équipe LEMANAGER nous a mis à disposition le logiciel LMFREEWARE pour la gestion des
+                        pesées et LMPAIE pour la paie planteur. Une solution fiable, sécurisée et parfaitement
+                        adaptée à nos besoins professionnels."
+                    </p>
+                    <div class="testimonial-footer">
+                        <div class="author-avatar">MB</div>
+                        <div class="author-info">
+                            <strong>M. BAMBA</strong>
+                            <span>Directeur Informatique - SDCI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">“</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Le logiciel LMFREEWARE est une excellente solution informatique pour notre pont bascule.
+                        LEMANAGER a su comprendre notre métier d'agro-industrie et livrer exactement ce qu'il nous
+                        fallait."
+                    </p>
+                    <div class="testimonial-footer">
+                        <div class="author-avatar">KK</div>
+                        <div class="author-info">
+                            <strong>M. KREMIEN Karl</strong>
+                            <span>Responsable Opérations - IDH</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-animated-section">
+        <div class="partners-title-container">
+            <h3>Ils nous font confiance depuis des années</h3>
+        </div>
+        <div class="partners-carousel-container">
+            <div class="partners-track">
+                <img src="sdci.png" alt="Logo SDCI">
+                <img src="idh.png" alt="Logo IDH">
+                <img src="fdfp_logo.png" alt="Logo FDFP">
+                <img src="foratec.png" alt="Logo FORATEC">
+                <img src="s2ic.png" alt="Logo S2IC">
+                <img src="sara_petroleum.png" alt="Logo Sara Petroleum">
+                <img src="sdci.png" alt="Logo SDCI">
+                <img src="idh.png" alt="Logo IDH">
+                <img src="fdfp_logo.png" alt="Logo FDFP">
+                <img src="foratec.png" alt="Logo FORATEC">
+                <img src="s2ic.png" alt="Logo S2IC">
+                <img src="sara_petroleum.png" alt="Logo Sara Petroleum">
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* --- STYLE GÉNÉRAL ET RÉINITIALISATION --- */
+        .training-section,
+        .testimonials-section-wrapper {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge-top {
+            background-color: rgba(0, 150, 219, 0.1);
+            color: #0096db;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .text-orange {
+            color: #e67e22;
+        }
+
+        /* --- GRILLE DES FORMATIONS (3 PAR LIGNE STRICT) --- */
+        .training-grid-all {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1240px;
+            margin: 40px auto 60px auto;
+            padding: 0 25px;
+        }
+
+        /* CARTE DE FORMATION */
+        .training-card-full {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .training-card-full:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 150, 219, 0.08);
+            border-color: #0096db;
+        }
+
+        .card-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .card-icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: #fff6ee;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .training-logo-img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+        }
+
+        .fdfp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #22c55e;
+            font-size: 13px;
+            font-weight: 600;
+            background-color: #f0fdf4;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .training-card-full h3 {
+            font-size: 20px;
+            color: #1e293b;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        .training-card-full p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .card-footer-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+        }
+
+        /* Boutons */
+        .btn-more {
+            background: none;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-more:hover {
+            background-color: #f1f5f9;
+            border-color: #94a3b8;
+        }
+
+        .btn-enroll {
+            background-color: #0096db;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .btn-enroll:hover {
+            background-color: #007bb5;
+        }
+
+        .bg-orange-btn {
+            background-color: #e67e22 !important;
+        }
+
+        .bg-orange-btn:hover {
+            background-color: #d35400 !important;
+        }
+
+        /* --- ARCHITECTURE DE LA FENETRE MODALE --- */
+        .details-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .details-modal-overlay.active {
+            display: flex;
+        }
+
+        .details-modal-card {
+            background: white;
+            max-width: 580px;
+            width: 100%;
+            border-radius: 16px;
+            padding: 35px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            animation: modalReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalReveal {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close-x {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+
+        .modal-close-x:hover {
+            color: #1e293b;
+        }
+
+        .modal-header-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+
+        .modal-main-icon {
+            font-size: 30px;
+            color: #e67e22;
+        }
+
+        .modal-header-container h4 {
+            font-size: 22px;
+            color: #1e293b;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .modal-main-body {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-main-body ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .modal-main-body li {
+            margin-bottom: 8px;
+        }
+
+        .modal-action-footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* --- DESIGN SECTION TÉMOIGNAGES ORANGE --- */
+        .testimonials-section-wrapper {
+            padding: 60px 5%;
+        }
+
+        .testimonials-orange-box {
+            background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            color: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .white-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .testimonials-title {
+            font-size: 30px;
+            margin: 10px 0 40px 0;
+            font-weight: 700;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            color: #1e293b;
+            min-width: 320px;
+            max-width: 400px;
+            flex: 1;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 45px;
+            color: rgba(230, 126, 34, 0.15);
+            font-family: serif;
+        }
+
+        .stars {
+            color: #ffb703;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 14.5px;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .author-avatar {
+            width: 42px;
+            height: 42px;
+            background-color: #0096db;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-info strong {
+            font-size: 14.5px;
+            color: #1e293b;
+        }
+
+        .author-info span {
+            font-size: 12.5px;
+            color: #64748b;
+        }
+
+        /* --- BANDEAU PARTENAIRES --- */
+        .partners-animated-section {
+            background-color: #ffffff;
+            padding: 40px 0;
+        }
+
+        .partners-title-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .partners-title-container h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #a0aec0;
+            letter-spacing: 1px;
+        }
+
+        .partners-carousel-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .partners-track {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: max-content;
+            animation: smoothScroll 25s linear infinite;
+        }
+
+        .partners-track img {
+            height: 50px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        @keyframes smoothScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 992px) {
+            .training-grid-all {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .training-grid-all {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        // Base de données unifiée pour les descriptions profondes et messages dynamiques
+        const programDetails = {
+            marketing: {
+                title: "Marketing stratégique & opérationnel",
+                icon: "<i class='fa-solid fa-chart-line'></i>",
+                desc: "<p>Ce module d'excellence est conçu pour structurer efficacement votre démarche commerciale sur le marché local et sous-régional :</p><ul><li><strong>Analyse de marché :</strong> Maîtriser le comportement du consommateur ivoirien.</li><li><strong>Stratégie Digitale :</strong> Optimiser votre présence en ligne et générer des leads qualifiés.</li><li><strong>Performance Commerciale :</strong> Bâtir un plan d'action commercial percutant.</li></ul>",
+                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Marketing%20stratégique%20%26%20opérationnel%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+            },
+            leadership: {
+                title: "Management, Leadership & Coaching",
+                icon: "<i class='fa-solid fa-users-gear'></i>",
+                desc: "<p>Devenez le leader que vos équipes ont envie de suivre au quotidien :</p><ul><li><strong>Posture du Manager :</strong> Passer de gestionnaire à leader inspirant.</li><li><strong>Gestion de conflits :</strong> Maintenir un climat social serein et productif.</li><li><strong>Coaching d'équipe :</strong> Développer le plein potentiel de vos collaborateurs.</li></ul>",
+                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%2C%20Leadership%20%26%20Coaching%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+            },
+            si: {
+                title: "Management des systèmes d'information",
+                icon: "<i class='fa-solid fa-laptop-code'></i>",
+                desc: "<p>Alignez vos outils technologiques avec les ambitions stratégiques de la direction :</p><ul><li><strong>Gouvernance SI :</strong> Maîtrise des référentiels et urbanisation des systèmes.</li><li><strong>Sécurité & Cybersécurité :</strong> Protéger les données critiques de l'organisation.</li><li><strong>Agilité :</strong> Conduite du changement et implémentation de méthodes agiles (Scrum, Kanban).</li></ul>",
+                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20systèmes%20d'information%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+            },
+            finance: {
+                title: "Gestion — Finance, Comptabilité, Audit",
+                icon: "<i class='fa-solid fa-calculator'></i>",
+                desc: "<p>Sécurisez la trajectoire financière et la conformité légale de votre structure :</p><ul><li><strong>Normes SYSCOHADA :</strong> Maîtrise parfaite des obligations comptables révisées.</li><li><strong>Contrôle de Gestion :</strong> Établir des budgets fiables et des tableaux de bord.</li><li><strong>Fiscalité Ivoirienne :</strong> Optimisation et gestion des déclarations en toute sérénité.</li></ul>",
+                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Gestion%20%E2%80%94%20Finance%2C%20Comptabilité%2C%20Audit%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+            },
+            rh: {
+                title: "Management des Ressources Humaines",
+                icon: "<i class='fa-solid fa-people-roof'></i>",
+                desc: "<p>Pilotez votre capital humain en totale conformité avec la réglementation locale :</p><ul><li><strong>Code du Travail Ivoirien :</strong> Maîtriser l'exécution et la rupture des contrats.</li><li><strong>Gestion de la Paie :</strong> Fiabiliser le traitement des salaires et taxes associées.</li><li><strong>GPEC :</strong> Gestion Prévisionnelle des Emplois et des Compétences.</li></ul>",
+                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20Ressources%20Humaines%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+            },
+            surmesure: {
+                title: "Programmes de Formation sur mesure",
+                icon: "<i class='fa-regular fa-lightbulb'></i>",
+                desc: "<p>Nous co-construisons vos solutions pédagogiques selon vos spécificités d'entreprise :</p><ul><li><strong>Audit de compétences :</strong> Analyse précise de vos besoins en amont.</li><li><strong>Flexibilité horaire :</strong> Sessions planifiées selon vos disponibilités opérationnelles.</li><li><strong>Livrables sur-mesure :</strong> Cas pratiques calqués à 100% sur vos défis réels.</li></ul>",
+                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20discuter%20d'un%20programme%20de%20%22Formation%20sur%20mesure%22%20pour%20mon%20entreprise."
+            }
+        };
+
+        // Fonctions de contrôle de la Fenêtre Pop-up (Modale)
+        function openMoreDetails(id) {
+            const data = programDetails[id];
+            if (data) {
+                document.getElementById('modalTitle').innerText = data.title;
+                document.getElementById('modalIcon').innerHTML = data.icon;
+                document.getElementById('modalDescription').innerHTML = data.desc;
+                document.getElementById('modalWhatsAppBtn').setAttribute('href', data.waLink);
+
+                document.getElementById('detailsModal').classList.add('active');
+            }
+        }
+
+        function closeMoreDetails() {
+            document.getElementById('detailsModal').classList.remove('active');
+        }
+
+        // Redirection automatique via les boutons d'inscription directs
+        function redirectToWhatsApp(formationName) {
+            const phoneNumber = "2250708061538";
+            let message = `Bonjour LEMANAGER, je souhaite avoir des informations et m'inscrire à la formation Certifiée FDFP en : "${formationName}". Pouvez-vous m'indiquer la démarche ?`;
+
+            if (formationName === 'Formation sur mesure') {
+                message = `Bonjour LEMANAGER, je souhaite discuter d'un programme de "Formation sur mesure" pour mon entreprise.`;
+            }
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Fermer si l'utilisateur clique en dehors de la boîte blanche
+        window.onclick = function (event) {
+            const modal = document.getElementById('detailsModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
 
     
 
@@ -2174,698 +2865,7 @@
         }
     </style>
 
-    <section id="training-section" class="training-section">
-        <div class="section-header">
-            <span class="badge-top">Formations</span>
-            <h2>Programmes Certifiés <span class="text-orange">FDFP</span></h2>
-            <p class="section-subtitle">Présentiel à Abidjan & en ligne — Éligibles à la prise en charge FDFP.</p>
-        </div>
-
-        <div class="training-grid-all">
-
-            <div class="training-card-full" data-id="marketing">
-                <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-marketing.png" alt="Icon Marketing"
-                            class="training-logo-img"></div>
-                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
-                </div>
-                <h3>Marketing stratégique & opérationnel</h3>
-                <p>Maîtrisez les leviers marketing pour développer vos ventes sur le marché ivoirien.</p>
-                <div class="card-footer-actions">
-                    <button class="btn-more" onclick="openMoreDetails('marketing')">En savoir plus</button>
-                    <button class="btn-enroll"
-                        onclick="redirectToWhatsApp('Marketing stratégique & opérationnel')">S'inscrire</button>
-                </div>
-            </div>
-
-            <div class="training-card-full" data-id="leadership">
-                <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-leadership.png" alt="Icon Leadership"
-                            class="training-logo-img"></div>
-                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
-                </div>
-                <h3>Management, Leadership & Coaching</h3>
-                <p>Développez votre style de leadership et animez vos équipes avec efficacité.</p>
-                <div class="card-footer-actions">
-                    <button class="btn-more" onclick="openMoreDetails('leadership')">En savoir plus</button>
-                    <button class="btn-enroll"
-                        onclick="redirectToWhatsApp('Management, Leadership & Coaching')">S'inscrire</button>
-                </div>
-            </div>
-
-            <div class="training-card-full" data-id="si">
-                <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-it.png" alt="Icon SI" class="training-logo-img"></div>
-                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
-                </div>
-                <h3>Management des systèmes d'information</h3>
-                <p>Gérez vos projets IT, sécurisez vos SI et maîtrisez les méthodes agiles.</p>
-                <div class="card-footer-actions">
-                    <button class="btn-more" onclick="openMoreDetails('si')">En savoir plus</button>
-                    <button class="btn-enroll"
-                        onclick="redirectToWhatsApp('Management des systèmes d\'information')">S'inscrire</button>
-                </div>
-            </div>
-
-            <div class="training-card-full" data-id="finance">
-                <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-finance.png" alt="Icon Finance" class="training-logo-img">
-                    </div>
-                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
-                </div>
-                <h3>Gestion — Finance, Comptabilité, Audit</h3>
-                <p>Maîtrisez la comptabilité SYSCOHADA, l'audit interne et la fiscalité ivoirienne.</p>
-                <div class="card-footer-actions">
-                    <button class="btn-more" onclick="openMoreDetails('finance')">En savoir plus</button>
-                    <button class="btn-enroll"
-                        onclick="redirectToWhatsApp('Gestion — Finance, Comptabilité, Audit')">S'inscrire</button>
-                </div>
-            </div>
-
-            <div class="training-card-full" data-id="rh">
-                <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-rh.png" alt="Icon RH" class="training-logo-img"></div>
-                    <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
-                </div>
-                <h3>Management des Ressources Humaines</h3>
-                <p>Code du travail CI, recrutement, paie et gestion des relations sociales.</p>
-                <div class="card-footer-actions">
-                    <button class="btn-more" onclick="openMoreDetails('rh')">En savoir plus</button>
-                    <button class="btn-enroll"
-                        onclick="redirectToWhatsApp('Management des Ressources Humaines')">S'inscrire</button>
-                </div>
-            </div>
-
-            <div class="training-card-full" data-id="surmesure">
-                <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-surmesure.png" alt="Icon Sur Mesure"
-                            class="training-logo-img"></div>
-                </div>
-                <h3>Formation sur mesure</h3>
-                <p>Programme personnalisé pour votre équipe et votre secteur d'activité.</p>
-                <div class="card-footer-actions">
-                    <button class="btn-more" onclick="openMoreDetails('surmesure')">En savoir plus</button>
-                    <button class="btn-enroll bg-orange-btn" onclick="redirectToWhatsApp('Formation sur mesure')">Nous
-                        contacter →</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <div id="detailsModal" class="details-modal-overlay">
-        <div class="details-modal-card">
-            <button class="modal-close-x" onclick="closeMoreDetails()">&times;</button>
-            <div class="modal-header-container">
-                <div id="modalIcon" class="modal-main-icon"></div>
-                <h4 id="modalTitle">Titre de la formation</h4>
-            </div>
-            <div id="modalDescription" class="modal-main-body">
-            </div>
-            <div class="modal-action-footer">
-                <a href="#" id="modalWhatsAppBtn" target="_blank" class="btn-enroll">💬 S'inscrire via WhatsApp</a>
-            </div>
-        </div>
-    </div>
-
-    <section class="testimonials-section-wrapper">
-        <div class="testimonials-orange-box">
-            <span class="badge-top white-badge">Témoignages</span>
-            <h3 class="testimonials-title">Ils nous font confiance</h3>
-
-            <div class="testimonials-slider" id="whatsapp-testimonials">
-
-                <div class="testimonial-card">
-                    <div class="quote-icon">“</div>
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "L'équipe LEMANAGER nous a mis à disposition le logiciel LMFREEWARE pour la gestion des
-                        pesées et LMPAIE pour la paie planteur. Une solution fiable, sécurisée et parfaitement
-                        adaptée à nos besoins professionnels."
-                    </p>
-                    <div class="testimonial-footer">
-                        <div class="author-avatar">MB</div>
-                        <div class="author-info">
-                            <strong>M. BAMBA</strong>
-                            <span>Directeur Informatique - SDCI</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="quote-icon">“</div>
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Le logiciel LMFREEWARE est une excellente solution informatique pour notre pont bascule.
-                        LEMANAGER a su comprendre notre métier d'agro-industrie et livrer exactement ce qu'il nous
-                        fallait."
-                    </p>
-                    <div class="testimonial-footer">
-                        <div class="author-avatar">KK</div>
-                        <div class="author-info">
-                            <strong>M. KREMIEN Karl</strong>
-                            <span>Responsable Opérations - IDH</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="partners-animated-section">
-        <div class="partners-title-container">
-            <h3>Ils nous font confiance depuis des années</h3>
-        </div>
-        <div class="partners-carousel-container">
-            <div class="partners-track">
-                <img src="sdci.png" alt="Logo SDCI">
-                <img src="idh.png" alt="Logo IDH">
-                <img src="fdfp_logo.png" alt="Logo FDFP">
-                <img src="foratec.png" alt="Logo FORATEC">
-                <img src="s2ic.png" alt="Logo S2IC">
-                <img src="sara_petroleum.png" alt="Logo Sara Petroleum">
-                <img src="sdci.png" alt="Logo SDCI">
-                <img src="idh.png" alt="Logo IDH">
-                <img src="fdfp_logo.png" alt="Logo FDFP">
-                <img src="foratec.png" alt="Logo FORATEC">
-                <img src="s2ic.png" alt="Logo S2IC">
-                <img src="sara_petroleum.png" alt="Logo Sara Petroleum">
-            </div>
-        </div>
-    </section>
-
-    <style>
-        /* --- STYLE GÉNÉRAL ET RÉINITIALISATION --- */
-        .training-section,
-        .testimonials-section-wrapper {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .badge-top {
-            background-color: rgba(0, 150, 219, 0.1);
-            color: #0096db;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .text-orange {
-            color: #e67e22;
-        }
-
-        /* --- GRILLE DES FORMATIONS (3 PAR LIGNE STRICT) --- */
-        .training-grid-all {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1240px;
-            margin: 40px auto 60px auto;
-            padding: 0 25px;
-        }
-
-        /* CARTE DE FORMATION */
-        .training-card-full {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .training-card-full:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 150, 219, 0.08);
-            border-color: #0096db;
-        }
-
-        .card-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .card-icon-box {
-            width: 50px;
-            height: 50px;
-            background-color: #fff6ee;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .training-logo-img {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
-        }
-
-        .fdfp-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: #22c55e;
-            font-size: 13px;
-            font-weight: 600;
-            background-color: #f0fdf4;
-            padding: 6px 14px;
-            border-radius: 20px;
-        }
-
-        .training-card-full h3 {
-            font-size: 20px;
-            color: #1e293b;
-            margin: 0 0 12px 0;
-            font-weight: 600;
-        }
-
-        .training-card-full p {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-
-        .card-footer-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 20px;
-        }
-
-        /* Boutons */
-        .btn-more {
-            background: none;
-            border: 1px solid #cbd5e1;
-            color: #475569;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-more:hover {
-            background-color: #f1f5f9;
-            border-color: #94a3b8;
-        }
-
-        .btn-enroll {
-            background-color: #0096db;
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-        }
-
-        .btn-enroll:hover {
-            background-color: #007bb5;
-        }
-
-        .bg-orange-btn {
-            background-color: #e67e22 !important;
-        }
-
-        .bg-orange-btn:hover {
-            background-color: #d35400 !important;
-        }
-
-        /* --- ARCHITECTURE DE LA FENETRE MODALE --- */
-        .details-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .details-modal-overlay.active {
-            display: flex;
-        }
-
-        .details-modal-card {
-            background: white;
-            max-width: 580px;
-            width: 100%;
-            border-radius: 16px;
-            padding: 35px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            animation: modalReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes modalReveal {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .modal-close-x {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #94a3b8;
-            cursor: pointer;
-        }
-
-        .modal-close-x:hover {
-            color: #1e293b;
-        }
-
-        .modal-header-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 15px;
-        }
-
-        .modal-main-icon {
-            font-size: 30px;
-            color: #e67e22;
-        }
-
-        .modal-header-container h4 {
-            font-size: 22px;
-            color: #1e293b;
-            margin: 0;
-            font-weight: 700;
-        }
-
-        .modal-main-body {
-            color: #475569;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .modal-main-body ul {
-            padding-left: 20px;
-            margin-top: 10px;
-        }
-
-        .modal-main-body li {
-            margin-bottom: 8px;
-        }
-
-        .modal-action-footer {
-            margin-top: 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        /* --- DESIGN SECTION TÉMOIGNAGES ORANGE --- */
-        .testimonials-section-wrapper {
-            padding: 60px 5%;
-        }
-
-        .testimonials-orange-box {
-            background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
-            border-radius: 24px;
-            padding: 50px 40px;
-            text-align: center;
-            color: #ffffff;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .white-badge {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
-
-        .testimonials-title {
-            font-size: 30px;
-            margin: 10px 0 40px 0;
-            font-weight: 700;
-        }
-
-        .testimonials-slider {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .testimonial-card {
-            background: #ffffff;
-            color: #1e293b;
-            min-width: 320px;
-            max-width: 400px;
-            flex: 1;
-            border-radius: 16px;
-            padding: 30px;
-            text-align: left;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .quote-icon {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 45px;
-            color: rgba(230, 126, 34, 0.15);
-            font-family: serif;
-        }
-
-        .stars {
-            color: #ffb703;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-text {
-            font-size: 14.5px;
-            color: #475569;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-footer {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 15px;
-        }
-
-        .author-avatar {
-            width: 42px;
-            height: 42px;
-            background-color: #0096db;
-            color: #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        .author-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .author-info strong {
-            font-size: 14.5px;
-            color: #1e293b;
-        }
-
-        .author-info span {
-            font-size: 12.5px;
-            color: #64748b;
-        }
-
-        /* --- BANDEAU PARTENAIRES --- */
-        .partners-animated-section {
-            background-color: #ffffff;
-            padding: 40px 0;
-        }
-
-        .partners-title-container {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .partners-title-container h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            color: #a0aec0;
-            letter-spacing: 1px;
-        }
-
-        .partners-carousel-container {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .partners-track {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            width: max-content;
-            animation: smoothScroll 25s linear infinite;
-        }
-
-        .partners-track img {
-            height: 50px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.5;
-        }
-
-        @keyframes smoothScroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 992px) {
-            .training-grid-all {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .training-grid-all {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
-    <script>
-        // Base de données unifiée pour les descriptions profondes et messages dynamiques
-        const programDetails = {
-            marketing: {
-                title: "Marketing stratégique & opérationnel",
-                icon: "<i class='fa-solid fa-chart-line'></i>",
-                desc: "<p>Ce module d'excellence est conçu pour structurer efficacement votre démarche commerciale sur le marché local et sous-régional :</p><ul><li><strong>Analyse de marché :</strong> Maîtriser le comportement du consommateur ivoirien.</li><li><strong>Stratégie Digitale :</strong> Optimiser votre présence en ligne et générer des leads qualifiés.</li><li><strong>Performance Commerciale :</strong> Bâtir un plan d'action commercial percutant.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Marketing%20stratégique%20%26%20opérationnel%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            leadership: {
-                title: "Management, Leadership & Coaching",
-                icon: "<i class='fa-solid fa-users-gear'></i>",
-                desc: "<p>Devenez le leader que vos équipes ont envie de suivre au quotidien :</p><ul><li><strong>Posture du Manager :</strong> Passer de gestionnaire à leader inspirant.</li><li><strong>Gestion de conflits :</strong> Maintenir un climat social serein et productif.</li><li><strong>Coaching d'équipe :</strong> Développer le plein potentiel de vos collaborateurs.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%2C%20Leadership%20%26%20Coaching%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            si: {
-                title: "Management des systèmes d'information",
-                icon: "<i class='fa-solid fa-laptop-code'></i>",
-                desc: "<p>Alignez vos outils technologiques avec les ambitions stratégiques de la direction :</p><ul><li><strong>Gouvernance SI :</strong> Maîtrise des référentiels et urbanisation des systèmes.</li><li><strong>Sécurité & Cybersécurité :</strong> Protéger les données critiques de l'organisation.</li><li><strong>Agilité :</strong> Conduite du changement et implémentation de méthodes agiles (Scrum, Kanban).</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20systèmes%20d'information%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            finance: {
-                title: "Gestion — Finance, Comptabilité, Audit",
-                icon: "<i class='fa-solid fa-calculator'></i>",
-                desc: "<p>Sécurisez la trajectoire financière et la conformité légale de votre structure :</p><ul><li><strong>Normes SYSCOHADA :</strong> Maîtrise parfaite des obligations comptables révisées.</li><li><strong>Contrôle de Gestion :</strong> Établir des budgets fiables et des tableaux de bord.</li><li><strong>Fiscalité Ivoirienne :</strong> Optimisation et gestion des déclarations en toute sérénité.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Gestion%20%E2%80%94%20Finance%2C%20Comptabilité%2C%20Audit%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            rh: {
-                title: "Management des Ressources Humaines",
-                icon: "<i class='fa-solid fa-people-roof'></i>",
-                desc: "<p>Pilotez votre capital humain en totale conformité avec la réglementation locale :</p><ul><li><strong>Code du Travail Ivoirien :</strong> Maîtriser l'exécution et la rupture des contrats.</li><li><strong>Gestion de la Paie :</strong> Fiabiliser le traitement des salaires et taxes associées.</li><li><strong>GPEC :</strong> Gestion Prévisionnelle des Emplois et des Compétences.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20Ressources%20Humaines%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            surmesure: {
-                title: "Programmes de Formation sur mesure",
-                icon: "<i class='fa-regular fa-lightbulb'></i>",
-                desc: "<p>Nous co-construisons vos solutions pédagogiques selon vos spécificités d'entreprise :</p><ul><li><strong>Audit de compétences :</strong> Analyse précise de vos besoins en amont.</li><li><strong>Flexibilité horaire :</strong> Sessions planifiées selon vos disponibilités opérationnelles.</li><li><strong>Livrables sur-mesure :</strong> Cas pratiques calqués à 100% sur vos défis réels.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20discuter%20d'un%20programme%20de%20%22Formation%20sur%20mesure%22%20pour%20mon%20entreprise."
-            }
-        };
-
-        // Fonctions de contrôle de la Fenêtre Pop-up (Modale)
-        function openMoreDetails(id) {
-            const data = programDetails[id];
-            if (data) {
-                document.getElementById('modalTitle').innerText = data.title;
-                document.getElementById('modalIcon').innerHTML = data.icon;
-                document.getElementById('modalDescription').innerHTML = data.desc;
-                document.getElementById('modalWhatsAppBtn').setAttribute('href', data.waLink);
-
-                document.getElementById('detailsModal').classList.add('active');
-            }
-        }
-
-        function closeMoreDetails() {
-            document.getElementById('detailsModal').classList.remove('active');
-        }
-
-        // Redirection automatique via les boutons d'inscription directs
-        function redirectToWhatsApp(formationName) {
-            const phoneNumber = "2250708061538";
-            let message = `Bonjour LEMANAGER, je souhaite avoir des informations et m'inscrire à la formation Certifiée FDFP en : "${formationName}". Pouvez-vous m'indiquer la démarche ?`;
-
-            if (formationName === 'Formation sur mesure') {
-                message = `Bonjour LEMANAGER, je souhaite discuter d'un programme de "Formation sur mesure" pour mon entreprise.`;
-            }
-
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // Fermer si l'utilisateur clique en dehors de la boîte blanche
-        window.onclick = function (event) {
-            const modal = document.getElementById('detailsModal');
-            if (event.target == modal) {
-                modal.classList.remove('active');
-            }
-        }
-    </script>
-
+  
     <section class="faq-contact-wrapper">
         <div class="global-container">
 
