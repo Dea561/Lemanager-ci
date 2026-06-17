@@ -6,281 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulation Diaporama Bannières — LE MANAGER</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f9;
-            color: #333;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        /* --- CAROUSEL CONTAINER (PLEINE LARGEUR) --- */
-        .diaporama-container {
-            width: 100vw;
-            height: 600px;
-            position: relative;
-            overflow: hidden;
-            background: #000;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* --- SLIDES --- */
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
-            display: flex;
-            align-items: center;
-        }
-
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Background Image with Ken Burns (Zoom) effect */
-        .slide-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            transform: scale(1);
-            transition: transform 6s ease-out;
-        }
-
-        /* Trigger zoom when slide becomes active */
-        .slide.active .slide-bg {
-            transform: scale(1.08);
-        }
-
-        /* Dark overlay for text readability */
-        .slide::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(0, 40, 85, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%);
-            z-index: 2;
-        }
-
-        /* --- CONTENT BOX (Glassmorphism aligné) --- */
-        .slide-content {
-            position: relative;
-            z-index: 3;
-            max-width: 550px;
-            width: 85%;
-            margin-left: 8%;
-            padding: 35px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 16px;
-            color: #ffffff;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1) 0.4s, opacity 1s ease 0.4s;
-        }
-
-        .slide.active .slide-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .slide-content h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-
-        .slide-content h2 span {
-            color: #f39c12; /* Accent Orange */
-        }
-
-        .slide-content p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            color: #f0f3f5;
-        }
-
-        .btn-action {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: #f39c12;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 30px;
-            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-
-        .btn-action:hover {
-            background-color: #e67e22;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(243, 156, 18, 0.5);
-        }
-
-        /* --- NAVIGATION CONTROLS --- */
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-50%) scale(1.05);
-        }
-
-        .arrow-left { left: 25px; }
-        .arrow-right { right: 25px; }
-
-        /* --- BOTTOM TABS / DOTS NAVIGATION --- */
-        .tabs-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 8px 18px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tab-item {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 6px 14px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .tab-item:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .tab-item.active {
-            color: #fff;
-            background: #0056b3;
-            box-shadow: 0 2px 8px rgba(0, 86, 179, 0.4);
-        }
-
-        /* Progress Bar Effect */
-        .progress-bar-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 11;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: #f39c12;
-        }
-
-        /* --- SECTION STATISTIQUES --- */
-        .statistiques-section {
-            width: 100%;
-            background-color: #ffffff;
-            padding: 60px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            position: relative;
-            z-index: 5;
-        }
-
-        .stat-container {
-            max-width: 100%;
-            padding: 0 8%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .stat-item {
-            text-align: center;
-            flex: 1;
-            min-width: 220px;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #0056b3;
-            font-family: 'Arial Black', sans-serif;
-        }
-
-        .stat-plus {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #f39c12;
-        }
-
-        .stat-label {
-            font-size: 1.05rem;
-            color: #555555;
-            margin-top: 10px;
-            font-weight: 600;
-            text-transform: capitalize;
-        }
-
-        @media (max-width: 768px) {
-            .stat-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                row-gap: 40px;
-            }
-        }
     
-    </style>
 </head>
 
 <body>
@@ -315,21 +41,41 @@
 
                 <nav class="navigation-menu">
                     <ul class="nav-list">
-                        <li><a href="#" class="nav-link active">Accueil</a></li>
-                        <li><a href="#about-section-premium" class="nav-link">À Propos De Nous</a></li>
-                        <li><a href="#poles-section-full" class="nav-link">Nos Services</a></li>
-                        <li><a href="#training-section" class="nav-link">Nos Formations</a></li>
-                        
-                        <li><a href="#offers-section" class="nav-link">Nos Offres</a></li>
-
-                        <li><a href="#premium-shop-section" class="nav-link">La Boutique</a></li>
-                        <li><a href="#devisForm" class="nav-link-cta">Demander un Devis</a></li>
-                    </ul>
+    <li><a href="#" class="nav-link active">Accueil</a></li>
+    <li><a href="#about-section-premium" class="nav-link">À Propos De Nous</a></li>
+    <li><a href="#poles-section-full" class="nav-link">Nos Services</a></li>
+    <li><a href="#training-section" class="nav-link">Nos Formations</a></li>
+    <li><a href="#offers-section" class="nav-link">Nos Offres</a></li>
+    <li><a href="#premium-shop-section" class="nav-link">La Boutique</a></li>
+    <li><a href="#devisForm" class="nav-link-cta">Demander un Devis</a></li>
+</ul>
                 </nav>
             </div>
         </div>
     </header>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
 
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+
+        link.addEventListener('click', function () {
+
+            // Retire active de tous les liens
+            navLinks.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Ajoute active au lien cliqué
+            this.classList.add('active');
+
+        });
+
+    });
+
+});
+</script>
     <style>
         /* Configuration générale du Header */
         .site-header {
@@ -532,7 +278,7 @@
         }
     </style>
 
-    <div class="diaporama-container">
+   <div class="diaporama-container">
         <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
@@ -543,17 +289,8 @@
         <div class="slide active">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80');"></div>
             <div class="slide-content">
-                <h2>Cabinet de <br><span>Conseil</span></h2>
-                <p>Optimisation complète de vos processus métiers et pilotage stratégique de la performance pour une croissance durable et maîtrisée.</p>
-                <a href="#" class="btn-action">Démarrez votre projet</a>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="slide-content">
-                <h2>Solutions de <br><span>Pesage</span></h2>
-                <p>Équipements de haute précision, étalonnage et métrologie légale adaptés à toutes les exigences de vos secteurs d'activité.</p>
+                <h2>Conseil, Formation <br><span>& Audit</span></h2>
+                <p>Conseil en organisation stratégique, management, contrôle de gestion, audit financier et formations certifiées FDFP.</p>
                 <a href="#" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
@@ -561,18 +298,28 @@
         <div class="slide">
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80');"></div>
             <div class="slide-content">
-                <h2>Infrastructure <br><span>Informatique</span></h2>
-                <p>Maintenance, intégration de logiciels de gestion (EBP), réseaux sécurisés et vente de parcs informatiques de pointe.</p>
+                <h2>Développement <br><span>Logiciel & IT</span></h2>
+                <p>Conception de sites web, logiciels de gestion sur mesure, maintenance informatique et audit de sécurité SI.</p>
+                <a href="#" class="btn-action">Démarrez votre projet</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide-content">
+                <h2>Pesage Industriel <br><span>& Métrologie</span></h2>
+                <p>Solutions de pesage industriel de haute précision, étalonnage, métrologie légale et maintenance de ponts-bascules.</p>
                 <a href="#" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
         <div class="tabs-nav">
-            <div class="tab-item active" onclick="goToSlide(0)">Conseil</div>
-            <div class="tab-item" onclick="goToSlide(1)">Pesage</div>
-            <div class="tab-item" onclick="goToSlide(2)">Informatique</div>
+            <div class="tab-item active" onclick="goToSlide(0)">Conseil & Formation</div>
+            <div class="tab-item" onclick="goToSlide(1)">Logiciel & IT</div>
+            <div class="tab-item" onclick="goToSlide(2)">Pesage & Métrologie</div>
         </div>
     </div>
+
     <section class="statistiques-section">
         <div class="stat-container">
             <div class="stat-item">
@@ -599,7 +346,7 @@
         const slides = document.querySelectorAll('.slide');
         const tabs = document.querySelectorAll('.tab-item');
         const progressBar = document.getElementById('progressBar');
-        const slideIntervalTime = 5000; // Chaque slide reste 5 secondes
+        const slideIntervalTime = 5000; 
         let slideTimer;
         let progressInterval;
         let currentProgress = 0;
@@ -610,7 +357,6 @@
             currentProgress = 0;
             progressBar.style.width = '0%';
 
-            // Remplissage progressif de la barre
             progressInterval = setInterval(() => {
                 currentProgress += (100 / (slideIntervalTime / 30));
                 if (currentProgress <= 100) {
@@ -618,7 +364,6 @@
                 }
             }, 30);
 
-            // Déclenchement automatique du prochain slide
             slideTimer = setTimeout(() => {
                 changeSlide(1);
             }, slideIntervalTime);
@@ -646,10 +391,9 @@
             showSlide(currentSlideIndex);
         }
 
-        // Lancement initial du diaporama
         startProgressAndTimer();
 
-        // --- CODE DES COMPTEURS (AVEC DÉTECTION DU SCROLL VIA INTERSECTION OBSERVER) ---
+        // --- CODE DES COMPTEURS ---
         document.addEventListener("DOMContentLoaded", function () {
             const counters = document.querySelectorAll('.stat-number');
             const speed = 60;
@@ -690,6 +434,279 @@
             }
         });
     </script>
+
+<style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* --- CAROUSEL CONTAINER (PLEINE LARGEUR) --- */
+        .diaporama-container {
+            width: 100vw;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- SLIDES --- */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transform: scale(1);
+            transition: transform 6s ease-out;
+        }
+
+        .slide.active .slide-bg {
+            transform: scale(1.08);
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 40, 85, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 2;
+        }
+
+        /* --- CONTENT BOX (Glassmorphism) --- */
+        .slide-content {
+            position: relative;
+            z-index: 3;
+            max-width: 550px;
+            width: 85%;
+            margin-left: 8%;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            color: #ffffff;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1) 0.4s, opacity 1s ease 0.4s;
+        }
+
+        .slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .slide-content h2 span {
+            color: #ff6600; /* Cohérence avec l'orange dynamique de votre charte graphique */
+        }
+
+        .slide-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #f0f3f5;
+        }
+
+        .btn-action {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #ff6600; /* Harmonisé sur l'orange principal de la charte */
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(255, 102, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background-color: #e65c00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 102, 0, 0.5);
+        }
+
+        /* --- NAVIGATION CONTROLS --- */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .arrow-left { left: 25px; }
+        .arrow-right { right: 25px; }
+
+        /* --- BOTTOM TABS NAVIGATION --- */
+        .tabs-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-item {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-item:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-item.active {
+            color: #fff;
+            background: #0056b3;
+            box-shadow: 0 2px 8px rgba(0, 86, 179, 0.4);
+        }
+
+        /* Progress Bar Effect */
+        .progress-bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 11;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #ff6600;
+        }
+
+        /* --- SECTION STATISTIQUES --- */
+        .statistiques-section {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 60px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 5;
+        }
+
+        .stat-container {
+            max-width: 100%;
+            padding: 0 8%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #0056b3;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .stat-plus {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ff6600;
+        }
+
+        .stat-label {
+            font-size: 1.05rem;
+            color: #555555;
+            margin-top: 10px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        @media (max-width: 768px) {
+            .stat-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                row-gap: 40px;
+            }
+        }
+</style>
 
     <section id="about-section-premium" class="about-premium-wrapper">
     <div class="about-premium-container">
