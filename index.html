@@ -1609,21 +1609,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     </style>
 
-    <section id="training-section" class="training-section">
+   <section id="training-section" class="training-section">
         <div class="section-header">
             <span class="badge-top">Formations</span>
             <h2>Programmes Certifiés <span class="text-orange">FDFP</span></h2>
-            <p class="section-subtitle">LEMANAGER propose des formations conçus pour répondre aux besoins réels des
+            <p class="section-subtitle">LEMANAGER propose des formations conçues pour répondre aux besoins réels des
                 entreprises et des professionnels. Chaque parcours allie apports théoriques, études de cas et mises en
-                situation pratiques, animé par des formateurs expérimentés et agréés FDFP.</p>
+                situation pratiques, animés par des formateurs expérimentés et agréés FDFP.</p>
         </div>
 
         <div class="training-grid-all">
 
             <div class="training-card-full" data-id="marketing">
                 <div class="card-top-row">
-                    <div class="card-icon-box"><img src="Marketing stratégique & opérationnel.jpg" alt="Icon Marketing"
-                            class="training-logo-img"></div>
+                    <div class="card-icon-box icon-marketing"><i class='fa-solid fa-chart-line'></i></div>
                     <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
                 </div>
                 <h3>Marketing stratégique & opérationnel</h3>
@@ -1637,8 +1636,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="training-card-full" data-id="leadership">
                 <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-leadership.png" alt="Icon Leadership"
-                            class="training-logo-img"></div>
+                    <div class="card-icon-box icon-leadership"><i class="fa-solid fa-users-gear"></i></div>
                     <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
                 </div>
                 <h3>Management, Leadership & Coaching</h3>
@@ -1652,11 +1650,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="training-card-full" data-id="si">
                 <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-it.png" alt="Icon SI" class="training-logo-img"></div>
+                    <div class="card-icon-box icon-si"><i class="fa-solid fa-laptop-code"></i></div>
                     <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
                 </div>
                 <h3>Management des systèmes d'information</h3>
-                <p>Gérez vos projets IT, sécurisez vos SI et maîtrisez les méthodes agiles.</p>
+                <p>Gerez vos projets IT, sécurisez vos SI et maîtrisez les méthodes agiles.</p>
                 <div class="card-footer-actions">
                     <button class="btn-more" onclick="openMoreDetails('si')">En savoir plus</button>
                     <button class="btn-enroll"
@@ -1666,8 +1664,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="training-card-full" data-id="finance">
                 <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-finance.png" alt="Icon Finance" class="training-logo-img">
-                    </div>
+                    <div class="card-icon-box icon-finance"><i class="fa-solid fa-calculator"></i></div>
                     <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
                 </div>
                 <h3>Gestion — Finance, Comptabilité, Audit</h3>
@@ -1681,7 +1678,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="training-card-full" data-id="rh">
                 <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-rh.png" alt="Icon RH" class="training-logo-img"></div>
+                    <div class="card-icon-box icon-rh"><i class="fa-solid fa-people-roof"></i></div>
                     <span class="fdfp-badge"><i class="fa-solid fa-check-circle"></i> Éligible FDFP</span>
                 </div>
                 <h3>Management des Ressources Humaines</h3>
@@ -1695,8 +1692,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="training-card-full" data-id="surmesure">
                 <div class="card-top-row">
-                    <div class="card-icon-box"><img src="logo-surmesure.png" alt="Icon Sur Mesure"
-                            class="training-logo-img"></div>
+                    <div class="card-icon-box icon-surmesure"><i class="fa-regular fa-lightbulb"></i></div>
                 </div>
                 <h3>Formation sur mesure</h3>
                 <p>Programme personnalisé pour votre équipe et votre secteur d'activité.</p>
@@ -1792,20 +1788,41 @@ document.addEventListener('DOMContentLoaded', function () {
             margin-bottom: 25px;
         }
 
+        /* CONFIGURATION ET COULEURS DES BOITES D'ICÔNES */
         .card-icon-box {
-            width: 50px;
-            height: 50px;
-            background-color: #fff6ee;
+            width: 54px;
+            height: 54px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 22px; /* Taille de l'icone */
         }
 
-        .training-logo-img {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
+        /* Variations de couleurs pour casser le blanc */
+        .icon-marketing {
+            background-color: #e0f2fe; /* Bleu clair */
+            color: #0284c7;
+        }
+        .icon-leadership {
+            background-color: #f0fdf4; /* Vert clair */
+            color: #16a34a;
+        }
+        .icon-si {
+            background-color: #faf5ff; /* Violet clair */
+            color: #9333ea;
+        }
+        .icon-finance {
+            background-color: #fef3c7; /* Jaune/Ambre clair */
+            color: #d97706;
+        }
+        .icon-rh {
+            background-color: #ecfeff; /* Cyan clair */
+            color: #0891b2;
+        }
+        .icon-surmesure {
+            background-color: #fff7ed; /* Orange clair */
+            color: #ea580c;
         }
 
         .fdfp-badge {
@@ -1925,7 +1942,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 transform: scale(0.95);
                 opacity: 0;
             }
-
             to {
                 transform: scale(1);
                 opacity: 1;
@@ -2139,7 +2155,6 @@ document.addEventListener('DOMContentLoaded', function () {
             0% {
                 transform: translateX(0);
             }
-
             100% {
                 transform: translateX(-50%);
             }
