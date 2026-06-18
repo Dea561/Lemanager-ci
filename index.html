@@ -2243,7 +2243,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="offers-section" class="offers-section">
 
         <div class="offers-header">
-            <span class="offers-badge">NOS OFFRES</span>
+            <span class="offers-badge badge-flash">NOS OFFRES</span>
             <h2>Découvrez nos offres & tarifs</h2>
             <p>Des solutions claires, adaptées à vos besoins périodiques ou structurels en Côte d'Ivoire.</p>
         </div>
@@ -2256,6 +2256,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <line x1="12" y1="17" x2="12" y2="21" />
                 </svg>
                 Packs Sites Web
+                <span class="tab-pulse-dot"></span>
             </button>
             <button class="tab-trigger" onclick="switchOffersTab(event, 'tab-creation-entreprise')">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
@@ -2263,14 +2264,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     <polyline points="14 2 14 8 20 8" />
                 </svg>
                 Création d'Entreprise
+                <span class="tab-pulse-dot"></span>
             </button>
         </div>
 
         <div class="tabs-container">
 
             <div id="tab-packs-web" class="tab-panel active ">
-                <p class="panel-intro-text">Tarifs clairs, sans surprise. Hébergement + domaine + emails offerts sur
-                    tous les packs.</p>
+                <p class="panel-intro-text">Tarifs clairs, sans surprise. Hébergement + domaine + emails offerts sur tous les packs.</p>
 
                 <div class="offers-grid columns-3">
 
@@ -2334,8 +2335,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="payment-content">
                         <span> Modes de paiement acceptés :</span>
                         <div class="payment-logos">
-                            <div class="logo-item"><img src="orange_money.png" alt="Orange Money"> Orange Money
-                            </div>
+                            <div class="logo-item"><img src="orange_money.png" alt="Orange Money"> Orange Money</div>
                             <div class="logo-item"><img src="mtn.png" alt="MTN MoMo"> MTN MoMo</div>
                             <div class="logo-item"><img src="wave.png" alt="Wave"> Wave</div>
                             <div class="logo-item"><img src="moov_money.png" alt="Moov Money"> Moov Money</div>
@@ -2389,15 +2389,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <script>
         function switchOffersTab(event, tabId) {
-            // 1. Masquer tous les panneaux de contenu
             const panels = document.querySelectorAll('.tab-panel');
             panels.forEach(panel => panel.classList.remove('active'));
 
-            // 2. Désactiver le style "active" sur tous les boutons
             const buttons = document.querySelectorAll('.tab-trigger');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // 3. Afficher le panneau cliqué et activer le bouton correspondant
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
@@ -2421,15 +2418,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
         .offers-badge {
             font-size: 0.75rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1.5px;
-            color: #d35400;
-            /* Ton orange */
-            background: rgba(211, 84, 0, 0.1);
-            padding: 6px 14px;
-            border-radius: 4px;
+            color: #ffffff;
+            background: #d35400;
+            padding: 6px 16px;
+            border-radius: 50px;
             display: inline-block;
             margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+        }
+
+        /* --- 1. JEU DE LUMIÈRE LASER / FLASH BIEN BRILLANT --- */
+        .badge-flash {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge-flash::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(
+                90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.9) 50%, 
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: laserGlint 2s infinite ease-in-out;
+        }
+
+        @keyframes laserGlint {
+            0% { left: -60%; }
+            100% { left: 140%; }
         }
 
         .offers-header h2 {
@@ -2439,76 +2464,119 @@ document.addEventListener('DOMContentLoaded', function () {
             font-weight: 800;
         }
 
-        .offers-header h2 .text-orange {
-            color: #d35400;
-        }
-
         .offers-header p {
             color: #666666;
             font-size: 1.05rem;
             margin: 0;
         }
 
-        /* --- BARRE DE NAVIGATION (ONGLETS) --- */
+        /* --- BARRE DE NAVIGATION (ONGLETS INTERACTIFS) --- */
         .tabs-navigation {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #eeeeee;
-            padding-bottom: 15px;
+            gap: 25px;
+            margin-bottom: 45px;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 20px;
         }
 
         .tab-trigger {
-            background: #f8f9fa;
-            border: 1px solid #e2e8f0;
-            padding: 12px 24px;
-            font-size: 0.95rem;
-            font-weight: 600;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            padding: 14px 32px;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: #4a5568;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.25s ease;
+            gap: 12px;
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .tab-trigger:hover {
-            background: #edf2f7;
-            color: #333333;
+        /* --- 2. SIGNES ET REMARQUES VISUELLES DE BOUTON CLIQUABLE --- */
+        
+        /* Petit point d'action clignotant sur les onglets inactifs */
+        .tab-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #0056b3;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.7);
+            animation: pulseRing 1.5s infinite cubic-bezier(0.66, 0, 0, 1);
+            opacity: 1;
+            transition: opacity 0.2s ease;
         }
 
-        /* Onglet actif : prend la couleur bleue corporate */
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 86, 179, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0); }
+        }
+
+        /* Effet au Survol (Hover) pour indiquer le clic */
+        .tab-trigger:hover:not(.active) {
+            background: #ffffff;
+            color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-5px); /* Soulèvement net */
+            box-shadow: 0 10px 20px rgba(0, 56, 179, 0.12);
+        }
+
+        /* Barre de soulignement interactive fantôme */
+        .tab-trigger::before {
+            content: '';
+            position: absolute;
+            bottom: -22px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #0056b3;
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .tab-trigger:hover:not(.active)::before {
+            transform: scaleX(0.6); /* Indique la zone de clic active */
+        }
+
+        /* État Actif */
         .tab-trigger.active {
             background: #0056b3;
             color: #ffffff;
             border-color: #0056b3;
-            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
+        }
+
+        .tab-trigger.active .tab-pulse-dot {
+            opacity: 0; /* Masqué quand l'onglet est déjà sélectionné */
+        }
+
+        .tab-trigger.active::before {
+            transform: scaleX(1);
+            background-color: #0056b3;
+            bottom: -22px;
         }
 
         /* --- GESTION DE L'AFFICHAGE DES PANNEAUX --- */
         .tab-panel {
             display: none;
-            /* Caché par défaut */
         }
 
         .tab-panel.active {
             display: block;
-            /* Affiché uniquement si actif */
-            animation: fadeInTab 0.4s ease;
+            animation: fadeInTab 0.5s ease;
         }
 
         @keyframes fadeInTab {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .panel-intro-text {
@@ -2524,10 +2592,7 @@ document.addEventListener('DOMContentLoaded', function () {
             gap: 30px;
         }
 
-        .columns-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
+        .columns-3 { grid-template-columns: repeat(3, 1fr); }
         .columns-2 {
             grid-template-columns: repeat(2, 1fr);
             max-width: 900px;
@@ -2551,7 +2616,6 @@ document.addEventListener('DOMContentLoaded', function () {
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
         }
 
-        /* Badges internes aux cartes */
         .card-badge {
             font-size: 0.7rem;
             font-weight: 700;
@@ -2562,16 +2626,8 @@ document.addEventListener('DOMContentLoaded', function () {
             letter-spacing: 0.5px;
         }
 
-        .badge-blue {
-            background: #e3f2fd;
-            color: #0056b3;
-        }
-
-        .badge-orange {
-            background: #fff3e0;
-            color: #d35400;
-        }
-
+        .badge-blue { background: #e3f2fd; color: #0056b3; }
+        .badge-orange { background: #fff3e0; color: #d35400; }
         .badge-orange-light {
             background: #fff8f0;
             color: #e67e22;
@@ -2589,7 +2645,6 @@ document.addEventListener('DOMContentLoaded', function () {
             font-size: 1.8rem;
             font-weight: 800;
             color: #d35400;
-            /* Prix mis en valeur en orange */
             margin-bottom: 5px;
             line-height: 1.2;
         }
@@ -2607,7 +2662,6 @@ document.addEventListener('DOMContentLoaded', function () {
             margin: 0 0 25px 0;
         }
 
-        /* Liste des fonctionnalités internes */
         .card-features {
             list-style: none;
             padding: 0;
@@ -2616,7 +2670,6 @@ document.addEventListener('DOMContentLoaded', function () {
             flex-direction: column;
             gap: 12px;
             flex-grow: 1;
-            /* Pousse le bouton vers le bas */
         }
 
         .card-features li {
@@ -2626,7 +2679,6 @@ document.addEventListener('DOMContentLoaded', function () {
             padding-left: 22px;
         }
 
-        /* Puce verte pour éléments inclus */
         .card-features li::before {
             content: "✓";
             color: #2ecc71;
@@ -2635,7 +2687,6 @@ document.addEventListener('DOMContentLoaded', function () {
             left: 0;
         }
 
-        /* Puce grise/barrée pour éléments non inclus */
         .card-features li.not-included {
             color: #a0aec0;
             text-decoration: line-through;
@@ -2648,25 +2699,20 @@ document.addEventListener('DOMContentLoaded', function () {
             display: inline-block;
         }
 
-        /* --- FOCUS SUR LA CARTE RECOMMANDÉE (EXPERT) --- */
         .offer-card.featured {
             border: 2px solid #d35400;
-            /* Bordure orange distinctive */
             box-shadow: 0 10px 25px rgba(211, 84, 0, 0.08);
             transform: scale(1.03);
-            /* Légèrement plus grande */
         }
 
         .offer-card.featured:hover {
             transform: scale(1.03) translateY(-5px);
         }
 
-        /* Focus sur la SARL */
         .offer-card.featured-blue {
             border: 2px solid #0056b3;
         }
 
-        /* --- BOUTONS D'ACTION SPECIFIQUES --- */
         .btn-offer-outline {
             text-align: center;
             background: transparent;
@@ -2688,7 +2734,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .btn-offer-solid {
             text-align: center;
             background: #d35400;
-            /* Fond Orange */
             color: #ffffff;
             border: 2px solid #d35400;
             padding: 12px;
@@ -2722,7 +2767,6 @@ document.addEventListener('DOMContentLoaded', function () {
             background: #004085;
         }
 
-        /* Éléments additionnels pour la création d'entreprise */
         .card-icon-top {
             font-size: 2.2rem;
             margin-bottom: 15px;
@@ -2742,14 +2786,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         .bottom-payment-bar {
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.85rem;
-            color: #718096;
-            font-weight: 500;
-        }
-
-        .bottom-payment-bar {
-            text-align: center;
             margin-top: 45px;
             font-size: 0.88rem;
             color: #4a5568;
@@ -2764,7 +2800,6 @@ document.addEventListener('DOMContentLoaded', function () {
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
-            /* Évite que ça dépasse sur mobile */
         }
 
         .payment-logos {
@@ -2778,43 +2813,33 @@ document.addEventListener('DOMContentLoaded', function () {
             display: flex;
             align-items: center;
             gap: 6px;
-            /* Espace entre le mini logo et le texte */
             font-weight: 600;
             color: #2d3748;
         }
 
         .logo-item img {
             height: 18px;
-            /* Force les logos à être petits et uniformes */
             width: auto;
             object-fit: contain;
             border-radius: 3px;
-            /* Léger arrondi propre */
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            /* Petit relief sympa */
         }
 
         /* --- RESPONSIVE ADAPTATION --- */
         @media (max-width: 992px) {
-
-            .columns-3,
-            .columns-2 {
+            .columns-3, .columns-2 {
                 grid-template-columns: 1fr;
                 max-width: 450px;
                 margin: 0 auto;
             }
 
-            .offer-card.featured {
-                transform: scale(1);
-            }
-
-            .offer-card.featured:hover {
-                transform: translateY(-5px);
-            }
+            .offer-card.featured { transform: scale(1); }
+            .offer-card.featured:hover { transform: translateY(-5px); }
 
             .tabs-navigation {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
 
             .tab-trigger {
@@ -2822,6 +2847,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 max-width: 300px;
                 justify-content: center;
             }
+            .tab-trigger::before { display: none; } /* Enlever la ligne sur mobile */
         }
     </style>
 
@@ -4185,10 +4211,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="footer-column links-col">
                 <h3>Nos Expertises</h3>
                 <ul>
-                    <li><a href="#poles-section-full">Conseil & Audit</a></li>
-                    <li><a href="#poles-section-full">Développement IT</a></li>
-                    <li><a href="#poles-section-full">Pesage Industriel</a></li>
-                    <li><a href="#poles-section-full">Traçabilité & Accès</a></li>
+                    <li><a href="#poles-section-full">Conseil, Formation & Audit</a></li>
+                    <li><a href="#poles-section-full">Développement Logiciel & IT</a></li>
+                    <li><a href="#poles-section-full">Pesage Industriel & Métrologie</a></li>
+                    <li><a href="#poles-section-full">Traçabilité & Contrôle d'Accès</a></li>
                 </ul>
             </div>
 
