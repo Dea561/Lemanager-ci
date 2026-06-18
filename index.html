@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulation Diaporama Bannières — LE MANAGER</title>
-    
+
 </head>
 
 <body>
@@ -41,244 +41,394 @@
 
                 <nav class="navigation-menu">
                     <ul class="nav-list">
-    <li><a href="#" class="nav-link active">Accueil</a></li>
-    <li><a href="#about-section-premium" class="nav-link">À Propos De Nous</a></li>
-    <li><a href="#poles-section-full" class="nav-link">Nos Services</a></li>
-    <li><a href="#training-section" class="nav-link">Nos Formations</a></li>
-    <li><a href="#offers-section" class="nav-link">Nos Offres</a></li>
-    <li><a href="#premium-shop-section" class="nav-link">La Boutique</a></li>
-    <li><a href="#devisForm" class="nav-link-cta">Demander un Devis</a></li>
-</ul>
+                        <li><a href="#" class="nav-link active" data-target="accueil">Accueil</a></li>
+                        <li><a href="#about-section-premium" class="nav-link" data-target="about">À Propos De Nous</a>
+                        </li>
+                        <li><a href="#poles-section-full" class="nav-link" data-target="services">Nos Services</a></li>
+                        <li><a href="#training-section" class="nav-link" data-target="formations">Nos Formations</a>
+                        </li>
+                        <li><a href="#offers-section" class="nav-link" data-target="offres">Nos Offres</a></li>
+                        <li><a href="#premium-shop-section" class="nav-link" data-target="boutique">La Boutique</a></li>
+                        <li><a href="#devisForm" class="nav-link-cta">Demander un Devis</a></li>
+                    </ul>
                 </nav>
             </div>
         </div>
     </header>
     <script>
 document.addEventListener('DOMContentLoaded', function () {
+    // Sélectionne tous les liens ayant la classe .nav-link (dans le Header ET le Footer)
+    const allNavLinks = document.querySelectorAll('.nav-link');
 
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    navLinks.forEach(link => {
-
+    allNavLinks.forEach(link => {
         link.addEventListener('click', function () {
+            // Récupère la valeur du data-target (ex: "about", "services"...)
+            const target = this.getAttribute('data-target');
 
-            // Retire active de tous les liens
-            navLinks.forEach(item => {
-                item.classList.remove('active');
-            });
+            if (target) {
+                // Enlève la classe active de TOUS les liens du site
+                allNavLinks.forEach(item => item.classList.remove('active'));
 
-            // Ajoute active au lien cliqué
-            this.classList.add('active');
-
+                // Trouve et active TOUS les liens qui ont le même data-target (haut + bas)
+                const matchingLinks = document.querySelectorAll(`[data-target="${target}"]`);
+                matchingLinks.forEach(match => {
+                    match.classList.add('active');
+                });
+            }
         });
-
     });
-
 });
 </script>
     <style>
-        /* Configuration générale du Header */
-        .site-header {
-            width: 100%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            background-color: #ffffff;
-        }
+    /* -------------------------------------------
+       --- STYLE DU HEADER
+    ------------------------------------------- */
+    .site-header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        background-color: #ffffff;
+    }
 
-        .top-bar i {
-            margin-right: 8px;
-            color: #ffffff;
-            font-size: 14px;
-        }
+    .top-bar {
+        background-color: #0056b3;
+        color: #ffffff;
+        font-size: 0.85rem;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-        .top-bar .fa-location-dot,
-        .top-bar .fa-envelope,
-        .top-bar .fa-phone {
-            color: #ffffff;
-        }
+    .top-bar i {
+        margin-right: 8px;
+        color: #ffffff;
+        font-size: 14px;
+    }
 
+    .header-wrap {
+        max-width: 1200px;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .top-btn {
+        display: inline-block;
+        margin-left: 15px;
+        background: #ff6600;
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .top-btn:hover {
+        background: #e05500;
+    }
+
+    .header-container {
+        max-width: 1200px;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .main-navbar {
+        background-color: #ffffff;
+        padding: 12px 0;
+        transition: padding 0.3s ease;
+    }
+
+    .site-logo {
+        height: 55px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    .nav-list,
+    .footer-nav-list {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    /* --- LIENS DE NAVIGATION (COMMUNS) --- */
+    .nav-link {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+        position: relative;
+        padding: 5px 0;
+        display: inline-block;
+    }
+
+    /* Couleur par défaut selon l'emplacement */
+    .nav-list .nav-link { color: #444444; }
+    .footer-nav-list .nav-link { color: #a4b3c6; }
+
+    /* Changement de couleur à l'activation (Header et Footer) */
+    .nav-link:hover,
+    .nav-link.active {
+        color: #ff6600 !important;
+    }
+
+    /* --- LIGNE DE SOULIGNEMENT ORANGE (Uniquement pour le Header) --- */
+    .nav-list .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #ff6600;
+        transition: width 0.2s ease;
+    }
+
+    /* Déploiement du soulignement quand actif ou survolé */
+    .nav-list .nav-link:hover::after,
+    .nav-list .nav-link.active::after {
+        width: 100%;
+    }
+
+    .nav-link-cta {
+        text-decoration: none;
+        background-color: #ff6600;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 10px rgba(255, 102, 0, 0.2);
+    }
+
+    .nav-link-cta:hover {
+        background-color: #e05500;
+        transform: translateY(-1px);
+    }
+
+    /* -------------------------------------------
+       --- STYLE DU FOOTER & LOGO
+    ------------------------------------------- */
+    .main-footer {
+        background-color: #0b1528;
+        color: #ecf0f1;
+        padding: 70px 8% 20px 8%;
+        font-size: 0.9rem;
+        border-top: 4px solid #ff6600;
+    }
+
+    .footer-logo-wrapper {
+        display: inline-block;
+        background-color: #ffffff;
+        padding: 8px 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .footer-logo-wrapper:hover {
+        transform: scale(1.03);
+    }
+
+    .footer-logo-img {
+        height: 50px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+
+    .footer-column h3 {
+        color: #ffffff;
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .footer-column h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 35px;
+        height: 3px;
+        background-color: #ff6600;
+        border-radius: 2px;
+    }
+
+    .footer-pitch {
+        color: #a4b3c6;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .footer-contact-info p {
+        margin-bottom: 10px;
+        color: #ecf0f1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer-contact-info i {
+        color: #ff6600;
+        width: 15px;
+    }
+
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-column ul:not(.footer-nav-list) li a {
+        color: #a4b3c6;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-block;
+    }
+
+    .footer-column ul:not(.footer-nav-list) li a:hover {
+        color: #ff6600;
+        transform: translateX(5px);
+    }
+
+    /* Configuration de la liste verticale du footer */
+    .footer-nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .nav-link-devis {
+        color: #ff6600;
+        text-decoration: none;
+        font-weight: 700;
+        transition: color 0.2s;
+    }
+
+    .nav-link-devis:hover {
+        color: #e05500;
+    }
+
+    .hours-text {
+        color: #a4b3c6;
+        margin-bottom: 25px;
+    }
+
+    .hours-text i {
+        color: #ff6600;
+        margin-right: 5px;
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 12px;
+    }
+
+    .footer-socials a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        background-color: rgba(255, 255, 255, 0.06);
+        color: #ffffff;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-socials a:hover {
+        background-color: #ff6600;
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 25px;
+    }
+
+    .footer-bottom-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        color: #7f8c8d;
+        font-size: 0.85rem;
+    }
+
+    .legal-links a {
+        color: #7f8c8d;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .legal-links a:hover {
+        color: #ff6600;
+    }
+
+    .legal-links .separator {
+        margin: 0 8px;
+        color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
         .header-wrap {
-            max-width: 1200px;
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-direction: column;
+            text-align: center;
         }
 
-        .top-btn {
-            display: inline-block;
-            margin-left: 15px;
-            background: #ff6600;
-            color: #fff;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .top-btn:hover {
-            background: #e05500;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Styles de la Top Bar */
         .top-bar {
-            background-color: #0056b3;
-            /* Bleu corporate de ta charte */
-            color: #ffffff;
-            font-size: 0.85rem;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .top-bar-content {
-            display: flex;
-        }
-
-        .top-bar-left {
-            display: flex;
-            gap: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            opacity: 0.9;
-        }
-
-        .fdfp-mention {
-            background-color: #ff6600;
-            /* Orange dynamique pour faire ressortir l'agrément */
-            color: #ffffff;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Styles de la Barre principale de navigation */
-        .main-navbar {
-            background-color: #ffffff;
-            padding: 12px 0;
-            transition: padding 0.3s ease;
-        }
-
-        .navbar-content {
-            display: flex;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .site-logo {
-            height: 55px;
-            /* Taille optimale pour que le logo soit bien visible sans bloquer l'écran */
-            width: auto;
             display: block;
-            object-fit: contain;
+            padding: 10px;
         }
 
         .nav-list {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 25px;
+            display: none;
         }
 
-        .nav-link {
-            text-decoration: none;
-            color: #444444;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            position: relative;
-            padding: 5px 0;
+        .top-btn {
+            margin-top: 8px;
+            display: inline-block;
         }
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: #0056b3;
+        .footer-bottom-content {
+            flex-direction: column;
+            text-align: center;
         }
+    }
+</style>
 
-        /* Petite barre d'accent au survol pour le style premium */
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #ff6600;
-            transition: width 0.2s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        /* Bouton d'action "Demander un Devis" dans le menu */
-        .nav-link-cta {
-            text-decoration: none;
-            background-color: #ff6600;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(255, 102, 0, 0.2);
-        }
-
-        .nav-link-cta:hover {
-            background-color: #e05500;
-            transform: translateY(-1px);
-        }
-
-        @media (max-width: 768px) {
-
-            .header-wrap {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .top-bar {
-                display: block;
-                padding: 10px;
-            }
-
-            .nav-list {
-                display: none;
-            }
-
-            .top-btn {
-                margin-top: 8px;
-                display: inline-block;
-            }
-        }
-    </style>
-
-   <div class="diaporama-container">
+    <div class="diaporama-container">
         <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
@@ -287,28 +437,37 @@ document.addEventListener('DOMContentLoaded', function () {
         <button class="nav-arrow arrow-right" onclick="changeSlide(1)">&#10095;</button>
 
         <div class="slide active">
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80');">
+            </div>
             <div class="slide-content">
                 <h2>Conseil, Formation <br><span>& Audit</span></h2>
-                <p>Conseil en organisation stratégique, management, contrôle de gestion, audit financier et formations certifiées FDFP.</p>
+                <p>Conseil en organisation stratégique, management, contrôle de gestion, audit financier et formations
+                    certifiées FDFP.</p>
                 <a href="#" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
         <div class="slide">
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80');">
+            </div>
             <div class="slide-content">
                 <h2>Développement <br><span>Logiciel & IT</span></h2>
-                <p>Conception de sites web, logiciels de gestion sur mesure, maintenance informatique et audit de sécurité SI.</p>
+                <p>Conception de sites web, logiciels de gestion sur mesure, maintenance informatique et audit de
+                    sécurité SI.</p>
                 <a href="#" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
         <div class="slide">
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80');">
+            </div>
             <div class="slide-content">
                 <h2>Pesage Industriel <br><span>& Métrologie</span></h2>
-                <p>Solutions de pesage industriel de haute précision, étalonnage, métrologie légale et maintenance de ponts-bascules.</p>
+                <p>Solutions de pesage industriel de haute précision, étalonnage, métrologie légale et maintenance de
+                    ponts-bascules.</p>
                 <a href="#" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
@@ -346,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const slides = document.querySelectorAll('.slide');
         const tabs = document.querySelectorAll('.tab-item');
         const progressBar = document.getElementById('progressBar');
-        const slideIntervalTime = 5000; 
+        const slideIntervalTime = 5000;
         let slideTimer;
         let progressInterval;
         let currentProgress = 0;
@@ -435,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     </script>
 
-<style>
+    <style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -542,7 +701,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         .slide-content h2 span {
-            color: #ff6600; /* Cohérence avec l'orange dynamique de votre charte graphique */
+            color: #ff6600;
+            /* Cohérence avec l'orange dynamique de votre charte graphique */
         }
 
         .slide-content p {
@@ -555,7 +715,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .btn-action {
             display: inline-block;
             padding: 12px 28px;
-            background-color: #ff6600; /* Harmonisé sur l'orange principal de la charte */
+            background-color: #ff6600;
+            /* Harmonisé sur l'orange principal de la charte */
             color: #fff;
             text-decoration: none;
             font-weight: 600;
@@ -595,8 +756,13 @@ document.addEventListener('DOMContentLoaded', function () {
             transform: translateY(-50%) scale(1.05);
         }
 
-        .arrow-left { left: 25px; }
-        .arrow-right { right: 25px; }
+        .arrow-left {
+            left: 25px;
+        }
+
+        .arrow-right {
+            right: 25px;
+        }
 
         /* --- BOTTOM TABS NAVIGATION --- */
         .tabs-nav {
@@ -706,361 +872,377 @@ document.addEventListener('DOMContentLoaded', function () {
                 row-gap: 40px;
             }
         }
-</style>
+    </style>
 
     <section id="about-section-premium" class="about-premium-wrapper">
-    <div class="about-premium-container">
-        <div class="about-premium-grid">
+        <div class="about-premium-container">
+            <div class="about-premium-grid">
 
-            <!-- COLONNE GAUCHE : Histoire, Vision, Mission, Valeurs -->
-            <div class="about-left-content">
-                <span class="about-badge">Qui sommes-nous ?</span>
-                <h2 class="about-main-title">
-                    LEMANAGER,<span class="text-orange-highlight"> Une expertise</span> 
-                </h2>
+                <!-- COLONNE GAUCHE : Histoire, Vision, Mission, Valeurs -->
+                <div class="about-left-content">
+                    <span class="about-badge">Qui sommes-nous ?</span>
+                    <h2 class="about-main-title">
+                        LEMANAGER,<span class="text-orange-highlight"> Une expertise</span>
+                    </h2>
 
-                <p class="about-description">
-                    Depuis plusieurs années, LEMANAGER accompagne les entreprises, administrations et particuliers dans leurs projets de transformation, de modernisation et de développement.
-                    <br><br>
-                    Notre mission est simple : offrir des solutions fiables, innovantes et adaptées aux réalités de nos clients, afin de les aider à gagner en performance, en sécurité et en compétitivité.
-                    Aujourd’hui, de nombreuses entreprises en Côte d’Ivoire nous font confiance pour concevoir, installer, maintenir et optimiser leurs infrastructures et leurs outils de travail.
-                </p>
+                    <p class="about-description">
+                        Depuis plusieurs années, LEMANAGER accompagne les entreprises, administrations et particuliers
+                        dans leurs projets de transformation, de modernisation et de développement.
+                        <br><br>
+                        Notre mission est simple : offrir des solutions fiables, innovantes et adaptées aux réalités de
+                        nos clients, afin de les aider à gagner en performance, en sécurité et en compétitivité.
+                        Aujourd’hui, de nombreuses entreprises en Côte d’Ivoire nous font confiance pour concevoir,
+                        installer, maintenir et optimiser leurs infrastructures et leurs outils de travail.
+                    </p>
 
-                <!-- Blocs Vision & Mission -->
-                <div class="about-trust-badges">
-                    <div class="trust-badge-item">
-                        <div class="badge-icon-box blue-box">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                            </svg>
+                    <!-- Blocs Vision & Mission -->
+                    <div class="about-trust-badges">
+                        <div class="trust-badge-item">
+                            <div class="badge-icon-box blue-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                    <path
+                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                </svg>
+                            </div>
+                            <div class="badge-text-box">
+                                <h4>Notre Vision</h4>
+                                <p>Devenir un partenaire de référence en Côte d’Ivoire et en Afrique de l’Ouest dans les
+                                    domaines du conseil, des technologies, de l’énergie et des infrastructures.</p>
+                            </div>
                         </div>
-                        <div class="badge-text-box">
-                            <h4>Notre Vision</h4>
-                            <p>Devenir un partenaire de référence en Côte d’Ivoire et en Afrique de l’Ouest dans les domaines du conseil, des technologies, de l’énergie et des infrastructures.</p>
+
+                        <div class="trust-badge-item">
+                            <div class="badge-icon-box orange-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                                </svg>
+                            </div>
+                            <div class="badge-text-box">
+                                <h4>Notre Mission</h4>
+                                <p>Accompagner nos clients avec des solutions performantes, accessibles et durables qui
+                                    contribuent à leur croissance et à leur réussite.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="trust-badge-item">
-                        <div class="badge-icon-box orange-box">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                            </svg>
+                    <!-- Section Nos Valeurs -->
+                    <div class="about-valeurs-container">
+                        <h4>Nos Valeurs</h4>
+                        <div class="valeurs-grid">
+                            <div class="valeur-item"><strong>Innovation :</strong> Les meilleures solutions pour
+                                répondre à vos besoins.</div>
+                            <div class="valeur-item"><strong>Excellence :</strong> La qualité visée dans chacune de nos
+                                réalisations.</div>
+                            <div class="valeur-item"><strong>Intégrité :</strong> Des relations fondées sur la confiance
+                                et la transparence.</div>
+                            <div class="valeur-item"><strong>Engagement :</strong> Pleinement impliqués dans la réussite
+                                de chaque projet.</div>
                         </div>
-                        <div class="badge-text-box">
-                            <h4>Notre Mission</h4>
-                            <p>Accompagner nos clients avec des solutions performantes, accessibles et durables qui contribuent à leur croissance et à leur réussite.</p>
+                    </div>
+
+                    <a href="#devisForm" class="about-cta-btn">Discuter de votre projet</a>
+                </div>
+
+                <!-- COLONNE DROITE : Domaines d'expertise & Engagements -->
+                <div class="about-right-content">
+                    <div class="about-expertises-card">
+                        <h3>Nos Domaines d'Expertise</h3>
+                        <p class="card-intro">Grâce à une équipe pluridisciplinaire et à des partenaires reconnus, nous
+                            intervenons dans plusieurs pôles majeurs :</p>
+
+                        <ul class="about-expertises-list">
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Conseil et formation professionnelle (Agréé par le FDFP)</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Solutions informatiques et logiciels de gestion</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Pesage industriel et métrologie</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Électricité et groupes électrogènes</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Climatisation et froid industriel</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Énergie solaire</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Bâtiment et Travaux Publics (BTP)</div>
+                            </li>
+                            <li>
+                                <span class="list-bullet">✓</span>
+                                <div>Fournitures et équipements professionnels</div>
+                            </li>
+                        </ul>
+
+                        <!-- Bloc Engagements -->
+                        <div class="about-engagements-box">
+                            <h4>Chaque projet repose sur 3 engagements :</h4>
+                            <div class="engagements-list">
+                                <div class="engagement-badge">• La qualité du service</div>
+                                <div class="engagement-badge">• Le respect des délais</div>
+                                <div class="engagement-badge">• La satisfaction de nos clients</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section Nos Valeurs -->
-                <div class="about-valeurs-container">
-                    <h4>Nos Valeurs</h4>
-                    <div class="valeurs-grid">
-                        <div class="valeur-item"><strong>Innovation :</strong> Les meilleures solutions pour répondre à vos besoins.</div>
-                        <div class="valeur-item"><strong>Excellence :</strong> La qualité visée dans chacune de nos réalisations.</div>
-                        <div class="valeur-item"><strong>Intégrité :</strong> Des relations fondées sur la confiance et la transparence.</div>
-                        <div class="valeur-item"><strong>Engagement :</strong> Pleinement impliqués dans la réussite de chaque projet.</div>
-                    </div>
-                </div>
-
-                <a href="#devisForm" class="about-cta-btn">Discuter de votre projet</a>
             </div>
-
-            <!-- COLONNE DROITE : Domaines d'expertise & Engagements -->
-            <div class="about-right-content">
-                <div class="about-expertises-card">
-                    <h3>Nos Domaines d'Expertise</h3>
-                    <p class="card-intro">Grâce à une équipe pluridisciplinaire et à des partenaires reconnus, nous intervenons dans plusieurs pôles majeurs :</p>
-
-                    <ul class="about-expertises-list">
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Conseil et formation professionnelle (Agréé par le FDFP)</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Solutions informatiques et logiciels de gestion</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Pesage industriel et métrologie</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Électricité et groupes électrogènes</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Climatisation et froid industriel</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Énergie solaire</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Bâtiment et Travaux Publics (BTP)</div>
-                        </li>
-                        <li>
-                            <span class="list-bullet">✓</span>
-                            <div>Fournitures et équipements professionnels</div>
-                        </li>
-                    </ul>
-
-                    <!-- Bloc Engagements -->
-                    <div class="about-engagements-box">
-                        <h4>Chaque projet repose sur 3 engagements :</h4>
-                        <div class="engagements-list">
-                            <div class="engagement-badge">• La qualité du service</div>
-                            <div class="engagement-badge">• Le respect des délais</div>
-                            <div class="engagement-badge">• La satisfaction de nos clients</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-<style>
-    .about-premium-wrapper {
-        background-color: #f4f6f9;
-        padding: 80px 0;
-        width: 100%;
-        box-sizing: border-box;
-        font-family: sans-serif;
-    }
+    <style>
+        .about-premium-wrapper {
+            background-color: #f4f6f9;
+            padding: 80px 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
 
-    .about-premium-container {
-        max-width: 1200px;
-        width: 90%;
-        margin: 0 auto;
-    }
+        .about-premium-container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+        }
 
-    .about-premium-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 50px;
-        align-items: start; /* Aligné en haut pour gérer la hauteur des deux blocs */
-    }
-
-    @media (max-width: 992px) {
         .about-premium-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: start;
+            /* Aligné en haut pour gérer la hauteur des deux blocs */
         }
-    }
 
-    .about-badge {
-        display: inline-block;
-        background-color: rgba(0, 86, 179, 0.1);
-        color: #0056b3;
-        padding: 6px 16px;
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
-    }
+        @media (max-width: 992px) {
+            .about-premium-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
 
-    .about-main-title {
-        font-size: 2.2rem;
-        color: #111111;
-        font-weight: 800;
-        line-height: 1.2;
-        margin-bottom: 20px;
-    }
+        .about-badge {
+            display: inline-block;
+            background-color: rgba(0, 86, 179, 0.1);
+            color: #0056b3;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
 
-    .text-orange-highlight {
-        color: #ff6600;
-    }
+        .about-main-title {
+            font-size: 2.2rem;
+            color: #111111;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
 
-    .about-description {
-        font-size: 1.05rem;
-        color: #555555;
-        line-height: 1.6;
-        margin-bottom: 35px;
-    }
+        .text-orange-highlight {
+            color: #ff6600;
+        }
 
-    .about-trust-badges {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 35px;
-    }
+        .about-description {
+            font-size: 1.05rem;
+            color: #555555;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
 
-    .trust-badge-item {
-        display: flex;
-        gap: 15px;
-        align-items: flex-start;
-    }
+        .about-trust-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
 
-    .badge-icon-box {
-        padding: 12px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
+        .trust-badge-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
 
-    .badge-icon-box.blue-box {
-        background-color: rgba(0, 86, 179, 0.1);
-        color: #0056b3;
-    }
+        .badge-icon-box {
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
 
-    .badge-icon-box.orange-box {
-        background-color: rgba(255, 102, 0, 0.1);
-        color: #ff6600;
-    }
+        .badge-icon-box.blue-box {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: #0056b3;
+        }
 
-    .badge-text-box h4 {
-        font-size: 1.1rem;
-        color: #222222;
-        font-weight: 700;
-        margin-bottom: 4px;
-    }
+        .badge-icon-box.orange-box {
+            background-color: rgba(255, 102, 0, 0.1);
+            color: #ff6600;
+        }
 
-    .badge-text-box p {
-        font-size: 0.95rem;
-        color: #666666;
-        line-height: 1.4;
-    }
+        .badge-text-box h4 {
+            font-size: 1.1rem;
+            color: #222222;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
 
-    /* Style du nouveau bloc Valeurs */
-    .about-valeurs-container {
-        margin-bottom: 35px;
-        background: rgba(255, 255, 255, 0.6);
-        padding: 20px;
-        border-radius: 10px;
-        border-left: 4px solid #ff6600;
-    }
+        .badge-text-box p {
+            font-size: 0.95rem;
+            color: #666666;
+            line-height: 1.4;
+        }
 
-    .about-valeurs-container h4 {
-        font-size: 1.1rem;
-        color: #111111;
-        margin-bottom: 12px;
-        font-weight: 700;
-    }
+        /* Style du nouveau bloc Valeurs */
+        .about-valeurs-container {
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6600;
+        }
 
-    .valeurs-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
+        .about-valeurs-container h4 {
+            font-size: 1.1rem;
+            color: #111111;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
 
-    @media (max-width: 576px) {
         .valeurs-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
-    }
 
-    .valeur-item {
-        font-size: 0.92rem;
-        color: #444444;
-        line-height: 1.4;
-    }
+        @media (max-width: 576px) {
+            .valeurs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-    .valeur-item strong {
-        color: #0056b3;
-    }
+        .valeur-item {
+            font-size: 0.92rem;
+            color: #444444;
+            line-height: 1.4;
+        }
 
-    .about-cta-btn {
-        display: inline-block;
-        background-color: #0056b3;
-        color: #ffffff;
-        padding: 14px 30px;
-        border-radius: 6px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 4px 10px rgba(0, 86, 179, 0.2);
-    }
+        .valeur-item strong {
+            color: #0056b3;
+        }
 
-    .about-cta-btn:hover {
-        background-color: #004085;
-        transform: translateY(-2px);
-    }
+        .about-cta-btn {
+            display: inline-block;
+            background-color: #0056b3;
+            color: #ffffff;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 86, 179, 0.2);
+        }
 
-    /* Carte de droite (Pôles d'expertises) */
-    .about-expertises-card {
-        background: #ffffff;
-        padding: 40px;
-        border-radius: 14px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
-        border: 1px solid rgba(0, 0, 0, 0.04);
-    }
+        .about-cta-btn:hover {
+            background-color: #004085;
+            transform: translateY(-2px);
+        }
 
-    .about-expertises-card h3 {
-        font-size: 1.4rem;
-        color: #0056b3;
-        font-weight: 700;
-        margin-bottom: 12px;
-    }
+        /* Carte de droite (Pôles d'expertises) */
+        .about-expertises-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
 
-    .card-intro {
-        font-size: 0.95rem;
-        color: #666666;
-        margin-bottom: 25px;
-        line-height: 1.5;
-    }
+        .about-expertises-card h3 {
+            font-size: 1.4rem;
+            color: #0056b3;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
 
-    .about-expertises-list {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 30px 0;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+        .card-intro {
+            font-size: 0.95rem;
+            color: #666666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
 
-    .about-expertises-list li {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        font-size: 0.98rem;
-        color: #444444;
-        line-height: 1.4;
-    }
+        .about-expertises-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    .list-bullet {
-        color: #ff6600; /* Changé en orange pour dynamiser la liste */
-        font-weight: bold;
-        font-size: 1.1rem;
-        margin-top: -2px;
-    }
+        .about-expertises-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.98rem;
+            color: #444444;
+            line-height: 1.4;
+        }
 
-    /* Bloc Engagements sous la liste */
-    .about-engagements-box {
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px dashed #0056b3;
-    }
+        .list-bullet {
+            color: #ff6600;
+            /* Changé en orange pour dynamiser la liste */
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: -2px;
+        }
 
-    .about-engagements-box h4 {
-        font-size: 1rem;
-        color: #0056b3;
-        margin-bottom: 10px;
-        font-weight: 700;
-    }
+        /* Bloc Engagements sous la liste */
+        .about-engagements-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #0056b3;
+        }
 
-    .engagements-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
+        .about-engagements-box h4 {
+            font-size: 1rem;
+            color: #0056b3;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
 
-    .engagement-badge {
-        font-size: 0.92rem;
-        color: #222222;
-        font-weight: 600;
-    }
-</style>
+        .engagements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .engagement-badge {
+            font-size: 0.92rem;
+            color: #222222;
+            font-weight: 600;
+        }
+    </style>
     <section id="poles-section-full" class="poles-section-full">
         <div class="section-header">
             <span class="subtitle">Domaines</span>
@@ -1427,11 +1609,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     </style>
 
-  <section id="training-section" class="training-section">
+    <section id="training-section" class="training-section">
         <div class="section-header">
             <span class="badge-top">Formations</span>
             <h2>Programmes Certifiés <span class="text-orange">FDFP</span></h2>
-            <p class="section-subtitle">LEMANAGER propose des formations conçus pour répondre aux besoins réels des entreprises et des professionnels. Chaque parcours allie apports théoriques, études de cas et mises en situation pratiques, animé par des formateurs expérimentés et agréés FDFP.</p>
+            <p class="section-subtitle">LEMANAGER propose des formations conçus pour répondre aux besoins réels des
+                entreprises et des professionnels. Chaque parcours allie apports théoriques, études de cas et mises en
+                situation pratiques, animé par des formateurs expérimentés et agréés FDFP.</p>
         </div>
 
         <div class="training-grid-all">
@@ -1541,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 
-    
+
 
     <style>
         /* --- STYLE GÉNÉRAL ET RÉINITIALISATION --- */
@@ -2054,13 +2238,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     </script>
 
-    
 
-    <section id="offers-section"  class="offers-section">
+
+    <section id="offers-section" class="offers-section">
 
         <div class="offers-header">
             <span class="offers-badge">NOS OFFRES</span>
-            <h2>Découvrez nos <span class="text-orange">offres & tarifs</span></h2>
+            <h2>Découvrez nos offres & tarifs</h2>
             <p>Des solutions claires, adaptées à vos besoins périodiques ou structurels en Côte d'Ivoire.</p>
         </div>
 
@@ -2070,7 +2254,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
                     <line x1="8" y1="21" x2="16" y2="21" />
                     <line x1="12" y1="17" x2="12" y2="21" />
-                </svg> 
+                </svg>
                 Packs Sites Web
             </button>
             <button class="tab-trigger" onclick="switchOffersTab(event, 'tab-creation-entreprise')">
@@ -2641,7 +2825,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     </style>
 
-     <section class="testimonials-section-wrapper">
+    <section class="testimonials-section-wrapper">
         <div class="testimonials-orange-box">
             <span class="badge-top white-badge">Témoignages</span>
             <h3 class="testimonials-title">Ils nous font confiance</h3>
@@ -2710,392 +2894,415 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     <section id="premium-shop-section" class="premium-shop-section">
-    <div class="shop-wrapper-centered">
+        <div class="shop-wrapper-centered">
 
-        <!-- PANNEAU GAUCHE (Inchangé mais optimisé) -->
-        <div class="shop-left-panel">
-            <span class="shop-badge-label">BOUTIQUE EN LIGNE</span>
-            <h2>Commandez vos équipements <br><span class="highlight-orange">directement en ligne</span></h2>
+            <!-- PANNEAU GAUCHE (Inchangé mais optimisé) -->
+            <div class="shop-left-panel">
+                <span class="shop-badge-label">BOUTIQUE EN LIGNE</span>
+                <h2>Commandez vos équipements <br><span class="highlight-orange">directement en ligne</span></h2>
 
-            <p class="shop-text-p">
-                Matériel informatique, imprimantes, téléphones, capteurs, consommables — livraison à Abidjan et
-                partout en CI.
-            </p>
+                <p class="shop-text-p">
+                    Matériel informatique, imprimantes, téléphones, capteurs, consommables — livraison à Abidjan et
+                    partout en CI.
+                </p>
 
-            <ul class="shop-features-clean">
-                <li>
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M1 3h15v13H1z" />
-                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                        <circle cx="5.5" cy="18.5" r="2.5" />
-                        <circle cx="18.5" cy="18.5" r="2.5" />
+                <ul class="shop-features-clean">
+                    <li>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M1 3h15v13H1z" />
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                            <circle cx="5.5" cy="18.5" r="2.5" />
+                            <circle cx="18.5" cy="18.5" r="2.5" />
+                        </svg>
+                        <span>Livraison à Abidjan et dans toute la Côte d'Ivoire</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                            <line x1="12" y1="18" x2="12.01" y2="18" />
+                        </svg>
+                        <span>Paiement Orange Money · Wave · MTN MoMo</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        <span>Produits garantis & service après-vente</span>
+                    </li>
+                </ul>
+
+                <a href="#boutique" class="btn-action-shop">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                        style="margin-right: 8px;">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                     </svg>
-                    <span>Livraison à Abidjan et dans toute la Côte d'Ivoire</span>
-                </li>
-                <li>
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                        <line x1="12" y1="18" x2="12.01" y2="18" />
-                    </svg>
-                    <span>Paiement Orange Money · Wave · MTN MoMo</span>
-                </li>
-                <li>
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    <span>Produits garantis & service après-vente</span>
-                </li>
-            </ul>
-
-            <a href="#boutique" class="btn-action-shop">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 8px;">
-                    <circle cx="9" cy="21" r="1" />
-                    <circle cx="20" cy="21" r="1" />
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                </svg>
-                Accéder à la boutique
-            </a>
-        </div>
-
-        <!-- PANNEAU DROITE (Le Carrousel Défilant) -->
-        <div class="shop-right-carousel-container">
-            <div class="shop-carousel-track" id="carouselTrack">
-
-                <!-- Produit 1 -->
-                <div class="product-category-box">
-                    <div class="product-image-holder">
-                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=500&q=80" alt="Ordinateurs HP">
-                    </div>
-                    <h3>Ordinateurs HP</h3>
-                </div>
-
-                <!-- Produit 2 -->
-                <div class="product-category-box">
-                    <div class="product-image-holder">
-                        <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=500&q=80" alt="Imprimantes">
-                    </div>
-                    <h3>Imprimantes HP</h3>
-                </div>
-
-                <!-- Produit 3 -->
-                <div class="product-category-box">
-                    <div class="product-image-holder">
-                        <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=500&q=80" alt="Smartphones">
-                    </div>
-                    <h3>Smartphones</h3>
-                </div>
-
-                <!-- Produit 4 -->
-                <div class="product-category-box">
-                    <div class="product-image-holder">
-                        <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=500&q=80" alt="Capteurs & Accessoires">
-                    </div>
-                    <h3>Capteurs & IOT</h3>
-                </div>
-
-                <!-- Produit 5 (Ajouté pour rendre le défilement encore plus sympa) -->
-                <div class="product-category-box">
-                    <div class="product-image-holder">
-                        <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=500&q=80" alt="Tablettes & Consommables">
-                    </div>
-                    <h3>Tablettes & Consommables</h3>
-                </div>
-
+                    Accéder à la boutique
+                </a>
             </div>
 
-            <!-- Indicateurs (Points de navigation en bas) -->
-            <div class="carousel-dots" id="carouselDots"></div>
+            <!-- PANNEAU DROITE (Le Carrousel Défilant) -->
+            <div class="shop-right-carousel-container">
+                <div class="shop-carousel-track" id="carouselTrack">
+
+                    <!-- Produit 1 -->
+                    <div class="product-category-box">
+                        <div class="product-image-holder">
+                            <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=500&q=80"
+                                alt="Ordinateurs HP">
+                        </div>
+                        <h3>Ordinateurs HP</h3>
+                    </div>
+
+                    <!-- Produit 2 -->
+                    <div class="product-category-box">
+                        <div class="product-image-holder">
+                            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=500&q=80"
+                                alt="Imprimantes">
+                        </div>
+                        <h3>Imprimantes HP</h3>
+                    </div>
+
+                    <!-- Produit 3 -->
+                    <div class="product-category-box">
+                        <div class="product-image-holder">
+                            <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=500&q=80"
+                                alt="Smartphones">
+                        </div>
+                        <h3>Smartphones</h3>
+                    </div>
+
+                    <!-- Produit 4 -->
+                    <div class="product-category-box">
+                        <div class="product-image-holder">
+                            <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=500&q=80"
+                                alt="Capteurs & Accessoires">
+                        </div>
+                        <h3>Capteurs & IOT</h3>
+                    </div>
+
+                    <!-- Produit 5 (Ajouté pour rendre le défilement encore plus sympa) -->
+                    <div class="product-category-box">
+                        <div class="product-image-holder">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=500&q=80"
+                                alt="Tablettes & Consommables">
+                        </div>
+                        <h3>Tablettes & Consommables</h3>
+                    </div>
+
+                </div>
+
+                <!-- Indicateurs (Points de navigation en bas) -->
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+
         </div>
+    </section>
 
-    </div>
-</section>
+    <style>
+        /* --- STRUCTURE BASE & FOND BLEU PRO (#0056b3) --- */
+        .premium-shop-section {
+            width: 100%;
+            max-width: 100%;
+            background-color: #0056b3;
+            padding: 80px 50px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 40px;
+            overflow: hidden;
+            /* Évite les débordements sur la page */
+        }
 
-<style>
-    /* --- STRUCTURE BASE & FOND BLEU PRO (#0056b3) --- */
-    .premium-shop-section {
-        width: 100%;
-        max-width: 100%;
-        background-color: #0056b3;
-        padding: 80px 50px;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin-top: 40px;
-        overflow: hidden; /* Évite les débordements sur la page */
-    }
-
-    .shop-wrapper-centered {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1250px;
-        margin: 0 auto;
-        gap: 60px;
-    }
-
-    /* --- PANNEAU DE GAUCHE : TEXTES --- */
-    .shop-left-panel {
-        flex: 1;
-        max-width: 500px;
-        color: #ffffff;
-    }
-
-    .shop-badge-label {
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 6px 14px;
-        border-radius: 4px;
-        display: inline-block;
-        margin-bottom: 20px;
-    }
-
-    .shop-left-panel h2 {
-        font-size: 2.8rem;
-        font-weight: 700;
-        line-height: 1.2;
-        margin: 0 0 20px 0;
-    }
-
-    .shop-left-panel h2 .highlight-orange {
-        color: #ff8c00; /* Orange vif premium permanent pour le contraste */
-    }
-
-    .shop-text-p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin: 0 0 25px 0;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .shop-features-clean {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 35px 0;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .shop-features-clean li {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.95rem;
-    }
-
-    .shop-features-clean svg {
-        color: #ff8c00; /* Icônes en orange pour rappeler la marque */
-        flex-shrink: 0;
-    }
-
-    .btn-action-shop {
-        background: #ffffff;
-        color: #0056b3;
-        font-weight: 700;
-        text-decoration: none;
-        padding: 14px 28px;
-        border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease;
-        font-size: 0.95rem;
-    }
-
-    .btn-action-shop:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        background: #ff8c00;
-        color: #ffffff;
-    }
-
-    /* --- NOUVEAU CONTENEUR DU CARROUSEL (DROITE) --- */
-    .shop-right-carousel-container {
-        width: 550px;
-        flex-shrink: 0;
-        overflow: hidden; /* Masque les images qui dépassent */
-        position: relative;
-        padding: 10px 0 40px 0;
-    }
-
-    .shop-carousel-track {
-        display: flex;
-        gap: 20px;
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Animation ultra fluide */
-        width: max-content;
-    }
-
-    /* Boîte de produit adaptée pour le carrousel (2 visibles en même temps) */
-    .product-category-box {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 16px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        text-align: center;
-        width: 250px; /* Taille fixe par carte */
-        box-sizing: border-box;
-        transition: all 0.3s ease;
-    }
-
-    .product-image-holder {
-        width: 100%;
-        height: 160px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .product-image-holder img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Remplit élégamment la carte */
-        transition: transform 0.5s ease;
-    }
-
-    .product-category-box h3 {
-        margin: 0;
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #ffffff;
-    }
-
-    /* Effets de survol */
-    .product-category-box:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.4);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .product-category-box:hover .product-image-holder img {
-        transform: scale(1.1);
-    }
-
-    /* --- NAVIGATION (POINTS / DOTS) --- */
-    .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-
-    .dot {
-        width: 10px;
-        height: 10px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .dot.active {
-        background: #ff8c00; /* Devient orange quand actif */
-        width: 24px; /* S'étire pour un effet très premium */
-        border-radius: 5px;
-    }
-
-    /* --- RESPONSIVE DESIGN --- */
-    @media (max-width: 1100px) {
         .shop-wrapper-centered {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1250px;
+            margin: 0 auto;
+            gap: 60px;
+        }
+
+        /* --- PANNEAU DE GAUCHE : TEXTES --- */
+        .shop-left-panel {
+            flex: 1;
+            max-width: 500px;
+            color: #ffffff;
+        }
+
+        .shop-badge-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .shop-left-panel h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+        }
+
+        .shop-left-panel h2 .highlight-orange {
+            color: #ff8c00;
+            /* Orange vif premium permanent pour le contraste */
+        }
+
+        .shop-text-p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0 0 25px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .shop-features-clean {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shop-features-clean li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .shop-features-clean svg {
+            color: #ff8c00;
+            /* Icônes en orange pour rappeler la marque */
+            flex-shrink: 0;
+        }
+
+        .btn-action-shop {
+            background: #ffffff;
+            color: #0056b3;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-action-shop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: #ff8c00;
+            color: #ffffff;
+        }
+
+        /* --- NOUVEAU CONTENEUR DU CARROUSEL (DROITE) --- */
+        .shop-right-carousel-container {
+            width: 550px;
+            flex-shrink: 0;
+            overflow: hidden;
+            /* Masque les images qui dépassent */
+            position: relative;
+            padding: 10px 0 40px 0;
+        }
+
+        .shop-carousel-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Animation ultra fluide */
+            width: max-content;
+        }
+
+        /* Boîte de produit adaptée pour le carrousel (2 visibles en même temps) */
+        .product-category-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 15px;
             text-align: center;
-            gap: 40px;
+            width: 250px;
+            /* Taille fixe par carte */
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
-        .shop-features-clean {
+
+        .product-image-holder {
+            width: 100%;
+            height: 160px;
+            display: flex;
             align-items: center;
-        }
-        .shop-left-panel {
-            max-width: 100%;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .shop-right-carousel-container {
-            width: 280px; /* 1 seul produit visible sur mobile */
-        }
-        .product-category-box {
-            width: 260px;
-        }
-        .premium-shop-section {
-            padding: 50px 20px;
-        }
-    }
-</style>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const track = document.getElementById("carouselTrack");
-        const boxes = track.querySelectorAll(".product-category-box");
-        const dotsContainer = document.getElementById("carouselDots");
-        
-        let currentIndex = 0;
-        const cardWidth = 250; // Largeur d'un produit
-        const gap = 20; // Espace entre les produits
-        
-        // Calculer combien d'étapes de défilement on a besoin
-        // On fait défiler une carte à la fois
-        const totalSteps = boxes.length - 1; 
-
-        // Générer les petits points indicateurs de manière dynamique
-        for (let i = 0; i <= totalSteps; i++) {
-            const dot = document.createElement("div");
-            dot.classList.add("dot");
-            if (i === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => goToSlide(i));
-            dotsContainer.appendChild(dot);
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        const dots = dotsContainer.querySelectorAll(".dot");
-
-        function goToSlide(index) {
-            // Empêcher de dépasser les bornes
-            if (index > totalSteps) index = 0;
-            if (index < 0) index = totalSteps;
-            
-            currentIndex = index;
-            
-            // Calcul du décalage en pixels
-            const amountToMove = currentIndex * (cardWidth + gap);
-            track.style.transform = `translateX(-${amountToMove}px)`;
-            
-            // Mettre à jour la couleur des points
-            dots.forEach(dot => dot.classList.remove("active"));
-            dots[currentIndex].classList.add("active");
+        .product-image-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Remplit élégamment la carte */
+            transition: transform 0.5s ease;
         }
 
-        // Défilement automatique toutes les 3 secondes
-        let autoSlide = setInterval(() => {
-            goToSlide(currentIndex + 1);
-        }, 3000);
+        .product-category-box h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
 
-        // Mettre en pause le défilement si l'utilisateur passe sa souris dessus
-        const container = document.querySelector(".shop-right-carousel-container");
-        container.addEventListener("mouseenter", () => clearInterval(autoSlide));
-        container.addEventListener("mouseleave", () => {
-            autoSlide = setInterval(() => {
+        /* Effets de survol */
+        .product-category-box:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-category-box:hover .product-image-holder img {
+            transform: scale(1.1);
+        }
+
+        /* --- NAVIGATION (POINTS / DOTS) --- */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #ff8c00;
+            /* Devient orange quand actif */
+            width: 24px;
+            /* S'étire pour un effet très premium */
+            border-radius: 5px;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1100px) {
+            .shop-wrapper-centered {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .shop-features-clean {
+                align-items: center;
+            }
+
+            .shop-left-panel {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .shop-right-carousel-container {
+                width: 280px;
+                /* 1 seul produit visible sur mobile */
+            }
+
+            .product-category-box {
+                width: 260px;
+            }
+
+            .premium-shop-section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const track = document.getElementById("carouselTrack");
+            const boxes = track.querySelectorAll(".product-category-box");
+            const dotsContainer = document.getElementById("carouselDots");
+
+            let currentIndex = 0;
+            const cardWidth = 250; // Largeur d'un produit
+            const gap = 20; // Espace entre les produits
+
+            // Calculer combien d'étapes de défilement on a besoin
+            // On fait défiler une carte à la fois
+            const totalSteps = boxes.length - 1;
+
+            // Générer les petits points indicateurs de manière dynamique
+            for (let i = 0; i <= totalSteps; i++) {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                if (i === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            const dots = dotsContainer.querySelectorAll(".dot");
+
+            function goToSlide(index) {
+                // Empêcher de dépasser les bornes
+                if (index > totalSteps) index = 0;
+                if (index < 0) index = totalSteps;
+
+                currentIndex = index;
+
+                // Calcul du décalage en pixels
+                const amountToMove = currentIndex * (cardWidth + gap);
+                track.style.transform = `translateX(-${amountToMove}px)`;
+
+                // Mettre à jour la couleur des points
+                dots.forEach(dot => dot.classList.remove("active"));
+                dots[currentIndex].classList.add("active");
+            }
+
+            // Défilement automatique toutes les 3 secondes
+            let autoSlide = setInterval(() => {
                 goToSlide(currentIndex + 1);
             }, 3000);
+
+            // Mettre en pause le défilement si l'utilisateur passe sa souris dessus
+            const container = document.querySelector(".shop-right-carousel-container");
+            container.addEventListener("mouseenter", () => clearInterval(autoSlide));
+            container.addEventListener("mouseleave", () => {
+                autoSlide = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 3000);
+            });
         });
-    });
-</script>
-  
+    </script>
+
     <section class="faq-contact-wrapper">
         <div class="global-container">
 
             <div class="faq-section">
-                <h2 class="section-title">Questions <span class="orange-text">fréquentes</span></h2>
+                <h2 class="section-title">Questions fréquentes</h2>
 
                 <div class="faq-accordion">
                     <div class="faq-item">
@@ -3958,12 +4165,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     </script>
 
-<footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-container">
-            
+
             <div class="footer-column brand-col">
-                <div class="footer-logo">LE<span>MANAGER</span></div>
-                <p class="footer-pitch">Votre partenaire stratégique en Conseil, solutions de Pesage industriel et Gestion des Infrastructures Informatiques.</p>
+                <!-- Ajout d'un conteneur pour rendre le logo propre et bien arrondi -->
+                <div class="footer-logo-wrapper">
+                    <img src="logo.png" alt="LEMANAGER Logo" class="footer-logo-img">
+                </div>
+                <p class="footer-pitch">Votre partenaire stratégique en Conseil, solutions de Pesage industriel et
+                    Gestion des Infrastructures Informatiques.</p>
                 <div class="footer-contact-info">
                     <p><i class="fa-solid fa-location-dot"></i> Abidjan, Ebimpe-Côte d'Ivoire</p>
                     <p><i class="fa-solid fa-phone"></i> +225 070 806 15 38</p>
@@ -3983,17 +4194,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="footer-column links-col">
                 <h3>Navigation</h3>
-                <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#offers-section">Nos Offres</a></li>
-                    <li><a href="#premium-shop-section">Boutique en Ligne</a></li>
-                    <li><a href="#contact">Demander un Devis</a></li>
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="nav-link" data-target="accueil">Accueil</a></li>
+                    <li><a href="#about-section-premium" class="nav-link" data-target="about">À Propos De Nous</a></li>
+                    <li><a href="#poles-section-full" class="nav-link" data-target="services">Nos Services</a></li>
+                    <li><a href="#training-section" class="nav-link" data-target="formations">Nos Formations</a></li>
+                    <li><a href="#offers-section" class="nav-link" data-target="offres">Nos Offres</a></li>
+                    <li><a href="#premium-shop-section" class="nav-link" data-target="boutique">Boutique en Ligne</a>
+                    </li>
+                    <li><a href="#devisForm" class="nav-link-devis">Demander un Devis</a></li>
                 </ul>
             </div>
 
             <div class="footer-column social-hours-col">
                 <h3>Disponibilité</h3>
-                <p class="hours-text"><i class="fa-regular fa-clock"></i> Lun - Ven : 08h30 - 17h00</p>
+                <p class="hours-text"><i class="fa-regular fa-clock"></i> Lun - Sam : 08h30 - 17h00</p>
                 <div class="footer-socials">
                     <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                     <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -4014,169 +4229,3 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
     </footer>
-
-    <style>
-        /* --- STYLE DU PIED DE PAGE (FOOTER) --- */
-        .main-footer {
-            background-color: #0b1528; /* Fond sombre élégant bleu nuit très foncé */
-            color: #ecf0f1;
-            padding: 70px 8% 20px 8%;
-            font-size: 0.9rem;
-            border-top: 4px solid #ff6600; /* Rappel de l'orange du logo tout en haut */
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-column h3 {
-            color: #ffffff;
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Petite ligne décorative sous les titres de colonne */
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 35px;
-            height: 3px;
-            background-color: #ff6600;
-            border-radius: 2px;
-        }
-
-        /* Colonne de la marque */
-        .footer-logo {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #e4870f;
-            margin-bottom: 15px;
-        }
-        .footer-logo span { color: #3c2bd6; }
-
-        .footer-pitch {
-            color: #a4b3c6;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .footer-contact-info p {
-            margin-bottom: 10px;
-            color: #ecf0f1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-contact-info i {
-            color: #ff6600; /* Icônes en orange pour le contraste */
-            width: 15px;
-        }
-
-        /* Colonnes de liens */
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: #a4b3c6;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            display: inline-block;
-        }
-
-        .footer-column ul li a:hover {
-            color: #ff6600;
-            transform: translateX(5px); /* Léger décalage interactif au survol */
-        }
-
-        /* Colonne Disponibilité & Réseaux */
-        .hours-text {
-            color: #a4b3c6;
-            margin-bottom: 25px;
-        }
-        .hours-text i {
-            color: #ff6600;
-            margin-right: 5px;
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-socials a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            background-color: rgba(255, 255, 255, 0.06);
-            color: #ffffff;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-socials a:hover {
-            background-color: #ff6600;
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
-        }
-
-        /* --- LIGNE DE COPYRIGHT ET CONFIDENTIALITÉ --- */
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 25px;
-        }
-
-        .footer-bottom-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            color: #7f8c8d;
-            font-size: 0.85rem;
-        }
-
-        .legal-links a {
-            color: #7f8c8d;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .legal-links a:hover {
-            color: #ff6600;
-        }
-
-        .legal-links .separator {
-            margin: 0 8px;
-            color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .footer-bottom-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
-
