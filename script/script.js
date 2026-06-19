@@ -138,6 +138,49 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     
+///partie du script pour la section "Contactez-nous" avec le formulaire et le défilement automatique vers la section contact
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // On cible tous les boutons "En savoir plus" de tes cartes
+    document.querySelectorAll('.btn-card-action').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const hrefValue = this.getAttribute('href');
+            
+            // On vérifie que le lien contient bien le paramètre attendu
+            if (hrefValue && hrefValue.includes('?pole=')) {
+                e.preventDefault(); // Empêche le sursaut brusque du navigateur
+                
+                // On sépare l'ancre (#contact) du paramètre de pôle (ex: conseil, it...)
+                const parts = hrefValue.split('?pole=');
+                const targetId = parts[0];  // Récupère "#contact"
+                const poleValue = parts[1]; // Récupère la valeur du pôle
+                
+                // 1. Défilement fluide et propre vers le formulaire
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start' // Aligne le haut du bloc avec le haut de l'écran
+                    });
+                }
+                
+                // 2. Sélection automatique de la valeur dans le menu déroulant
+                const selectSujet = document.getElementById('select-sujet');
+                if (selectSujet) {
+                    selectSujet.value = poleValue;
+                }
+            }
+        });
+    });
+});
+
+
+
+
+
+
 
 
       //partie du script pour la modale de la section "Nos Formations" avec les descriptions détaillées et le bouton WhatsApp dynamique
@@ -353,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // =========================================================
-        // 4. MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL
+        // 4. MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (ENVOI VIA FORMSPREE)
         // =========================================================
         let chatbotState = { step: '', data: {} };
 
@@ -382,9 +425,9 @@ document.addEventListener('DOMContentLoaded', function () {
             chatbotState.data.besoin = optionLabel;
 
             setTimeout(() => {
-                appendBotMessage("C'est noté ! Pour vous recontacter efficacement, quel est votre **Nom ou le nom de votre Entreprise** ?");
+                appendBotMessage("C'est noté ! Pour vous recontacter efficacement, quel est votre Nom ou le nom de votre Entreprise ?");
                 chatbotState.step = 'getName';
-                createChatInput('text', 'Ex: M. BAMBA / SDCI');
+                createChatInput('text', 'Ex: veuillez saisir votre nom ou celui de votre entreprise');
             }, 800);
         }
 
@@ -415,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 if (chatbotState.step === 'getName') {
                     chatbotState.data.nom = value;
-                    appendBotMessage("Merci. Veuillez saisir une **adresse email valide** :");
+                    appendBotMessage("Merci. Veuillez saisir une adresse email valide :");
                     chatbotState.step = 'getEmail';
                     createChatInput('email', 'exemple@domaine.com');
                 }
@@ -426,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         return;
                     }
                     chatbotState.data.email = value;
-                    appendBotMessage("Parfait. Enfin, votre **numéro de téléphone (WhatsApp)** :");
+                    appendBotMessage("Parfait. Enfin, votre numéro de téléphone (WhatsApp) :");
                     chatbotState.step = 'getPhone';
                     createChatInput('tel', '07 00 00 00 00');
                 }
@@ -439,44 +482,137 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function sendDataToCompanyMail(collectedData) {
-            setTimeout(() => {
-                appendBotMessage("✨ **Succès !** Vos informations ont été transmises avec succès à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
-                console.log("Flux asynchrone envoyé :", collectedData);
-            }, 1500);
+            const formspreeEndpoint = "https://formspree.io/f/mykarwdp";
+
+            fetch(formspreeEndpoint, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: `[LEMANAGER - CHATBOT] Nouvelle demande de ${collectedData.nom}`,
+                    Module: 'Chatbot Assistant Virtuel',
+                    Nom_Complet: collectedData.nom,
+                    Email: collectedData.email,
+                    Telephone: collectedData.telephone,
+                    Besoin_Client: collectedData.besoin
+                })
+            })
+            .then(response => {
+                if(response.ok) {
+                    appendBotMessage("✨ Succès ! Vos informations ont été transmises avec succès à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
+                } else {
+                    appendBotMessage("⚠️ Une erreur est survenue lors de la transmission via l'assistant. Veuillez utiliser le formulaire de devis traditionnel ou nous contacter sur WhatsApp.");
+                }
+            })
+            .catch(error => {
+                appendBotMessage("⚠️ Erreur de connexion réseau. Vos informations n'ont pas pu être envoyées.");
+            });
         }
 
         // =========================================================
-        // 5. SOUMISSION & FEEDBACK DIRECT DU FORMULAIRE DE DEVIS
+        // 5. SOUMISSION & FEEDBACK DIRECT DU FORMULAIRE DE DEVIS (ENVOI VIA FORMSPREE)
         // =========================================================
         function handleFormSubmit(event) {
             event.preventDefault();
 
             const statusMsg = document.getElementById('formStatusMessage');
             statusMsg.className = "form-status-message";
-            statusMsg.textContent = "";
+            statusMsg.textContent = "Envoi de votre demande de devis en cours...";
 
             const name = sanitizeInput(document.getElementById('clientName').value);
             const phone = sanitizeInput(document.getElementById('clientPhone').value);
             const email = sanitizeInput(document.getElementById('clientEmail').value);
-            const type = document.getElementById('projectType').value;
+            
+            // Correction de l'id du select basé sur ton HTML (select-sujet)
+            const selectElement = document.getElementById('select-sujet');
+            const type = selectElement ? selectElement.value : 'Non spécifié';
             const desc = sanitizeInput(document.getElementById('projectDesc').value);
 
             if (!isValidEmail(email)) {
-                statusMsg.classList.add('error');
+                statusMsg.className = "form-status-message error";
                 statusMsg.textContent = "⚠️ Veuillez entrer une adresse email valide.";
                 return;
             }
 
-            statusMsg.classList.add('success');
-            statusMsg.textContent = "✨ Votre demande de devis a été envoyée avec succès !";
+            const formspreeEndpoint = "https://formspree.io/f/mykarwdp";
 
-            const formData = { name, phone, email, type, desc };
-            console.log("Formulaire synchrone validé :", formData);
+            const payload = {
+                _subject: `[LEMANAGER - DEVIS] ${type.toUpperCase()} par ${name}`,
+                Module: 'Formulaire de Devis Principal',
+                Nom_ou_Entreprise: name,
+                Telephone: phone,
+                Email: email,
+                Pole_Concerne: type,
+                Description_du_Projet: desc
+            };
 
-            setTimeout(() => {
-                document.getElementById('devisForm').reset();
-                statusMsg.textContent = "";
-                statusMsg.className = "form-status-message";
-            }, 4000);
+            fetch(formspreeEndpoint, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusMsg.className = "form-status-message success";
+                    statusMsg.textContent = "✨ Votre demande de devis a été envoyée avec succès à LEMANAGER !";
+                    document.getElementById('devisForm').reset();
+                } else {
+                    statusMsg.className = "form-status-message error";
+                    statusMsg.textContent = "⚠️ Le service d'envoi a rencontré un problème. Veuillez réessayer.";
+                }
+            })
+            .catch(error => {
+                statusMsg.className = "form-status-message error";
+                statusMsg.textContent = "⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet.";
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    statusMsg.textContent = "";
+                    statusMsg.className = "form-status-message";
+                }, 6000);
+            });
         }
+
+
     
+
+//parties privacy et termes
+
+// =========================================================
+        // 6. GESTION DES FENÊTRES MODALES (PRIVACY & TERMS)
+        // =========================================================
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                // Bloque le défilement de la page arrière-plan
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                // Rétablit le défilement de la page
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Ferme la modale si l'utilisateur clique en dehors de la boîte blanche
+        window.addEventListener('click', function(event) {
+            const privacyModal = document.getElementById('privacyModal');
+            const termsModal = document.getElementById('termsModal');
+            
+            if (event.target === privacyModal) {
+                closeModal('privacyModal');
+            }
+            if (event.target === termsModal) {
+                closeModal('termsModal');
+            }
+        });
