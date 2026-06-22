@@ -417,8 +417,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return regex.test(email);
         }
 
-        // =========================================================
-        // 5. MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (ENVOI FORMSPREE)
+       // =========================================================
+        // MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (AVEC NUMÉRO)
         // =========================================================
         let chatbotState = { step: '', data: {} };
 
@@ -447,9 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotState.data.besoin = optionLabel;
 
             setTimeout(() => {
-                appendBotMessage("C'est noté ! Pour vous recontacter efficacement, quel est votre Nom ou le nom de votre Entreprise ?");
+                appendBotMessage("C'est noté ! Pour vous recontacter, quel est votre Nom ou le nom de votre Entreprise ?");
                 chatbotState.step = 'getName';
-                createChatInput('text', 'Ex: veuillez saisir votre nom ou celui de votre entreprise');
+                createChatInput('text', 'Ex: Votre nom ou entreprise');
             }, 800);
         }
 
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (chatbotState.step === 'getName') {
                     chatbotState.data.nom = value;
-                    appendBotMessage("Merci. Veuillez saisir une adresse email valide :");
+                    appendBotMessage("Merci. Quelle est votre adresse email ?");
                     chatbotState.step = 'getEmail';
                     createChatInput('email', 'exemple@domaine.com');
                 }
@@ -491,9 +491,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                     chatbotState.data.email = value;
-                    appendBotMessage("Parfait. Enfin, votre numéro de téléphone (WhatsApp) :");
+                    appendBotMessage("Parfait. Enfin, quel est votre numéro de téléphone (WhatsApp) ?");
                     chatbotState.step = 'getPhone';
-                    createChatInput('tel', '07 00 00 00 00');
+                    createChatInput('tel', 'Ex: 07 00 00 00 00');
                 }
                 else if (chatbotState.step === 'getPhone') {
                     chatbotState.data.telephone = value;
@@ -504,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function sendDataToCompanyMail(collectedData) {
-            const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
+            const formspreeEndpoint = "https://formspree.io/f/mykarwdp";
 
             fetch(formspreeEndpoint, {
                 method: 'POST',
@@ -523,9 +523,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if(response.ok) {
-                    appendBotMessage("✨ **Succès !** Vos informations ont été transmises avec succès à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
+                    appendBotMessage("✨ **Succès !** Vos informations ont été transmises à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
                 } else {
-                    appendBotMessage("⚠️ Une erreur est survenue lors de la transmission via l'assistant. Veuillez utiliser le formulaire de devis traditionnel ou nous contacter sur WhatsApp.");
+                    appendBotMessage("⚠️ Une erreur est survenue. Veuillez utiliser le formulaire de devis traditionnel ou nous contacter sur WhatsApp.");
                 }
             })
             .catch(error => {
