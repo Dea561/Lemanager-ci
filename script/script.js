@@ -504,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function sendDataToCompanyMail(collectedData) {
-            const formspreeEndpoint = "https://formspree.io/f/mykarwdp";
+            const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
 
             fetch(formspreeEndpoint, {
                 method: 'POST',
@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const formspreeEndpoint = "https://formspree.io/f/mykarwdp";
+            const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
 
             const payload = {
                 _subject: `[LEMANAGER - DEVIS] ${type.toUpperCase()} par ${name}`,
