@@ -555,7 +555,7 @@
                 <h2>Conseil, Formation <br><span>& Audit</span></h2>
                 <p>Conseil en organisation stratégique, management, contrôle de gestion, audit financier et formations
                     certifiées FDFP.</p>
-                <a href="#" class="btn-action">Démarrez votre projet</a>
+                <a href="" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
@@ -567,7 +567,7 @@
                 <h2>Développement <br><span>Logiciel & IT</span></h2>
                 <p>Conception de sites web, logiciels de gestion sur mesure, maintenance informatique et audit de
                     sécurité SI.</p>
-                <a href="#" class="btn-action">Démarrez votre projet</a>
+                <a href="" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
@@ -579,7 +579,7 @@
                 <h2>Pesage Industriel <br><span>& Métrologie</span></h2>
                 <p>Solutions de pesage industriel de haute précision, étalonnage, métrologie légale et maintenance de
                     ponts-bascules.</p>
-                <a href="#" class="btn-action">Démarrez votre projet</a>
+                <a href="contact" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
@@ -3268,6 +3268,39 @@
 
             <div class="faq-section">
                 <h2 class="section-title">Questions fréquentes</h2>
+
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button type="button" class="faq-question">Quels sont les domaines d'expertise de LEMANAGER ?
+                            <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>LEMANAGER intervient en tant que partenaire stratégique à travers quatre pôles majeurs :
+                                le Conseil et la Formation (agréée FDFP), le Développement Logiciel & l'infrastructure
+                                IT, les solutions de Pesage Industriel & Métrologie, ainsi que la Traçabilité et le
+                                Contrôle d'Accès.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button type="button" class="faq-question">Vos formations sont-elles éligibles au financement
+                            FDFP ? <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>Oui, absolument. LEMANAGER est un cabinet de formation continue agréé par le FDFP en Côte
+                                d'Ivoire. Les organisations cotisantes peuvent bénéficier d'une prise en charge de leurs
+                                plans de formation.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button type="button" class="faq-question">Quel est le délai de traitement pour une demande de
+                            devis ? <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>Dès la soumission de votre besoin via notre formulaire ou notre assistant virtuel, notre
+                                équipe commerciale étudie votre dossier et s'engage à vous répondre avec une proposition
+                                chiffrée sous 24h à 48h ouvrées.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="contact-header-text">
@@ -3276,7 +3309,50 @@
             </div>
 
             <div class="contact-grid">
+
                 <div class="contact-boxes-stack">
+                    <div class="info-blue-box">
+                        <div class="box-header-title">
+                            <span class="box-icon">📍</span>
+                            <h3>Notre Siège</h3>
+                        </div>
+                        <div class="box-body-content">
+                            <p>Abidjan, Ebimpé-Côte d'Ivoire</p>
+                        </div>
+                    </div>
+
+                    <div class="info-blue-box">
+                        <div class="box-header-title">
+                            <span class="box-icon">📞</span>
+                            <h3>Téléphone</h3>
+                        </div>
+                        <div class="box-body-content">
+                            <p>+225 070 806 15 38</p>
+                        </div>
+                    </div>
+
+                    <div class="info-blue-box">
+                        <div class="box-header-title">
+                            <span class="box-icon">✉️</span>
+                            <h3>Adresse Email</h3>
+                        </div>
+                        <div class="box-body-content">
+                            <p>info@lemanager-ci.com</p>
+                        </div>
+                    </div>
+
+                    <!-- CARTE DE GÉOLOCALISATION EXACTE (IFRAME) -->
+                    <div class="info-blue-box" style="padding: 0; overflow: hidden; height: 220px;">
+                        <iframe
+                            src="https://maps.google.com/maps?q=5.490850859213353,-4.068237936505288&z=16&output=embed"
+                            width="100%" height="100%" style="border:0; display:block;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <a href="https://wa.me/2250708061538" target="_blank" class="whatsapp-direct-btn">
+                        Discuter sur WhatsApp 7j/7
+                    </a>
                 </div>
 
                 <div class="contact-form-card">
@@ -3303,8 +3379,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="projectType">Votre besoin *</label>
-                            <select id="select-sujet" name="sujet">
+                            <label for="select-sujet">Votre besoin *</label>
+                            <select id="select-sujet" name="sujet" required>
                                 <option value="">Sélectionnez le service concerné...</option>
                                 <option value="conseil">Conseil, Formation & Audit</option>
                                 <option value="it">Développement Logiciel & IT</option>
@@ -3361,16 +3437,126 @@
                     visite aujourd'hui ?
                 </div>
                 <div class="chat-options-pane" id="chatOptions">
-                    <button onclick="handleBotOption('formation', '📚 Découvrir les formations FDFP')">📚 Découvrir
-                        les formations FDFP</button>
+                    <button onclick="handleBotOption('formation', '📚 Découvrir les formations FDFP')">📚 Découvrir les
+                        formations FDFP</button>
                     <button onclick="handleBotOption('projet', '💻 Lancer un projet digital')">💻 Lancer un projet
                         digital</button>
-                    <button onclick="handleBotOption('rappel', '📞 Être rappelé par un conseiller')">📞 Être rappelé
-                        par un conseiller</button>
+                    <button onclick="handleBotOption('rappel', '📞 Être rappelé par un conseiller')">📞 Être rappelé par
+                        un conseiller</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-col">
+                <div class="footer-logo-wrapper">
+                    <img src="images/logo.png" alt="LEMANAGER Logo" class="footer-logo-img">
+                </div>
+                <p class="footer-pitch">Votre partenaire stratégique en Conseil, solutions de Pesage industriel et
+                    Gestion des Infrastructures Informatiques.</p>
+                <div class="footer-contact-info">
+                    <p><i class="fa-solid fa-location-dot"></i> Abidjan, Ebimpe-Côte d'Ivoire</p>
+                    <p><i class="fa-solid fa-phone"></i> +225 070 806 15 38</p>
+                    <p><i class="fa-solid fa-envelope"></i> info@lemanager-ci.com</p>
+                </div>
+            </div>
+
+            <div class="footer-column links-col">
+                <h3>Nos Expertises</h3>
+                <ul>
+                    <li><a href="#poles-section-full">Conseil, Formation & Audit</a></li>
+                    <li><a href="#poles-section-full">Développement Logiciel & IT</a></li>
+                    <li><a href="#poles-section-full">Pesage Industriel & Métrologie</a></li>
+                    <li><a href="#poles-section-full">Traçabilité & Contrôle d'Accès</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column links-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="nav-link" data-target="accueil">Accueil</a></li>
+                    <li><a href="#about-section-premium" class="nav-link" data-target="about">À Propos De Nous</a></li>
+                    <li><a href="#poles-section-full" class="nav-link" data-target="services">Nos Services</a></li>
+                    <li><a href="#training-section" class="nav-link" data-target="formations">Nos Formations</a></li>
+                    <li><a href="#offers-section" class="nav-link" data-target="offres">Nos Offres</a></li>
+                    <li><a href="#premium-shop-section" class="nav-link" data-target="boutique">Boutique en Ligne</a>
+                    </li>
+                    <li><a href="#devisForm" class="nav-link-devis">Demander un Devis</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column social-hours-col">
+                <h3>Disponibilité</h3>
+                <p class="hours-text"><i class="fa-regular fa-clock"></i> Lun - Sam : 08h30 - 17h00</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2026 LEMANAGER. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="javascript:void(0)" onclick="openModal('privacyModal')">Politique de Confidentialité</a>
+                    <span class="separator">|</span>
+                    <a href="javascript:void(0)" onclick="openModal('termsModal')">Mentions Légales</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="privacyModal" class="legal-modal">
+            <div class="legal-modal-content">
+                <div class="legal-modal-header">
+                    <h3>Politique de Confidentialité</h3>
+                    <span class="close-modal-btn" onclick="closeModal('privacyModal')">&times;</span>
+                </div>
+                <div class="legal-modal-body">
+                    <p><strong>Dernière mise à jour :</strong> Juin 2026</p>
+                    <p>Chez LEMANAGER, la protection de vos données est une priorité. Cette politique décrit comment
+                        nous traitons les informations collectées via notre formulaire de devis et notre assistant
+                        virtuel.</p>
+                    <h4>1. Collecte des données</h4>
+                    <p>Nous collectons uniquement les informations que vous nous transmettez volontairement : Nom, Nom
+                        d'entreprise, Adresse email, Numéro de téléphone, et la description de votre besoin
+                        professionnel.</p>
+                    <h4>2. Utilisation des données</h4>
+                    <p>Ces informations sont exclusivement utilisées pour l'établissement de vos devis personnalisés et
+                        la prise de contact commerciale par nos conseillers.</p>
+                    <h4>3. Partage et Stockage</h4>
+                    <p>Vos données sont traitées de manière strictement confidentielle. Elles ne sont **jamais vendues,
+                        louées ou partagées** avec des tiers. Les données sont acheminées de manière sécurisée via notre
+                        partenaire technique Formspree vers nos boîtes de réception professionnelles.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="termsModal" class="legal-modal">
+            <div class="legal-modal-content">
+                <div class="legal-modal-header">
+                    <h3>Mentions Légales</h3>
+                    <span class="close-modal-btn" onclick="closeModal('termsModal')">&times;</span>
+                </div>
+                <div class="legal-modal-body">
+                    <h4>1. Présentation de l'entreprise</h4>
+                    <p>Le site internet LEMANAGER est édité par l'entité **LEMANAGER**, cabinet d'expertise et de
+                        solutions professionnelles.</p>
+                    <p><strong>Siège social :</strong> Abidjan, Ebimpe - Côte d'Ivoire</p>
+                    <p><strong>Contact :</strong> +225 070 806 15 38 / info@lemanager-ci.com</p>
+                    <h4>2. Propriété intellectuelle</h4>
+                    <p>L'ensemble des contenus présents sur ce site (textes, logos, images, structure de l'application,
+                        code source) est la propriété exclusive de LEMANAGER. Toute reproduction ou représentation
+                        totale ou partielle de ce site sans l'autorisation expresse de l'éditeur est interdite.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <style>
         /* --- WRAPPER GLOBAL FAQ & CONTACT --- */
@@ -3880,213 +4066,102 @@
 
 
 
-    <footer class="main-footer">
-        <div class="footer-container">
 
-            <div class="footer-column brand-col">
-                <!-- Ajout d'un conteneur pour rendre le logo propre et bien arrondi -->
-                <div class="footer-logo-wrapper">
-                    <img src="images/logo.png" alt="LEMANAGER Logo" class="footer-logo-img">
-                </div>
-                <p class="footer-pitch">Votre partenaire stratégique en Conseil, solutions de Pesage industriel et
-                    Gestion des Infrastructures Informatiques.</p>
-                <div class="footer-contact-info">
-                    <p><i class="fa-solid fa-location-dot"></i> Abidjan, Ebimpe-Côte d'Ivoire</p>
-                    <p><i class="fa-solid fa-phone"></i> +225 070 806 15 38</p>
-                    <p><i class="fa-solid fa-envelope"></i> info@lemanager-ci.com</p>
-                </div>
-            </div>
+    <style>
+        /* Styles pour les fenêtres modales juridiques */
+        .legal-modal {
+            display: none;
+            /* Caché par défaut */
+            position: fixed;
+            z-index: 9999;
+            /* Toujours au-dessus du reste du site */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Fond sombre transparent */
+            backdrop-filter: blur(4px);
+            /* Léger flou arrière-plan moderne */
+            align-items: center;
+            justify-content: center;
+        }
 
-            <div class="footer-column links-col">
-                <h3>Nos Expertises</h3>
-                <ul>
-                    <li><a href="#poles-section-full">Conseil, Formation & Audit</a></li>
-                    <li><a href="#poles-section-full">Développement Logiciel & IT</a></li>
-                    <li><a href="#poles-section-full">Pesage Industriel & Métrologie</a></li>
-                    <li><a href="#poles-section-full">Traçabilité & Contrôle d'Accès</a></li>
-                </ul>
-            </div>
+        /* Devient actif via JS */
+        .legal-modal.active {
+            display: flex;
+        }
 
-            <div class="footer-column links-col">
-                <h3>Navigation</h3>
-                <ul class="footer-nav-list">
-                    <li><a href="#" class="nav-link" data-target="accueil">Accueil</a></li>
-                    <li><a href="#about-section-premium" class="nav-link" data-target="about">À Propos De Nous</a></li>
-                    <li><a href="#poles-section-full" class="nav-link" data-target="services">Nos Services</a></li>
-                    <li><a href="#training-section" class="nav-link" data-target="formations">Nos Formations</a></li>
-                    <li><a href="#offers-section" class="nav-link" data-target="offres">Nos Offres</a></li>
-                    <li><a href="#premium-shop-section" class="nav-link" data-target="boutique">Boutique en Ligne</a>
-                    </li>
-                    <li><a href="#devisForm" class="nav-link-devis">Demander un Devis</a></li>
-                </ul>
-            </div>
+        .legal-modal-content {
+            background-color: #ffffff;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 650px;
+            max-height: 80vh;
+            overflow-y: auto;
+            /* Défilement interne si le texte est long */
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease-out;
+        }
 
-            <div class="footer-column social-hours-col">
-                <h3>Disponibilité</h3>
-                <p class="hours-text"><i class="fa-regular fa-clock"></i> Lun - Sam : 08h30 - 17h00</p>
-                <div class="footer-socials">
-                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
+        .legal-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
 
-        </div>
+        .legal-modal-header h3 {
+            margin: 0;
+            color: #0056b3;
+            /* Couleur bleue pro de ton site */
+            font-size: 1.2rem;
+        }
 
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2026 LEMANAGER. Tous droits réservés.</p>
-                <div class="legal-links">
-                    <a href="javascript:void(0)" onclick="openModal('privacyModal')">Politique de Confidentialité</a>
-                    <span class="separator">|</span>
-                    <a href="javascript:void(0)" onclick="openModal('termsModal')">Mentions Légales</a>
-                </div>
-            </div>
-        </div>
+        .close-modal-btn {
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
 
-        <!-- MODALE : POLITIQUE DE CONFIDENTIALITÉ -->
-<div id="privacyModal" class="legal-modal">
-    <div class="legal-modal-content">
-        <div class="legal-modal-header">
-            <h3>Politique de Confidentialité</h3>
-            <span class="close-modal-btn" onclick="closeModal('privacyModal')">&times;</span>
-        </div>
-        <div class="legal-modal-body">
-            <p><strong>Dernière mise à jour :</strong> Juin 2026</p>
-            <p>Chez LEMANAGER, la protection de vos données est une priorité. Cette politique décrit comment nous traitons les informations collectées via notre formulaire de devis et notre assistant virtuel.</p>
-            
-            <h4>1. Collecte des données</h4>
-            <p>Nous collectons uniquement les informations que vous nous transmettez volontairement : Nom, Nom d'entreprise, Adresse email, Numéro de téléphone, et la description de votre besoin professionnel.</p>
-            
-            <h4>2. Utilisation des données</h4>
-            <p>Ces informations sont exclusivement utilisées pour :</p>
-            <ul>
-                <li>L'établissement de vos devis personnalisés.</li>
-                <li>La prise de contact commerciale par nos conseillers.</li>
-            </ul>
-            
-            <h4>3. Partage et Stockage</h4>
-            <p>Vos données sont traitées de manière strictement confidentielle. Elles ne sont **jamais vendues, louées ou partagées** avec des tiers. Les données sont acheminées de manière sécurisée via notre partenaire de routage Formspree vers nos boîtes de réception professionnelles.</p>
-            
-            <h4>4. Vos Droits</h4>
-            <p>Conformément aux dispositions relatives à la protection des données personnelles, vous disposez d'un droit d'accès, de modification ou de suppression de vos informations. Pour toute demande, contactez-nous à : <strong>info@lemanager-ci.com</strong>.</p>
-        </div>
-    </div>
-</div>
+        .close-modal-btn:hover {
+            color: #333;
+        }
 
-<!-- MODALE : MENTIONS LÉGALES -->
-<div id="termsModal" class="legal-modal">
-    <div class="legal-modal-content">
-        <div class="legal-modal-header">
-            <h3>Mentions Légales</h3>
-            <span class="close-modal-btn" onclick="closeModal('termsModal')">&times;</span>
-        </div>
-        <div class="legal-modal-body">
-            <h4>1. Présentation de l'entreprise</h4>
-            <p>Le site internet LEMANAGER est édité par l'entité **LEMANAGER**, cabinet d'expertise et de solutions professionnelles.</p>
-            <p><strong>Siège social :</strong> Abidjan, Ebimpe - Côte d'Ivoire</p>
-            <p><strong>Contact :</strong> +225 07 08 06 15 38 / info@lemanager-ci.com</p>
-            
-            <h4>2. Activités d'expertise</h4>
-            <p>LEMANAGER intervient en tant que partenaire stratégique dans les domaines suivants :</p>
-            <ul>
-                <li>Conseil, Formation (agréée FDFP) & Audit</li>
-                <li>Développement Logiciel & Gestion des Infrastructures Informatiques (IT)</li>
-                <li>Solutions de Pesage Industriel & Métrologie</li>
-                <li>Traçabilité & Contrôle d'Accès</li>
-            </ul>
-            
-            <h4>3. Propriété intellectuelle</h4>
-            <p>L'ensemble des contenus présents sur ce site (textes, logos, images, structure de l'application, code source) est la propriété exclusive de LEMANAGER. Toute reproduction ou représentation totale ou partielle de ce site, par quelque procédé que ce soit, sans l'autorisation expresse de l'éditeur est interdite.</p>
-            
-            <h4>4. Hébergement et Services Tiers</h4>
-            <p>Le traitement des données de contact et des flux du chatbot est assisté par la solution technique sécurisée Formspree.</p>
-        </div>
-    </div>
-</div>
+        .legal-modal-body {
+            padding: 25px;
+            color: #444;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
 
-<style>
-    /* Styles pour les fenêtres modales juridiques */
-.legal-modal {
-    display: none; /* Caché par défaut */
-    position: fixed;
-    z-index: 9999; /* Toujours au-dessus du reste du site */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fond sombre transparent */
-    backdrop-filter: blur(4px); /* Léger flou arrière-plan moderne */
-    align-items: center;
-    justify-content: center;
-}
+        .legal-modal-body h4 {
+            color: #ff7300;
+            /* Ta couleur secondaire orange/accent */
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
 
-/* Devient actif via JS */
-.legal-modal.active {
-    display: flex;
-}
+        .legal-modal-body ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
 
-.legal-modal-content {
-    background-color: #ffffff;
-    padding: 0;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 650px;
-    max-height: 80vh;
-    overflow-y: auto; /* Défilement interne si le texte est long */
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    animation: slideDown 0.3s ease-out;
-}
+        /* Animation d'ouverture */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
 
-.legal-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #eee;
-}
-
-.legal-modal-header h3 {
-    margin: 0;
-    color: #0056b3; /* Couleur bleue pro de ton site */
-    font-size: 1.2rem;
-}
-
-.close-modal-btn {
-    font-size: 28px;
-    font-weight: bold;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close-modal-btn:hover {
-    color: #333;
-}
-
-.legal-modal-body {
-    padding: 25px;
-    color: #444;
-    line-height: 1.6;
-    font-size: 0.95rem;
-}
-
-.legal-modal-body h4 {
-    color: #ff7300; /* Ta couleur secondaire orange/accent */
-    margin-top: 20px;
-    margin-bottom: 8px;
-}
-
-.legal-modal-body ul {
-    padding-left: 20px;
-    margin-bottom: 15px;
-}
-
-/* Animation d'ouverture */
-@keyframes slideDown {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-</style>
-    </footer>
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>

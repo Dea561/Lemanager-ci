@@ -340,28 +340,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 
-// partie du script pour le chatbot de la section "Contactez-nous" avec les interactions dynamiques et la validation des champs 
-        // =========================================================
+/// =========================================================
         // 1. LOGIQUE STRUCTURELLE DE FERMETURE/OUVERTURE DU CHAT
         // =========================================================
         function closeChatbot() {
-            // Masque la fenêtre complète et active la bulle flottante animée
             document.getElementById('chatbotWindow').style.display = 'none';
             document.querySelector('.chatbot-bubble').style.display = 'flex';
         }
 
         function openChatbot() {
-            // Masque la bulle et déploie la fenêtre d'interaction principale
             document.querySelector('.chatbot-bubble').style.display = 'none';
             document.getElementById('chatbotWindow').style.display = 'flex';
 
-            // Scrolle automatiquement au bas de l'historique
             const body = document.getElementById('chatbotBody');
             body.scrollTop = body.scrollHeight;
         }
 
         // =========================================================
-        // 2. LOGIQUE DE L'ACCORDÉON FAQ
+        // 2. LOGIQUE DE L'ACCORDÉON FAQ (EVENEMENT CLIC INTEGRÉ)
         // =========================================================
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
@@ -382,7 +378,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // =========================================================
-        // 3. SÉCURISATION SANITIZE & VALIDATION EMAIL
+        // 3. FENÊTRES MODALES JURIDIQUES (OPEN/CLOSE)
+        // =========================================================
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Fermeture des modales si clic en dehors
+        window.addEventListener('click', function (event) {
+            if (event.target.classList.contains('legal-modal')) {
+                closeModal(event.target.id);
+            }
+        });
+
+        // =========================================================
+        // 4. SÉCURISATION SANITIZE & VALIDATION EMAIL
         // =========================================================
         function sanitizeInput(text) {
             const temp = document.createElement('div');
@@ -396,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // =========================================================
-        // 4. MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (ENVOI VIA FORMSPREE)
+        // 5. MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (ENVOI FORMSPREE)
         // =========================================================
         let chatbotState = { step: '', data: {} };
 
@@ -501,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if(response.ok) {
-                    appendBotMessage("✨ Succès ! Vos informations ont été transmises avec succès à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
+                    appendBotMessage("✨ **Succès !** Vos informations ont été transmises avec succès à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
                 } else {
                     appendBotMessage("⚠️ Une erreur est survenue lors de la transmission via l'assistant. Veuillez utiliser le formulaire de devis traditionnel ou nous contacter sur WhatsApp.");
                 }
@@ -512,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // =========================================================
-        // 5. SOUMISSION & FEEDBACK DIRECT DU FORMULAIRE DE DEVIS (ENVOI VIA FORMSPREE)
+        // 6. SOUMISSION ET FEEDBACK DIRECT DU FORMULAIRE DE DEVIS (ENVOI FORMSPREE)
         // =========================================================
         function handleFormSubmit(event) {
             event.preventDefault();
@@ -525,7 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone = sanitizeInput(document.getElementById('clientPhone').value);
             const email = sanitizeInput(document.getElementById('clientEmail').value);
             
-            // Correction de l'id du select basé sur ton HTML (select-sujet)
             const selectElement = document.getElementById('select-sujet');
             const type = selectElement ? selectElement.value : 'Non spécifié';
             const desc = sanitizeInput(document.getElementById('projectDesc').value);
@@ -577,7 +598,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 6000);
             });
         }
-
 
     
 
