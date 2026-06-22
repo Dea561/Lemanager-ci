@@ -1,10 +1,10 @@
 // 1. Bloquer le clic droit
-document.addEventListener('contextmenu', function(e) {
+document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
 
 // 2. Bloquer le F12 et le Ctrl+Shift+I
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === "F12") {
         e.preventDefault();
     }
@@ -46,98 +46,98 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // --- CODE DU SLIDER --- pour la bannière d'accueil
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const tabs = document.querySelectorAll('.tab-item');
-        const progressBar = document.getElementById('progressBar');
-        const slideIntervalTime = 5000;
-        let slideTimer;
-        let progressInterval;
-        let currentProgress = 0;
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const tabs = document.querySelectorAll('.tab-item');
+const progressBar = document.getElementById('progressBar');
+const slideIntervalTime = 5000;
+let slideTimer;
+let progressInterval;
+let currentProgress = 0;
 
-        function startProgressAndTimer() {
-            clearInterval(progressInterval);
-            clearTimeout(slideTimer);
-            currentProgress = 0;
-            progressBar.style.width = '0%';
+function startProgressAndTimer() {
+    clearInterval(progressInterval);
+    clearTimeout(slideTimer);
+    currentProgress = 0;
+    progressBar.style.width = '0%';
 
-            progressInterval = setInterval(() => {
-                currentProgress += (100 / (slideIntervalTime / 30));
-                if (currentProgress <= 100) {
-                    progressBar.style.width = currentProgress + '%';
-                }
-            }, 30);
-
-            slideTimer = setTimeout(() => {
-                changeSlide(1);
-            }, slideIntervalTime);
+    progressInterval = setInterval(() => {
+        currentProgress += (100 / (slideIntervalTime / 30));
+        if (currentProgress <= 100) {
+            progressBar.style.width = currentProgress + '%';
         }
+    }, 30);
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            tabs.forEach(tab => tab.classList.remove('active'));
+    slideTimer = setTimeout(() => {
+        changeSlide(1);
+    }, slideIntervalTime);
+}
 
-            slides[index].classList.add('active');
-            tabs[index].classList.add('active');
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    tabs.forEach(tab => tab.classList.remove('active'));
 
-            startProgressAndTimer();
-        }
+    slides[index].classList.add('active');
+    tabs[index].classList.add('active');
 
-        function changeSlide(direction) {
-            currentSlideIndex += direction;
-            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
-            if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
-            showSlide(currentSlideIndex);
-        }
+    startProgressAndTimer();
+}
 
-        function goToSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-        }
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+    if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+    showSlide(currentSlideIndex);
+}
 
-        startProgressAndTimer();
+function goToSlide(index) {
+    currentSlideIndex = index;
+    showSlide(currentSlideIndex);
+}
 
-        // --- CODE DES COMPTEURS ---
-        document.addEventListener("DOMContentLoaded", function () {
-            const counters = document.querySelectorAll('.stat-number');
-            const speed = 60;
+startProgressAndTimer();
 
-            const startCounting = (counter) => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = Math.ceil(target / speed);
+// --- CODE DES COMPTEURS ---
+document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 60;
 
-                    if (count < target) {
-                        counter.innerText = count + inc > target ? target : count + inc;
-                        setTimeout(updateCount, 25);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            };
+    const startCounting = (counter) => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = Math.ceil(target / speed);
 
-            const observerOptions = {
-                root: null,
-                threshold: 0.1
-            };
+            if (count < target) {
+                counter.innerText = count + inc > target ? target : count + inc;
+                setTimeout(updateCount, 25);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        counters.forEach(counter => startCounting(counter));
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+    const observerOptions = {
+        root: null,
+        threshold: 0.1
+    };
 
-            const targetSection = document.querySelector('.statistiques-section');
-            if (targetSection) {
-                observer.observe(targetSection);
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                counters.forEach(counter => startCounting(counter));
+                observer.unobserve(entry.target);
             }
         });
-    
+    }, observerOptions);
+
+    const targetSection = document.querySelector('.statistiques-section');
+    if (targetSection) {
+        observer.observe(targetSection);
+    }
+});
+
 ///partie du script pour la section "Contactez-nous" avec le formulaire et le défilement automatique vers la section contact
 
 
@@ -145,27 +145,27 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
     // On cible tous les boutons "En savoir plus" de tes cartes
     document.querySelectorAll('.btn-card-action').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             const hrefValue = this.getAttribute('href');
-            
+
             // On vérifie que le lien contient bien le paramètre attendu
             if (hrefValue && hrefValue.includes('?pole=')) {
                 e.preventDefault(); // Empêche le sursaut brusque du navigateur
-                
+
                 // On sépare l'ancre (#contact) du paramètre de pôle (ex: conseil, it...)
                 const parts = hrefValue.split('?pole=');
                 const targetId = parts[0];  // Récupère "#contact"
                 const poleValue = parts[1]; // Récupère la valeur du pôle
-                
+
                 // 1. Défilement fluide et propre vers le formulaire
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
-                    targetSection.scrollIntoView({ 
+                    targetSection.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start' // Aligne le haut du bloc avec le haut de l'écran
                     });
                 }
-                
+
                 // 2. Sélection automatique de la valeur dans le menu déroulant
                 const selectSujet = document.getElementById('select-sujet');
                 if (selectSujet) {
@@ -183,84 +183,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-      //partie du script pour la modale de la section "Nos Formations" avec les descriptions détaillées et le bouton WhatsApp dynamique
-        // Base de données unifiée pour les descriptions profondes et messages dynamiques
-        const programDetails = {
-            marketing: {
-                title: "Marketing stratégique & opérationnel",
-                icon: "<i class='fa-solid fa-chart-line'></i>",
-                desc: "<p>Ce module d'excellence est conçu pour structurer efficacement votre démarche commerciale sur le marché local et sous-régional :</p><ul><li><strong>Analyse de marché :</strong> Maîtriser le comportement du consommateur ivoirien.</li><li><strong>Stratégie Digitale :</strong> Optimiser votre présence en ligne et générer des leads qualifiés.</li><li><strong>Performance Commerciale :</strong> Bâtir un plan d'action commercial percutant.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Marketing%20stratégique%20%26%20opérationnel%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            leadership: {
-                title: "Management, Leadership & Coaching",
-                icon: "<i class='fa-solid fa-users-gear'></i>",
-                desc: "<p>Devenez le leader que vos équipes ont envie de suivre au quotidien :</p><ul><li><strong>Posture du Manager :</strong> Passer de gestionnaire à leader inspirant.</li><li><strong>Gestion de conflits :</strong> Maintenir un climat social serein et productif.</li><li><strong>Coaching d'équipe :</strong> Développer le plein potentiel de vos collaborateurs.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%2C%20Leadership%20%26%20Coaching%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            si: {
-                title: "Management des systèmes d'information",
-                icon: "<i class='fa-solid fa-laptop-code'></i>",
-                desc: "<p>Alignez vos outils technologiques avec les ambitions stratégiques de la direction :</p><ul><li><strong>Gouvernance SI :</strong> Maîtrise des référentiels et urbanisation des systèmes.</li><li><strong>Sécurité & Cybersécurité :</strong> Protéger les données critiques de l'organisation.</li><li><strong>Agilité :</strong> Conduite du changement et implémentation de méthodes agiles (Scrum, Kanban).</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20systèmes%20d'information%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            finance: {
-                title: "Gestion — Finance, Comptabilité, Audit",
-                icon: "<i class='fa-solid fa-calculator'></i>",
-                desc: "<p>Sécurisez la trajectoire financière et la conformité légale de votre structure :</p><ul><li><strong>Normes SYSCOHADA :</strong> Maîtrise parfaite des obligations comptables révisées.</li><li><strong>Contrôle de Gestion :</strong> Établir des budgets fiables et des tableaux de bord.</li><li><strong>Fiscalité Ivoirienne :</strong> Optimisation et gestion des déclarations en toute sérénité.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Gestion%20%E2%80%94%20Finance%2C%20Comptabilité%2C%20Audit%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            rh: {
-                title: "Management des Ressources Humaines",
-                icon: "<i class='fa-solid fa-people-roof'></i>",
-                desc: "<p>Pilotez votre capital humain en totale conformité avec la réglementation locale :</p><ul><li><strong>Code du Travail Ivoirien :</strong> Maîtriser l'exécution et la rupture des contrats.</li><li><strong>Gestion de la Paie :</strong> Fiabiliser le traitement des salaires et taxes associées.</li><li><strong>GPEC :</strong> Gestion Prévisionnelle des Emplois et des Compétences.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20Ressources%20Humaines%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
-            },
-            surmesure: {
-                title: "Programmes de Formation sur mesure",
-                icon: "<i class='fa-regular fa-lightbulb'></i>",
-                desc: "<p>Nous co-construisons vos solutions pédagogiques selon vos spécificités d'entreprise :</p><ul><li><strong>Audit de compétences :</strong> Analyse précise de vos besoins en amont.</li><li><strong>Flexibilité horaire :</strong> Sessions planifiées selon vos disponibilités opérationnelles.</li><li><strong>Livrables sur-mesure :</strong> Cas pratiques calqués à 100% sur vos défis réels.</li></ul>",
-                waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20discuter%20d'un%20programme%20de%20%22Formation%20sur%20mesure%22%20pour%20mon%20entreprise."
-            }
-        };
+//partie du script pour la modale de la section "Nos Formations" avec les descriptions détaillées et le bouton WhatsApp dynamique
+// Base de données unifiée pour les descriptions profondes et messages dynamiques
+const programDetails = {
+    marketing: {
+        title: "Marketing stratégique & opérationnel",
+        icon: "<i class='fa-solid fa-chart-line'></i>",
+        desc: "<p>Ce module d'excellence est conçu pour structurer efficacement votre démarche commerciale sur le marché local et sous-régional :</p><ul><li><strong>Analyse de marché :</strong> Maîtriser le comportement du consommateur ivoirien.</li><li><strong>Stratégie Digitale :</strong> Optimiser votre présence en ligne et générer des leads qualifiés.</li><li><strong>Performance Commerciale :</strong> Bâtir un plan d'action commercial percutant.</li></ul>",
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Marketing%20stratégique%20%26%20opérationnel%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+    },
+    leadership: {
+        title: "Management, Leadership & Coaching",
+        icon: "<i class='fa-solid fa-users-gear'></i>",
+        desc: "<p>Devenez le leader que vos équipes ont envie de suivre au quotidien :</p><ul><li><strong>Posture du Manager :</strong> Passer de gestionnaire à leader inspirant.</li><li><strong>Gestion de conflits :</strong> Maintenir un climat social serein et productif.</li><li><strong>Coaching d'équipe :</strong> Développer le plein potentiel de vos collaborateurs.</li></ul>",
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%2C%20Leadership%20%26%20Coaching%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+    },
+    si: {
+        title: "Management des systèmes d'information",
+        icon: "<i class='fa-solid fa-laptop-code'></i>",
+        desc: "<p>Alignez vos outils technologiques avec les ambitions stratégiques de la direction :</p><ul><li><strong>Gouvernance SI :</strong> Maîtrise des référentiels et urbanisation des systèmes.</li><li><strong>Sécurité & Cybersécurité :</strong> Protéger les données critiques de l'organisation.</li><li><strong>Agilité :</strong> Conduite du changement et implémentation de méthodes agiles (Scrum, Kanban).</li></ul>",
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20systèmes%20d'information%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+    },
+    finance: {
+        title: "Gestion — Finance, Comptabilité, Audit",
+        icon: "<i class='fa-solid fa-calculator'></i>",
+        desc: "<p>Sécurisez la trajectoire financière et la conformité légale de votre structure :</p><ul><li><strong>Normes SYSCOHADA :</strong> Maîtrise parfaite des obligations comptables révisées.</li><li><strong>Contrôle de Gestion :</strong> Établir des budgets fiables et des tableaux de bord.</li><li><strong>Fiscalité Ivoirienne :</strong> Optimisation et gestion des déclarations en toute sérénité.</li></ul>",
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Gestion%20%E2%80%94%20Finance%2C%20Comptabilité%2C%20Audit%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+    },
+    rh: {
+        title: "Management des Ressources Humaines",
+        icon: "<i class='fa-solid fa-people-roof'></i>",
+        desc: "<p>Pilotez votre capital humain en totale conformité avec la réglementation locale :</p><ul><li><strong>Code du Travail Ivoirien :</strong> Maîtriser l'exécution et la rupture des contrats.</li><li><strong>Gestion de la Paie :</strong> Fiabiliser le traitement des salaires et taxes associées.</li><li><strong>GPEC :</strong> Gestion Prévisionnelle des Emplois et des Compétences.</li></ul>",
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20Ressources%20Humaines%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+    },
+    surmesure: {
+        title: "Programmes de Formation sur mesure",
+        icon: "<i class='fa-regular fa-lightbulb'></i>",
+        desc: "<p>Nous co-construisons vos solutions pédagogiques selon vos spécificités d'entreprise :</p><ul><li><strong>Audit de compétences :</strong> Analyse précise de vos besoins en amont.</li><li><strong>Flexibilité horaire :</strong> Sessions planifiées selon vos disponibilités opérationnelles.</li><li><strong>Livrables sur-mesure :</strong> Cas pratiques calqués à 100% sur vos défis réels.</li></ul>",
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20discuter%20d'un%20programme%20de%20%22Formation%20sur%20mesure%22%20pour%20mon%20entreprise."
+    }
+};
 
-        // Fonctions de contrôle de la Fenêtre Pop-up (Modale)
-        function openMoreDetails(id) {
-            const data = programDetails[id];
-            if (data) {
-                document.getElementById('modalTitle').innerText = data.title;
-                document.getElementById('modalIcon').innerHTML = data.icon;
-                document.getElementById('modalDescription').innerHTML = data.desc;
-                document.getElementById('modalWhatsAppBtn').setAttribute('href', data.waLink);
+// Fonctions de contrôle de la Fenêtre Pop-up (Modale)
+function openMoreDetails(id) {
+    const data = programDetails[id];
+    if (data) {
+        document.getElementById('modalTitle').innerText = data.title;
+        document.getElementById('modalIcon').innerHTML = data.icon;
+        document.getElementById('modalDescription').innerHTML = data.desc;
+        document.getElementById('modalWhatsAppBtn').setAttribute('href', data.waLink);
 
-                document.getElementById('detailsModal').classList.add('active');
-            }
-        }
+        document.getElementById('detailsModal').classList.add('active');
+    }
+}
 
-        function closeMoreDetails() {
-            document.getElementById('detailsModal').classList.remove('active');
-        }
+function closeMoreDetails() {
+    document.getElementById('detailsModal').classList.remove('active');
+}
 
-        // Redirection automatique via les boutons d'inscription directs
-        function redirectToWhatsApp(formationName) {
-            const phoneNumber = "2250708061538";
-            let message = `Bonjour LEMANAGER, je souhaite avoir des informations et m'inscrire à la formation Certifiée FDFP en : "${formationName}". Pouvez-vous m'indiquer la démarche ?`;
+// Redirection automatique via les boutons d'inscription directs
+function redirectToWhatsApp(formationName) {
+    const phoneNumber = "2250708061538";
+    let message = `Bonjour LEMANAGER, je souhaite avoir des informations et m'inscrire à la formation Certifiée FDFP en : "${formationName}". Pouvez-vous m'indiquer la démarche ?`;
 
-            if (formationName === 'Formation sur mesure') {
-                message = `Bonjour LEMANAGER, je souhaite discuter d'un programme de "Formation sur mesure" pour mon entreprise.`;
-            }
+    if (formationName === 'Formation sur mesure') {
+        message = `Bonjour LEMANAGER, je souhaite discuter d'un programme de "Formation sur mesure" pour mon entreprise.`;
+    }
 
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        }
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+}
 
-        // Fermer si l'utilisateur clique en dehors de la boîte blanche
-        window.onclick = function (event) {
-            const modal = document.getElementById('detailsModal');
-            if (event.target == modal) {
-                modal.classList.remove('active');
-            }
-        }
-    
+// Fermer si l'utilisateur clique en dehors de la boîte blanche
+window.onclick = function (event) {
+    const modal = document.getElementById('detailsModal');
+    if (event.target == modal) {
+        modal.classList.remove('active');
+    }
+}
+
 
 
 
@@ -269,309 +269,375 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // partie du script pour les onglets de la section "Nos Offres" avec les descriptions détaillées
-        function switchOffersTab(event, tabId) {
-            const panels = document.querySelectorAll('.tab-panel');
-            panels.forEach(panel => panel.classList.remove('active'));
+function switchOffersTab(event, tabId) {
+    const panels = document.querySelectorAll('.tab-panel');
+    panels.forEach(panel => panel.classList.remove('active'));
 
-            const buttons = document.querySelectorAll('.tab-trigger');
-            buttons.forEach(btn => btn.classList.remove('active'));
+    const buttons = document.querySelectorAll('.tab-trigger');
+    buttons.forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.classList.add('active');
+}
+
 
 
 
 //partie du script pour le carousel de la section "Nos Produits" avec les petits points indicateurs et le défilement automatique
-        document.addEventListener("DOMContentLoaded", function () {
-            const track = document.getElementById("carouselTrack");
-            const boxes = track.querySelectorAll(".product-category-box");
-            const dotsContainer = document.getElementById("carouselDots");
+document.addEventListener("DOMContentLoaded", function () {
+    const track = document.getElementById("carouselTrack");
+    const boxes = track.querySelectorAll(".product-category-box");
+    const dotsContainer = document.getElementById("carouselDots");
 
-            let currentIndex = 0;
-            const cardWidth = 250; // Largeur d'un produit
-            const gap = 20; // Espace entre les produits
+    let currentIndex = 0;
+    const cardWidth = 250; // Largeur d'un produit
+    const gap = 20; // Espace entre les produits
 
-            // Calculer combien d'étapes de défilement on a besoin
-            // On fait défiler une carte à la fois
-            const totalSteps = boxes.length - 1;
+    // Calculer combien d'étapes de défilement on a besoin
+    // On fait défiler une carte à la fois
+    const totalSteps = boxes.length - 1;
 
-            // Générer les petits points indicateurs de manière dynamique
-            for (let i = 0; i <= totalSteps; i++) {
-                const dot = document.createElement("div");
-                dot.classList.add("dot");
-                if (i === 0) dot.classList.add("active");
-                dot.addEventListener("click", () => goToSlide(i));
-                dotsContainer.appendChild(dot);
+    // Générer les petits points indicateurs de manière dynamique
+    for (let i = 0; i <= totalSteps; i++) {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = dotsContainer.querySelectorAll(".dot");
+
+    function goToSlide(index) {
+        // Empêcher de dépasser les bornes
+        if (index > totalSteps) index = 0;
+        if (index < 0) index = totalSteps;
+
+        currentIndex = index;
+
+        // Calcul du décalage en pixels
+        const amountToMove = currentIndex * (cardWidth + gap);
+        track.style.transform = `translateX(-${amountToMove}px)`;
+
+        // Mettre à jour la couleur des points
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[currentIndex].classList.add("active");
+    }
+
+    // Défilement automatique toutes les 3 secondes
+    let autoSlide = setInterval(() => {
+        goToSlide(currentIndex + 1);
+    }, 3000);
+
+    // Mettre en pause le défilement si l'utilisateur passe sa souris dessus
+    const container = document.querySelector(".shop-right-carousel-container");
+    container.addEventListener("mouseenter", () => clearInterval(autoSlide));
+    container.addEventListener("mouseleave", () => {
+        autoSlide = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 3000);
+    });
+});
+
+
+
+// =========================================================
+// GESTION DU FORMULAIRE DE DEVIS PRINCIPAL (LEMANAGER)
+// =========================================================
+function handleFormSubmit(event) {
+    event.preventDefault(); // Empêche le rechargement de la page
+
+    const form = event.target;
+    const statusMessageDiv = document.getElementById("formStatusMessage");
+    const submitBtn = form.querySelector(".submit-form-btn");
+
+    // 1. Changement d'état du bouton pendant l'envoi
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Envoi en cours...";
+    }
+
+    // 2. Récupération automatique des données du formulaire
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = sanitizeInput(value); // Sécurise les entrées textuelles
+    });
+
+    // Ajout des métadonnées pour ton mail de réception Formspree
+    data["_subject"] = `[LEMANAGER - SITE DEVIS] Demande de ${data.nom_complet}`;
+    data["Module"] = "Formulaire Devis Principal";
+
+    // 3. Envoi vers ton endpoint Formspree
+    const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
+
+    fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.ok) {
+                // Message de succès stylisé dans la zone dédiée
+                statusMessageDiv.className = "form-status-message success";
+                statusMessageDiv.innerHTML = "✨ **Succès !** Votre demande de devis a bien été transmise à l'équipe de LEMANAGER. Nous vous recontacterons rapidement.";
+                statusMessageDiv.style.color = "#28a745"; // Vert
+                form.reset(); // Vide les champs du formulaire
+            } else {
+                throw new Error("Erreur serveur Formspree");
             }
-
-            const dots = dotsContainer.querySelectorAll(".dot");
-
-            function goToSlide(index) {
-                // Empêcher de dépasser les bornes
-                if (index > totalSteps) index = 0;
-                if (index < 0) index = totalSteps;
-
-                currentIndex = index;
-
-                // Calcul du décalage en pixels
-                const amountToMove = currentIndex * (cardWidth + gap);
-                track.style.transform = `translateX(-${amountToMove}px)`;
-
-                // Mettre à jour la couleur des points
-                dots.forEach(dot => dot.classList.remove("active"));
-                dots[currentIndex].classList.add("active");
+        })
+        .catch(error => {
+            console.error("Détails erreur formulaire :", error);
+            // Message d'erreur stylisé
+            statusMessageDiv.className = "form-status-message error";
+            statusMessageDiv.innerHTML = "⚠️ **Une erreur est survenue.** Impossible d'envoyer le formulaire pour le moment. Veuillez nous contacter directement via WhatsApp.";
+            statusMessageDiv.style.color = "#dc3545"; // Rouge
+        })
+        .finally(() => {
+            // Rétablit le bouton après l'opération
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "J'envoie mon message";
             }
-
-            // Défilement automatique toutes les 3 secondes
-            let autoSlide = setInterval(() => {
-                goToSlide(currentIndex + 1);
-            }, 3000);
-
-            // Mettre en pause le défilement si l'utilisateur passe sa souris dessus
-            const container = document.querySelector(".shop-right-carousel-container");
-            container.addEventListener("mouseenter", () => clearInterval(autoSlide));
-            container.addEventListener("mouseleave", () => {
-                autoSlide = setInterval(() => {
-                    goToSlide(currentIndex + 1);
-                }, 3000);
-            });
         });
-
+}
 
 /// =========================================================
-        // 1. LOGIQUE STRUCTURELLE DE FERMETURE/OUVERTURE DU CHAT
-        // =========================================================
-        function closeChatbot() {
-            document.getElementById('chatbotWindow').style.display = 'none';
-            document.querySelector('.chatbot-bubble').style.display = 'flex';
+// 1. LOGIQUE STRUCTURELLE DE FERMETURE/OUVERTURE DU CHAT
+// =========================================================
+function closeChatbot() {
+    document.getElementById('chatbotWindow').style.display = 'none';
+    document.querySelector('.chatbot-bubble').style.display = 'flex';
+}
+
+function openChatbot() {
+    document.querySelector('.chatbot-bubble').style.display = 'none';
+    document.getElementById('chatbotWindow').style.display = 'flex';
+
+    const body = document.getElementById('chatbotBody');
+    body.scrollTop = body.scrollHeight;
+}
+
+// =========================================================
+// 2. LOGIQUE DE L'ACCORDÉON FAQ (EVENEMENT CLIC INTEGRÉ)
+// =========================================================
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+
+        if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
+            answer.style.maxHeight = '0px';
+            icon.textContent = '+';
+        } else {
+            document.querySelectorAll('.faq-answer').forEach(ans => ans.style.maxHeight = '0px');
+            document.querySelectorAll('.faq-icon').forEach(ic => ic.textContent = '+');
+
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            icon.textContent = '-';
         }
+    });
+});
 
-        function openChatbot() {
-            document.querySelector('.chatbot-bubble').style.display = 'none';
-            document.getElementById('chatbotWindow').style.display = 'flex';
+// =========================================================
+// 3. FENÊTRES MODALES JURIDIQUES (OPEN/CLOSE)
+// =========================================================
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
-            const body = document.getElementById('chatbotBody');
-            body.scrollTop = body.scrollHeight;
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Fermeture des modales si clic en dehors
+window.addEventListener('click', function (event) {
+    if (event.target.classList.contains('legal-modal')) {
+        closeModal(event.target.id);
+    }
+});
+
+// =========================================================
+// 4. SÉCURISATION SANITIZE & VALIDATION EMAIL
+// =========================================================
+function sanitizeInput(text) {
+    const temp = document.createElement('div');
+    temp.textContent = text;
+    return temp.innerHTML.trim();
+}
+
+function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+// =========================================================
+// MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (NOM + ENTREPRISE SEPARÉS)
+// =========================================================
+let chatbotState = { step: '', data: {} };
+
+function appendBotMessage(text) {
+    const body = document.getElementById('chatbotBody');
+    const msg = document.createElement('div');
+    msg.className = 'msg bot-msg';
+    msg.innerHTML = text;
+    body.appendChild(msg);
+    body.scrollTop = body.scrollHeight;
+}
+
+function appendUserMessage(text) {
+    const body = document.getElementById('chatbotBody');
+    const msg = document.createElement('div');
+    msg.className = 'msg user-msg';
+    msg.textContent = text;
+    body.appendChild(msg);
+    body.scrollTop = body.scrollHeight;
+}
+
+function handleBotOption(optionKey, optionLabel) {
+    appendUserMessage(optionLabel);
+    document.getElementById('chatOptions').style.display = 'none';
+
+    chatbotState.data.besoin = optionLabel;
+
+    setTimeout(() => {
+        appendBotMessage("C'est noté ! Pour commencer, quel est votre Nom & Prénoms ?");
+        chatbotState.step = 'getName';
+        createChatInput('text', 'Ex: Saisissez votre nom complet');
+    }, 800);
+}
+
+function createChatInput(type, placeholder) {
+    const body = document.getElementById('chatbotBody');
+    const input = document.createElement('input');
+    input.type = type;
+    input.className = 'chat-input-internal';
+    input.placeholder = placeholder;
+
+    input.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const val = sanitizeInput(this.value);
+            if (!val) return;
+
+            appendUserMessage(val);
+            this.remove();
+            processChatStep(val);
         }
+    });
 
-        // =========================================================
-        // 2. LOGIQUE DE L'ACCORDÉON FAQ (EVENEMENT CLIC INTEGRÉ)
-        // =========================================================
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const answer = button.nextElementSibling;
-                const icon = button.querySelector('.faq-icon');
+    body.appendChild(input);
+    input.focus();
+    body.scrollTop = body.scrollHeight;
+}
 
-                if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
-                    answer.style.maxHeight = '0px';
-                    icon.textContent = '+';
-                } else {
-                    document.querySelectorAll('.faq-answer').forEach(ans => ans.style.maxHeight = '0px');
-                    document.querySelectorAll('.faq-icon').forEach(ic => ic.textContent = '+');
+function processChatStep(value) {
+    setTimeout(() => {
+        if (chatbotState.step === 'getName') {
+            chatbotState.data.nom = value;
+            appendBotMessage("Quel est le nom de votre Entreprise ? (Écrivez 'Particulier' si vous n'en avez pas)");
+            chatbotState.step = 'getCompany';
+            createChatInput('text', 'Ex: LEMANAGER, SARL, etc.');
+        }
+        else if (chatbotState.step === 'getCompany') {
+            chatbotState.data.entreprise = value;
+            appendBotMessage("Merci. Quelle est votre adresse email ?");
+            chatbotState.step = 'getEmail';
+            createChatInput('email', 'exemple@domaine.com');
+        }
+        else if (chatbotState.step === 'getEmail') {
+            if (!isValidEmail(value)) {
+                appendBotMessage("⚠️ Format d'email incorrect. Veuillez réessayer :");
+                createChatInput('email', 'exemple@domaine.com');
+                return;
+            }
+            chatbotState.data.email = value;
+            appendBotMessage("Parfait. Enfin, quel est votre numéro de téléphone (WhatsApp) ?");
+            chatbotState.step = 'getPhone';
+            createChatInput('tel', 'Ex: 07 00 00 00 00');
+        }
+        else if (chatbotState.step === 'getPhone') {
+            chatbotState.data.telephone = value;
+            appendBotMessage("🔄 Traitement et envoi de vos informations en cours...");
+            sendDataToCompanyMail(chatbotState.data);
+        }
+    }, 800);
+}
 
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                    icon.textContent = '-';
-                }
-            });
+function sendDataToCompanyMail(collectedData) {
+    const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
+
+    fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: `[LEMANAGER - CHATBOT] Nouvelle demande de ${collectedData.nom} (${collectedData.entreprise})`,
+            Module: 'Chatbot Assistant Virtuel',
+            Nom_Collaborateur: collectedData.nom,
+            Nom_Entreprise: collectedData.entreprise,
+            Email: collectedData.email,
+            Telephone: collectedData.telephone,
+            Besoin_Client: collectedData.besoin
+        })
+    })
+        .then(response => {
+            if (response.ok) {
+                appendBotMessage("✨ **Succès !** Vos informations ont été transmises à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
+            } else {
+                appendBotMessage("⚠️ Une erreur est survenue. Veuillez utiliser le formulaire de devis traditionnel ou nous contacter sur WhatsApp.");
+            }
+        })
+        .catch(error => {
+            appendBotMessage("⚠️ Erreur de connexion réseau. Vos informations n'ont pas pu être envoyées.");
         });
-
-        // =========================================================
-        // 3. FENÊTRES MODALES JURIDIQUES (OPEN/CLOSE)
-        // =========================================================
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // Fermeture des modales si clic en dehors
-        window.addEventListener('click', function (event) {
-            if (event.target.classList.contains('legal-modal')) {
-                closeModal(event.target.id);
-            }
-        });
-
-        // =========================================================
-        // 4. SÉCURISATION SANITIZE & VALIDATION EMAIL
-        // =========================================================
-        function sanitizeInput(text) {
-            const temp = document.createElement('div');
-            temp.textContent = text;
-            return temp.innerHTML.trim();
-        }
-
-        function isValidEmail(email) {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
-
-       // =========================================================
-        // MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (NOM + ENTREPRISE SEPARÉS)
-        // =========================================================
-        let chatbotState = { step: '', data: {} };
-
-        function appendBotMessage(text) {
-            const body = document.getElementById('chatbotBody');
-            const msg = document.createElement('div');
-            msg.className = 'msg bot-msg';
-            msg.innerHTML = text;
-            body.appendChild(msg);
-            body.scrollTop = body.scrollHeight;
-        }
-
-        function appendUserMessage(text) {
-            const body = document.getElementById('chatbotBody');
-            const msg = document.createElement('div');
-            msg.className = 'msg user-msg';
-            msg.textContent = text;
-            body.appendChild(msg);
-            body.scrollTop = body.scrollHeight;
-        }
-
-        function handleBotOption(optionKey, optionLabel) {
-            appendUserMessage(optionLabel);
-            document.getElementById('chatOptions').style.display = 'none';
-
-            chatbotState.data.besoin = optionLabel;
-
-            setTimeout(() => {
-                appendBotMessage("C'est noté ! Pour commencer, quel est votre Nom & Prénoms ?");
-                chatbotState.step = 'getName';
-                createChatInput('text', 'Ex: Saisissez votre nom complet');
-            }, 800);
-        }
-
-        function createChatInput(type, placeholder) {
-            const body = document.getElementById('chatbotBody');
-            const input = document.createElement('input');
-            input.type = type;
-            input.className = 'chat-input-internal';
-            input.placeholder = placeholder;
-
-            input.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    const val = sanitizeInput(this.value);
-                    if (!val) return;
-
-                    appendUserMessage(val);
-                    this.remove();
-                    processChatStep(val);
-                }
-            });
-
-            body.appendChild(input);
-            input.focus();
-            body.scrollTop = body.scrollHeight;
-        }
-
-        function processChatStep(value) {
-            setTimeout(() => {
-                if (chatbotState.step === 'getName') {
-                    chatbotState.data.nom = value;
-                    appendBotMessage("Quel est le nom de votre Entreprise ? (Écrivez 'Particulier' si vous n'en avez pas)");
-                    chatbotState.step = 'getCompany';
-                    createChatInput('text', 'Ex: LEMANAGER, SARL, etc.');
-                }
-                else if (chatbotState.step === 'getCompany') {
-                    chatbotState.data.entreprise = value;
-                    appendBotMessage("Merci. Quelle est votre adresse email ?");
-                    chatbotState.step = 'getEmail';
-                    createChatInput('email', 'exemple@domaine.com');
-                }
-                else if (chatbotState.step === 'getEmail') {
-                    if (!isValidEmail(value)) {
-                        appendBotMessage("⚠️ Format d'email incorrect. Veuillez réessayer :");
-                        createChatInput('email', 'exemple@domaine.com');
-                        return;
-                    }
-                    chatbotState.data.email = value;
-                    appendBotMessage("Parfait. Enfin, quel est votre numéro de téléphone (WhatsApp) ?");
-                    chatbotState.step = 'getPhone';
-                    createChatInput('tel', 'Ex: 07 00 00 00 00');
-                }
-                else if (chatbotState.step === 'getPhone') {
-                    chatbotState.data.telephone = value;
-                    appendBotMessage("🔄 Traitement et envoi de vos informations en cours...");
-                    sendDataToCompanyMail(chatbotState.data);
-                }
-            }, 800);
-        }
-
-        function sendDataToCompanyMail(collectedData) {
-            const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
-
-            fetch(formspreeEndpoint, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: `[LEMANAGER - CHATBOT] Nouvelle demande de ${collectedData.nom} (${collectedData.entreprise})`,
-                    Module: 'Chatbot Assistant Virtuel',
-                    Nom_Collaborateur: collectedData.nom,
-                    Nom_Entreprise: collectedData.entreprise,
-                    Email: collectedData.email,
-                    Telephone: collectedData.telephone,
-                    Besoin_Client: collectedData.besoin
-                })
-            })
-            .then(response => {
-                if(response.ok) {
-                    appendBotMessage("✨ **Succès !** Vos informations ont été transmises à l'équipe commerciale de LEMANAGER. Un expert vous recontactera sous 24h. Merci !");
-                } else {
-                    appendBotMessage("⚠️ Une erreur est survenue. Veuillez utiliser le formulaire de devis traditionnel ou nous contacter sur WhatsApp.");
-                }
-            })
-            .catch(error => {
-                appendBotMessage("⚠️ Erreur de connexion réseau. Vos informations n'ont pas pu être envoyées.");
-            });
-        }
+}
 
 //parties privacy et termes
 
 // =========================================================
-        // 6. GESTION DES FENÊTRES MODALES (PRIVACY & TERMS)
-        // =========================================================
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                // Bloque le défilement de la page arrière-plan
-                document.body.style.overflow = 'hidden';
-            }
-        }
+// 6. GESTION DES FENÊTRES MODALES (PRIVACY & TERMS)
+// =========================================================
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+        // Bloque le défilement de la page arrière-plan
+        document.body.style.overflow = 'hidden';
+    }
+}
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                // Rétablit le défilement de la page
-                document.body.style.overflow = '';
-            }
-        }
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        // Rétablit le défilement de la page
+        document.body.style.overflow = '';
+    }
+}
 
-        // Ferme la modale si l'utilisateur clique en dehors de la boîte blanche
-        window.addEventListener('click', function(event) {
-            const privacyModal = document.getElementById('privacyModal');
-            const termsModal = document.getElementById('termsModal');
-            
-            if (event.target === privacyModal) {
-                closeModal('privacyModal');
-            }
-            if (event.target === termsModal) {
-                closeModal('termsModal');
-            }
-        });
+// Ferme la modale si l'utilisateur clique en dehors de la boîte blanche
+window.addEventListener('click', function (event) {
+    const privacyModal = document.getElementById('privacyModal');
+    const termsModal = document.getElementById('termsModal');
+
+    if (event.target === privacyModal) {
+        closeModal('privacyModal');
+    }
+    if (event.target === termsModal) {
+        closeModal('termsModal');
+    }
+});
