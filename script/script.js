@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
        // =========================================================
-        // MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (AVEC NUMÉRO)
+        // MOTEUR INTERACTIF DE L'ASSISTANT VIRTUEL (NOM + ENTREPRISE SEPARÉS)
         // =========================================================
         let chatbotState = { step: '', data: {} };
 
@@ -447,9 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotState.data.besoin = optionLabel;
 
             setTimeout(() => {
-                appendBotMessage("C'est noté ! Pour vous recontacter, quel est votre Nom ou le nom de votre Entreprise ?");
+                appendBotMessage("C'est noté ! Pour commencer, quel est votre Nom & Prénoms ?");
                 chatbotState.step = 'getName';
-                createChatInput('text', 'Ex: Votre nom ou entreprise');
+                createChatInput('text', 'Ex: Saisissez votre nom complet');
             }, 800);
         }
 
@@ -480,6 +480,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (chatbotState.step === 'getName') {
                     chatbotState.data.nom = value;
+                    appendBotMessage("Quel est le nom de votre Entreprise ? (Écrivez 'Particulier' si vous n'en avez pas)");
+                    chatbotState.step = 'getCompany';
+                    createChatInput('text', 'Ex: LEMANAGER, SARL, etc.');
+                }
+                else if (chatbotState.step === 'getCompany') {
+                    chatbotState.data.entreprise = value;
                     appendBotMessage("Merci. Quelle est votre adresse email ?");
                     chatbotState.step = 'getEmail';
                     createChatInput('email', 'exemple@domaine.com');
@@ -513,9 +519,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    _subject: `[LEMANAGER - CHATBOT] Nouvelle demande de ${collectedData.nom}`,
+                    _subject: `[LEMANAGER - CHATBOT] Nouvelle demande de ${collectedData.nom} (${collectedData.entreprise})`,
                     Module: 'Chatbot Assistant Virtuel',
-                    Nom_Complet: collectedData.nom,
+                    Nom_Collaborateur: collectedData.nom,
+                    Nom_Entreprise: collectedData.entreprise,
                     Email: collectedData.email,
                     Telephone: collectedData.telephone,
                     Besoin_Client: collectedData.besoin
@@ -532,74 +539,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 appendBotMessage("⚠️ Erreur de connexion réseau. Vos informations n'ont pas pu être envoyées.");
             });
         }
-
-        // =========================================================
-        // 6. SOUMISSION ET FEEDBACK DIRECT DU FORMULAIRE DE DEVIS (ENVOI FORMSPREE)
-        // =========================================================
-        function handleFormSubmit(event) {
-            event.preventDefault();
-
-            const statusMsg = document.getElementById('formStatusMessage');
-            statusMsg.className = "form-status-message";
-            statusMsg.textContent = "Envoi de votre demande de devis en cours...";
-
-            const name = sanitizeInput(document.getElementById('clientName').value);
-            const phone = sanitizeInput(document.getElementById('clientPhone').value);
-            const email = sanitizeInput(document.getElementById('clientEmail').value);
-            
-            const selectElement = document.getElementById('select-sujet');
-            const type = selectElement ? selectElement.value : 'Non spécifié';
-            const desc = sanitizeInput(document.getElementById('projectDesc').value);
-
-            if (!isValidEmail(email)) {
-                statusMsg.className = "form-status-message error";
-                statusMsg.textContent = "⚠️ Veuillez entrer une adresse email valide.";
-                return;
-            }
-
-            const formspreeEndpoint = "https://formspree.io/f/mykqyjnn";
-
-            const payload = {
-                _subject: `[LEMANAGER - DEVIS] ${type.toUpperCase()} par ${name}`,
-                Module: 'Formulaire de Devis Principal',
-                Nom_ou_Entreprise: name,
-                Telephone: phone,
-                Email: email,
-                Pole_Concerne: type,
-                Description_du_Projet: desc
-            };
-
-            fetch(formspreeEndpoint, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (response.ok) {
-                    statusMsg.className = "form-status-message success";
-                    statusMsg.textContent = "✨ Votre demande de devis a été envoyée avec succès à LEMANAGER !";
-                    document.getElementById('devisForm').reset();
-                } else {
-                    statusMsg.className = "form-status-message error";
-                    statusMsg.textContent = "⚠️ Le service d'envoi a rencontré un problème. Veuillez réessayer.";
-                }
-            })
-            .catch(error => {
-                statusMsg.className = "form-status-message error";
-                statusMsg.textContent = "⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet.";
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    statusMsg.textContent = "";
-                    statusMsg.className = "form-status-message";
-                }, 6000);
-            });
-        }
-
-    
 
 //parties privacy et termes
 
