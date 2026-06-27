@@ -183,43 +183,229 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-//partie du script pour la modale de la section "Nos Formations" avec les descriptions détaillées et le bouton WhatsApp dynamique
-// Base de données unifiée pour les descriptions profondes et messages dynamiques
+// =========================================================================
+// BASE DE DONNÉES ENRICHIE ET STRUCTUREE (VERSION COMMERCIALE 2026)
+// =========================================================================
 const programDetails = {
     marketing: {
         title: "Marketing stratégique & opérationnel",
         icon: "<i class='fa-solid fa-chart-line'></i>",
-        desc: "<p>Ce module d'excellence est conçu pour structurer efficacement votre démarche commerciale sur le marché local et sous-régional :</p><ul><li><strong>Analyse de marché :</strong> Maîtriser le comportement du consommateur ivoirien.</li><li><strong>Stratégie Digitale :</strong> Optimiser votre présence en ligne et générer des leads qualifiés.</li><li><strong>Performance Commerciale :</strong> Bâtir un plan d'action commercial percutant.</li></ul>",
-        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Marketing%20stratégique%20%26%20opérationnel%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+        desc: `
+            <p class="modal-intro"><strong>Pourquoi cette formation est votre meilleur investissement en 2026 :</strong><br>
+            Le marché ne pardonne plus l'improvisation. Face à la digitalisation accélérée et à une concurrence féroce, les entreprises s'arrachent les professionnels capables de générer de la croissance visible. Cette formation intensive vous transforme en un stratège agile, capable de capter l'attention de votre cible et de maximiser le retour sur investissement (ROI) de vos campagnes.</p>
+            
+            <div class="modal-section">
+                <h5>💼 Les 4 Piliers de votre transformation professionnelle :</h5>
+                <ul>
+                    <li><strong>1. Études de Marché & Consumer Insights :</strong> Décoder le comportement du consommateur moderne et identifier les niches rentables.</li>
+                    <li><strong>2. Marketing Digital & Inbound :</strong> Dominer le SEO, la publicité payante (Ads) et le community management pour attirer des leads qualifiés.</li>
+                    <li><strong>3. Stratégie de Marque & Branding :</strong> Positionner une offre de manière unique et bâtir une identité de marque mémorable.</li>
+                    <li><strong>4. Pilotage de la Performance :</strong> Maîtriser le marketing analytique, les KPI de vente et l'optimisation des tunnels de conversion.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>🌟 Ce qui fait la différence avec notre programme :</h5>
+                <ul>
+                    <li><strong>Pédagogie 100% Pratique :</strong> 20% de théorie, 80% de cas réels, d'ateliers de Growth Hacking et de manipulation d'outils professionnels.</li>
+                    <li><strong>Intervenants Experts :</strong> Animé exclusivement par des directeurs marketing et des consultants digitaux de premier plan.</li>
+                    <li><strong>Réseau & Opportunités :</strong> Accès privilégié à notre réseau d'agences et d'entreprises partenaires.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>📈 Pour quels métiers serez-vous armé ?</h5>
+                <p>Directeur Marketing (CMO) • Responsable Digital • Chef de Produit • Growth Hacker • Responsable Commercial & Acquisition.</p>
+            </div>
+            <div class="modal-badge-info">
+                <i class="fa-solid fa-graduation-cap"></i> <strong>Financement :</strong> Certifié FDFP — Prise en charge disponible pour les entreprises cotisantes.
+            </div>
+        `,
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Marketing%20stratégique%20%26%20opérationnel%22."
     },
+    
     leadership: {
         title: "Management, Leadership & Coaching",
         icon: "<i class='fa-solid fa-users-gear'></i>",
-        desc: "<p>Devenez le leader que vos équipes ont envie de suivre au quotidien :</p><ul><li><strong>Posture du Manager :</strong> Passer de gestionnaire à leader inspirant.</li><li><strong>Gestion de conflits :</strong> Maintenir un climat social serein et productif.</li><li><strong>Coaching d'équipe :</strong> Développer le plein potentiel de vos collaborateurs.</li></ul>",
-        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%2C%20Leadership%20%26%20Coaching%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+        desc: `
+            <p class="modal-intro"><strong>Pourquoi cette formation est votre meilleur investissement en 2026 :</strong><br>
+            Les compétences techniques ne suffisent plus pour diriger. Dans un monde professionnel en quête de sens et de flexibilité, la performance repose sur le capital humain. Cette formation d'élite est un accélérateur de posture conçu pour vous détacher de la simple gestion administrative et faire de vous un leader inspirant, capable de guider ses équipes avec clarté et assurance.</p>
+            
+            <div class="modal-section">
+                <h5>💼 Les 4 Piliers de votre transformation professionnelle :</h5>
+                <ul>
+                    <li><strong>1. Posture du Leader & Intelligence Émotionnelle :</strong> Développer son charisme, son écoute active et asseoir sa légitimité.</li>
+                    <li><strong>2. Management d'Équipe & Délégation :</strong> Structurer les objectifs, motiver à distance ou en présentiel et optimiser le temps.</li>
+                    <li><strong>3. Gestion des Conflits & Climat Social :</strong> Désamorcer les tensions complexes et transformer les crises en opportunités d'innovation.</li>
+                    <li><strong>4. Posture de Manager-Coach :</strong> Accompagner la montée en compétences individuelles et libérer le potentiel de vos collaborateurs.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>🌟 Ce qui fait la différence avec notre programme :</h5>
+                <ul>
+                    <li><strong>Pédagogie 100% Pratique :</strong> 20% de théorie, 80% de jeux de rôle, de simulations de crises managériales et de bilans de leadership.</li>
+                    <li><strong>Intervenants Experts :</strong> Sessions animées par des coachs certifiés et des directeurs généraux chevronnés.</li>
+                    <li><strong>Réseau & Opportunités :</strong> Partage d'expériences avec un réseau exclusif de cadres et dirigeants.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>📈 Pour quels métiers serez-vous armé ?</h5>
+                <p>Directeur de Département • Manager d'Équipe • Chef de Projet Senior • Consultant en Management • Directeur des Opérations (COO).</p>
+            </div>
+            <div class="modal-badge-info">
+                <i class="fa-solid fa-graduation-cap"></i> <strong>Financement :</strong> Certifié FDFP — Prise en charge disponible pour les entreprises cotisantes.
+            </div>
+        `,
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%2C%20Leadership%20%26%20Coaching%22."
     },
+
     si: {
         title: "Management des systèmes d'information",
         icon: "<i class='fa-solid fa-laptop-code'></i>",
-        desc: "<p>Alignez vos outils technologiques avec les ambitions stratégiques de la direction :</p><ul><li><strong>Gouvernance SI :</strong> Maîtrise des référentiels et urbanisation des systèmes.</li><li><strong>Sécurité & Cybersécurité :</strong> Protéger les données critiques de l'organisation.</li><li><strong>Agilité :</strong> Conduite du changement et implémentation de méthodes agiles (Scrum, Kanban).</li></ul>",
-        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20systèmes%20d'information%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+        desc: `
+            <p class="modal-intro"><strong>Pourquoi cette formation est votre meilleur investissement en 2026 :</strong><br>
+            La technologie est le cœur battant de toute stratégie moderne. Face aux cybermenaces, à l'avènement de l'IA et au besoin constant de numérisation, les entreprises recherchent des profils capables de faire le pont entre l'informatique et la direction générale. Ce cursus vous donne les clés pour transformer l'infrastructure technique en un levier de rentabilité et de sécurité.</p>
+            
+            <div class="modal-section">
+                <h5>💼 Les 4 Piliers de votre transformation professionnelle :</h5>
+                <ul>
+                    <li><strong>1. Gouvernance & Urbanisation du SI :</strong> Maîtriser les architectures modernes et aligner le SI sur les besoins métiers.</li>
+                    <li><strong>2. Sécurité & Gestion des Risques :</strong> Mettre en œuvre une politique de cybersécurité solide et un plan de continuité (PCA).</li>
+                    <li><strong>3. Gestion de Projets Agiles :</strong> Piloter des déploiements d'outils complexes avec les méthodologies Scrum, ITIL et PRINCE2.</li>
+                    <li><strong>4. Data Stratégie & IA :</strong> Exploiter intelligemment la donnée d'entreprise pour orienter les choix de la direction.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>🌟 Ce qui fait la différence avec notre programme :</h5>
+                <ul>
+                    <li><strong>Pédagogie 100% Pratique :</strong> 20% de théorie, 80% d'analyses d'architectures réelles et d'ateliers pratiques de gestion de crise IT.</li>
+                    <li><strong>Intervenants Experts :</strong> Cours dispensés par des DSI en activité et des experts en sécurité numérique certifiés.</li>
+                    <li><strong>Réseau & Opportunités :</strong> Connexion directe avec le secteur technologique et les entreprises en pleine transformation digitale.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>📈 Pour quels métiers serez-vous armé ?</h5>
+                <p>Directeur des Systèmes d'Information (DSI) • Chef de Projet IT • Consultant en Transformation Digitale • Auditeur SI • Responsable Sécurité (RSSI).</p>
+            </div>
+            <div class="modal-badge-info">
+                <i class="fa-solid fa-graduation-cap"></i> <strong>Financement :</strong> Certifié FDFP — Prise en charge disponible pour les entreprises cotisantes.
+            </div>
+        `,
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20systèmes%20d'information%22."
     },
+
     finance: {
         title: "Gestion — Finance, Comptabilité, Audit",
         icon: "<i class='fa-solid fa-calculator'></i>",
-        desc: "<p>Sécurisez la trajectoire financière et la conformité légale de votre structure :</p><ul><li><strong>Normes SYSCOHADA :</strong> Maîtrise parfaite des obligations comptables révisées.</li><li><strong>Contrôle de Gestion :</strong> Établir des budgets fiables et des tableaux de bord.</li><li><strong>Fiscalité Ivoirienne :</strong> Optimisation et gestion des déclarations en toute sérénité.</li></ul>",
-        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Gestion%20%E2%80%94%20Finance%2C%20Comptabilité%2C%20Audit%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+        desc: `
+            <p class="modal-intro"><strong>Pourquoi cette formation est votre meilleur investissement en 2026 :</strong><br>
+            Le monde de l'entreprise évolue à un rythme effréné. Face aux crises économiques, aux mutations technologiques et aux exigences de transparence, une seule catégorie de professionnels reste indispensable : ceux qui maîtrisent les chiffres et la stratégie. Cette formation intensive n'est pas un simple cours théorique. C'est un accélérateur de carrière conçu pour vous transformer en un expert polyvalent, capable de piloter la performance financière d'une organisation, de sécuriser ses processus et de guider les décisions de la direction.</p>
+            
+            <div class="modal-section">
+                <h5>💼 Les 4 Piliers de votre transformation professionnelle :</h5>
+                <ul>
+                    <li><strong>1. Comptabilité Générale et Fiscalité :</strong> Enregistrer les flux, maîtriser les obligations fiscales locales (SYSCOHADA) et optimiser la fiscalité.</li>
+                    <li><strong>2. Comptabilité de Gestion & Analytique :</strong> Décortiquer les coûts pour identifier les leviers de rentabilité et concevoir des KPI percutants.</li>
+                    <li><strong>3. Finance d'Entreprise :</strong> Analyser la santé financière globale, piloter la trésorerie et évaluer les projets d'investissement.</li>
+                    <li><strong>4. Audit et Contrôle Interne :</strong> Détecter les risques financiers, maîtriser l'audit et garantir la conformité des états financiers.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>🌟 Ce qui fait la différence avec notre programme :</h5>
+                <ul>
+                    <li><strong>Pédagogie 100% Pratique :</strong> 20% de théorie, 80% d'études de cas réels, de simulations et de manipulation de logiciels professionnels.</li>
+                    <li><strong>Intervenants Experts :</strong> Animé par des directeurs financiers, des experts-comptables et des auditeurs seniors en activité.</li>
+                    <li><strong>Réseau & Opportunités :</strong> Accès direct à notre réseau d'entreprises partenaires pour vos stages, alternances ou emplois.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>📈 Pour quels métiers serez-vous armé ?</h5>
+                <p>Responsable Administratif et Financier (RAF) • Chef Comptable • Contrôleur de Gestion • Auditeur Interne/Externe • Consultant Financier.</p>
+            </div>
+            <div class="modal-badge-info">
+                <i class="fa-solid fa-graduation-cap"></i> <strong>Financement :</strong> Certifié FDFP — Prise en charge disponible pour les entreprises cotisantes.
+            </div>
+        `,
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Gestion%20%E2%80%94%20Finance%2C%20Comptabilité%2C%20Audit%22."
     },
+
     rh: {
         title: "Management des Ressources Humaines",
         icon: "<i class='fa-solid fa-people-roof'></i>",
-        desc: "<p>Pilotez votre capital humain en totale conformité avec la réglementation locale :</p><ul><li><strong>Code du Travail Ivoirien :</strong> Maîtriser l'exécution et la rupture des contrats.</li><li><strong>Gestion de la Paie :</strong> Fiabiliser le traitement des salaires et taxes associées.</li><li><strong>GPEC :</strong> Gestion Prévisionnelle des Emplois et des Compétences.</li></ul>",
-        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20Ressources%20Humaines%22.%20Pouvez-vous%20m'indiquer%20la%20démarche%20?"
+        desc: `
+            <p class="modal-intro"><strong>Pourquoi cette formation est votre meilleur investissement en 2026 :</strong><br>
+            La guerre des talents et la complexité des cadres juridiques obligent les entreprises à repenser les RH. Le gestionnaire de demain ne se contente plus de gérer les congés, il anticipe les besoins et protège l'organisation contre les risques prud'hommaux. Ce programme complet vous positionne comme un partenaire stratégique incontournable pour la direction.</p>
+            
+            <div class="modal-section">
+                <h5>💼 Les 4 Piliers de votre transformation professionnelle :</h5>
+                <ul>
+                    <li><strong>1. Administration du Personnel & Code du Travail :</strong> Maîtriser le droit social ivoirien, de la signature à la rupture du contrat.</li>
+                    <li><strong>2. Ingénierie de la Paie & Fiscalité des Salaires :</strong> Calculer la paie avec exactitude, gérer la CNPS, l'ITS et les déclarations sociales.</li>
+                    <li><strong>3. GPEC & Plan de Développement :</strong> Concevoir une stratégie de gestion prévisionnelle des emplois et optimiser les budgets FDFP.</li>
+                    <li><strong>4. Relations Sociales & QVT :</strong> Animer le dialogue social, négocier avec les syndicats et améliorer la qualité de vie au travail.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>🌟 Ce qui fait la différence avec notre programme :</h5>
+                <ul>
+                    <li><strong>Pédagogie 100% Pratique :</strong> 20% de théorie, 80% d'ateliers pratiques de paie, de simulations d'audits sociaux et de cas réels de licenciement.</li>
+                    <li><strong>Intervenants Experts :</strong> Animé par des Directeurs des Ressources Humaines (DRH) chevronnés et des inspecteurs du travail.</li>
+                    <li><strong>Réseau & Opportunités :</strong> Accès privilégié à des offres exclusives au sein de notre communauté d'entreprises.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>📈 Pour quels métiers serez-vous armé ?</h5>
+                <p>Directeur / Responsable des Ressources Humaines (DRH) • Gestionnaire de la Paie • Responsable Formation • Consultant RH • Responsable Relations Sociales.</p>
+            </div>
+            <div class="modal-badge-info">
+                <i class="fa-solid fa-graduation-cap"></i> <strong>Financement :</strong> Certifié FDFP — Prise en charge disponible pour les entreprises cotisantes.
+            </div>
+        `,
+        waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20m'inscrire%20à%20la%20formation%20Certifiée%20FDFP%20en%20%22Management%20des%20Ressources%20Humaines%22."
     },
+
     surmesure: {
         title: "Programmes de Formation sur mesure",
         icon: "<i class='fa-regular fa-lightbulb'></i>",
-        desc: "<p>Nous co-construisons vos solutions pédagogiques selon vos spécificités d'entreprise :</p><ul><li><strong>Audit de compétences :</strong> Analyse précise de vos besoins en amont.</li><li><strong>Flexibilité horaire :</strong> Sessions planifiées selon vos disponibilités opérationnelles.</li><li><strong>Livrables sur-mesure :</strong> Cas pratiques calqués à 100% sur vos défis réels.</li></ul>",
+        desc: `
+            <p class="modal-intro"><strong>Pourquoi cette formule est votre meilleur investissement organisationnel :</strong><br>
+            Chaque entreprise est unique, ses défis le sont aussi. Les formations sur catalogue ne répondent pas toujours aux réalités spécifiques de vos équipes sur le terrain. Nos programmes "Sur Mesure" sont dessinés main dans la main avec vos équipes de direction pour résoudre des problématiques concrètes et générer une hausse de productivité immédiate.</p>
+            
+            <div class="modal-section">
+                <h5>💼 Les 4 Étaples de notre démarche d'ingénierie pédagogique :</h5>
+                <ul>
+                    <li><strong>1. Diagnostic et Immersion :</strong> Analyse technique sur site pour identifier les écarts de performance et de compétences.</li>
+                    <li><strong>2. Co-construction du Contenu :</strong> Élaboration d'un déroulé pédagogique exclusif adapté à votre secteur d'activité.</li>
+                    <li><strong>3. Animation Contextualisée :</strong> Ateliers pratiques basés à 100% sur les fichiers, documents et cas d'usage de votre entreprise.</li>
+                    <li><strong>4. Évaluation & Suivi Post-formation :</strong> Mesure de l'impact opérationnel à 30 et 90 jours pour garantir l'ancrage des acquis.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>🌟 Ce qui fait la différence avec notre offre :</h5>
+                <ul>
+                    <li><strong>Flexibilité Logistique :</strong> Formations en intra-entreprise (dans vos locaux), en ligne ou dans des espaces dédiés.</li>
+                    <li><strong>Ingénierie FDFP incluse :</strong> Nous prenons en charge le montage administratif de votre dossier de financement pour un reste à charge optimisé.</li>
+                    <li><strong>Experts Métiers dédiés :</strong> Sélection rigoureuse de formateurs ayant une expérience directe de votre secteur d'activité.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h5>📈 Pour quelles structures ce service est-il conçu ?</h5>
+                <p>PME en forte croissance • Grandes entreprises & Multinationales • Institutions Publiques • Organisations Non Gouvernementales (ONG).</p>
+            </div>
+            <div class="modal-badge-info">
+                <i class="fa-solid fa-handshake"></i> <strong>Sur-mesure :</strong> Accompagnement complet au montage du dossier d'agrément FDFP.
+            </div>
+        `,
         waLink: "https://wa.me/2250708061538?text=Bonjour%20LEMANAGER,%20je%20souhaite%20discuter%20d'un%20programme%20de%20%22Formation%20sur%20mesure%22%20pour%20mon%20entreprise."
     }
 };

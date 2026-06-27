@@ -555,7 +555,7 @@
                 <h2>Conseil, Formation <br><span>& Audit</span></h2>
                 <p>Conseil en organisation stratégique, management, contrôle de gestion, audit financier et formations
                     certifiées FDFP.</p>
-                <a href="" class="btn-action">Démarrez votre projet</a>
+                <a href="#devisForm" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
@@ -567,7 +567,7 @@
                 <h2>Développement <br><span>Logiciel & IT</span></h2>
                 <p>Conception de sites web, logiciels de gestion sur mesure, maintenance informatique et audit de
                     sécurité SI.</p>
-                <a href="" class="btn-action">Démarrez votre projet</a>
+                <a href="#contact" class="btn-action">Démarrez votre projet</a>
             </div>
         </div>
 
@@ -1928,106 +1928,122 @@
             background-color: #d35400 !important;
         }
 
-        /* --- MODALE --- */
-        .details-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+      /* --- CORRECTION TECHNIQUE DE LA MODALE DÉROULANTE --- */
+.details-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-        .details-modal-overlay.active {
-            display: flex;
-        }
+.details-modal-overlay.active {
+    display: flex;
+}
 
-        .details-modal-card {
-            background: white;
-            max-width: 580px;
-            width: 100%;
-            border-radius: 16px;
-            padding: 35px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            animation: modalReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+/* La carte principale de la modale */
+.details-modal-card {
+    background: white;
+    max-width: 680px; /* Légèrement élargie pour le confort de lecture */
+    width: 100%;
+    max-height: 85vh; /* Sécurité : La modale ne dépassera jamais 85% de la hauteur de l'écran */
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    animation: modalReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* L'ASTUCE EST ICI : On force la carte à redistribuer l'espace verticalement */
+    display: flex;
+    flex-direction: column; 
+}
 
-        @keyframes modalReveal {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
+@keyframes modalReveal {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
 
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+.modal-close-x {
+    position: absolute;
+    top: 15px; 
+    right: 20px;
+    background: none; 
+    border: none;
+    font-size: 28px; 
+    color: #94a3b8;
+    cursor: pointer;
+    z-index: 10;
+}
 
-        .modal-close-x {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #94a3b8;
-            cursor: pointer;
-        }
+.modal-close-x:hover { color: #1e293b; }
 
-        .modal-close-x:hover {
-            color: #1e293b;
-        }
+/* En-tête fixe */
+.modal-header-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 15px;
+    flex-shrink: 0; /* Empêche l'en-tête de s'écraser */
+}
 
-        .modal-header-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 15px;
-        }
+.modal-main-icon {
+    font-size: 30px;
+    color: #e67e22;
+}
 
-        .modal-main-icon {
-            font-size: 30px;
-            color: #e67e22;
-        }
+.modal-header-container h4 {
+    font-size: 22px;
+    color: #1e293b;
+    margin: 0;
+    font-weight: 700;
+}
 
-        .modal-header-container h4 {
-            font-size: 22px;
-            color: #1e293b;
-            margin: 0;
-            font-weight: 700;
-        }
+/* --- LE CORPS DE LA MODALE : C'EST ICI QUE LE DÉROULEMENT SE PASSE --- */
+.modal-main-body {
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.6;
+    
+    /* Propriétés magiques pour le scroll interne */
+    flex-grow: 1;          /* Prend tout l'espace disponible entre l'en-tête et le bouton */
+    overflow-y: auto;      /* Active la barre de défilement verticale uniquement si le texte déborde */
+    padding-right: 15px;   /* Espace pour que la barre de défilement ne cache pas le texte */
+    margin-bottom: 20px;   /* Espace avec le bouton du bas */
+}
 
-        .modal-main-body {
-            color: #475569;
-            font-size: 15px;
-            line-height: 1.6;
-        }
+/* Personnalisation de la barre de défilement (Scrollbar) pour un effet moderne */
+.modal-main-body::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-main-body::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+.modal-main-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+.modal-main-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
 
-        .modal-main-body ul {
-            padding-left: 20px;
-            margin-top: 10px;
-        }
-
-        .modal-main-body li {
-            margin-bottom: 8px;
-        }
-
-        .modal-action-footer {
-            margin-top: 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
+/* Pied de page avec bouton fixe */
+.modal-action-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0; /* Empêche le pied de page de s'écraser */
+}
         /* --- PRESERVATION DU STYLE DES TEMOIGNAGES ET PARTENAIRES --- */
         .testimonials-section-wrapper {
             padding: 60px 5%;
@@ -2251,7 +2267,7 @@
                             <li class="not-included">Panel d'administration</li>
                             <li class="not-included">Paiement en ligne</li>
                         </ul>
-                        <a href="https://wa.me/225XXXXXXXX" class="btn-offer-outline">Choisir ce pack</a>
+                        <a href="https://wa.me/2250708061538" class="btn-offer-outline">Choisir ce pack</a>
                     </div>
 
                     <div class="offer-card featured">
@@ -2269,7 +2285,7 @@
                             <li>Support prioritaire 6 mois</li>
                             <li>Multilingue FR + EN</li>
                         </ul>
-                        <a href="https://wa.me/225XXXXXXXX" class="btn-offer-solid">Choisir ce pack</a>
+                        <a href="https://wa.me/2250708061538" class="btn-offer-solid">Choisir ce pack</a>
                     </div>
 
                     <div class="offer-card">
@@ -2287,7 +2303,7 @@
                             <li>Tableau de bord vendeur</li>
                             <li>Catalogue produits illimité</li>
                         </ul>
-                        <a href="https://wa.me/225XXXXXXXX" class="btn-offer-outline">Choisir ce pack</a>
+                        <a href="https://wa.me/2250708061538" class="btn-offer-outline">Choisir ce pack</a>
                     </div>
 
                 </div>
@@ -2325,7 +2341,7 @@
                             <li>Conseil juridique initial offert</li>
                         </ul>
                         <div class="time-badge">⏱ 5 à 10 jours ouvrés</div>
-                        <a href="https://wa.me/225XXXXXXXX" class="btn-offer-solid">Créer mon EI</a>
+                        <a href="https://wa.me/2250708061538" class="btn-offer-solid">Créer mon EI</a>
                     </div>
 
                     <div class="offer-card wide-card featured-blue">
@@ -2340,7 +2356,7 @@
                             <li>Accompagnement ouverture compte bancaire</li>
                         </ul>
                         <div class="time-badge">⏱ 10 à 15 jours ouvrés</div>
-                        <a href="https://wa.me/225XXXXXXXX" class="btn-offer-blue">Créer ma SARL</a>
+                        <a href="https://wa.me/2250708061538" class="btn-offer-blue">Créer ma SARL</a>
                     </div>
 
                 </div>
@@ -3263,7 +3279,7 @@
     </style>
 
 
-    <section id="contact" class="faq-contact-wrapper">
+    <section id="contact" class="faq-contact-wrapper" >
         <div class="global-container">
 
             <div class="faq-section">
@@ -3493,11 +3509,10 @@
                 <p class="hours-text"><i class="fa-regular fa-clock"></i> Lun - Sam : 08h30 - 17h00</p>
                 <div class="footer-socials">
                     <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100088277035926" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/2250708061538" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
-
         </div>
 
         <div class="footer-bottom">
